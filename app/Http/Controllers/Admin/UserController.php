@@ -176,4 +176,11 @@ class UserController extends Controller
 
 
     }
+    public function message(){
+        $msgs=\App\Models\ClientMessage::orderBy('id','DESC')->paginate(7);
+        $links=$msgs->links();
+        // dd($msgs,$links);
+        return view('back.message.index',compact('msgs','links'));
+
+    }
 }

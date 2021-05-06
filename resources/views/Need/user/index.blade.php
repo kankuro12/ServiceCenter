@@ -40,71 +40,189 @@
 
     </div>
 
-    @if ($jobs->count()>0)
-    <div class="big_section  pt-3 mt-3 d-none d-md-block">
-        <div class="shadow pb-3">
 
-            <div class="title">
-                <span class="normal">
-                    Posted Jobs
-                </span>
-    
-            </div>
-            <hr class="my-1">
-            <hr class="my-1">
-            <div class="desc">
-                <table class="table">
-                    <tr>
-                        <th>Title</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach ($jobs as $job)
-                        <tr>
-                            <td>{{$job->title}}</td>
-                            <td>{{$job->active==1?"Running":"Closed"}}</td>
-                        </tr>
-                    @endforeach
-                </table>
-    
-            </div>
-        </div>
-    </div>
-    <div class="big_section  pt-3 mt-3 d-block d-md-none">
-        <div class="title">
-            <span class="normal">
-                Posted Jobs
-            </span>
-
-        </div>
-        
-        <div class="">
-            @foreach ($jobs as $job)
-            <div class=" shadow mb-3">
-                <div class="row px-2 pt-4 pb-2">
-                    <div class="font-weight-bold col-3 text-right">
-                        Title:
-                    </div>
-                    <div class="col-9">
-                        {{$job->title}}
-                    </div>
-                    <div class="col-3 text-right font-weight-bold">
-                        Status:
-                    </div>
-                    <div class="col-9">
-                        {{$job->active==1?"Running":"Closed"}}
-                    </div>
-                </div>
-                <hr class="m-0">
-                <div class="px-2 text-right">
-                    <a class="btn btn-link font-weight-bold" href="" class="pr-2">View</a>
-                    <a class="btn btn-link font-weight-bold" href="" class="pr-2">Edit</a>
-                </div>
-            </div>
+    <div class="big_section mt-5 pt-0">
+        <div class="row">
+            
+            @if ($jobs->count()>0)
+            <div class="col-md-6 pb-3">
+                <div class=" shadow pt-3  ">
+                    <div>
+            
+                        <div class="title">
+                            <span class="normal">
+                                Posted Jobs
+                            </span>
                 
-            @endforeach
+                        </div>
+                      
+                        <hr class="my-1">
+                        <div class="desc">
+                            <table class="table">
+                                <tr>
+                                    <th>REF ID</th>
+                                    <th>Title</th>
+                                    <th>
+
+                                    </th>
+                                    {{-- <th>Status</th> --}}
+                                </tr>
+                                @foreach ($jobs as $job)
+                                    <tr>
+                                        <td>{{$job->id}}</td>
+                                        <td>{{$job->title}}</td>
+                                        <th>
+                                            <a href="">Detail</a>
+                                        </th>
+                                        {{-- <td>{{$job->active==1?"Running":"Closed"}}</td> --}}
+                                    </tr>
+                                @endforeach
+                            </table>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            
+            @if ($cvs->count()>0)
+            <div class="col-md-6 pb-3">
+                <div class=" shadow pt-3  ">
+                    <div>
+                        <div class="title">
+                            <span class="normal">
+                                CV
+                            </span>
+                        </div>
+                        <hr class="my-1">
+                        <div class="desc" style="overflow-y:auto;">
+                            <table class="table">
+                                <tr>
+                                    <th>REF ID</th>
+                                    <th>CV</th>
+                                    <th></th>
+                                </tr>
+                                @foreach ($cvs as $cv)
+                                @php
+                                    $info=pathinfo($cv->file);
+                                    
+                                @endphp
+                                    <tr>
+                                        <td>{{$cv->id}}</td>
+
+                                        <td>
+                                            @if(isImage($cv->file))
+                                                <img src="{{asset($cv->file)}}" style="max-width: 150px;" alt="">
+                                            @else
+                                                {{$info['basename']}}
+                                            @endif
+                                        </td>
+                                        {{-- <td>{{$job->active==1?"Running":"Closed"}}</td> --}}
+                                        <td><a href="{{asset($cv->file)}}" target="_blank">Download</a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if($orders->count()>0)
+            <div class="col-md-12 pb-3">
+                <div class=" shadow pt-3  ">
+                    <div>
+                        <div class="title">
+                            <span class="normal">
+                                Orders
+                            </span>
+                        </div>
+                        <hr class="my-1">
+                        <div class="desc" style="overflow-x: auto;">
+                            <table class="table">
+                                <tr>
+                                    <th>REF ID</th>
+                                    <th>Company</th>
+                                    <th>Year</th>
+                                    <th>Model</th>
+                                    <th>Version</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                                @foreach ($orders  as $order)
+                                    <tr>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->company}}</td>
+                                        <td>{{$order->year}}</td>
+                                        <td>{{$order->model}}</td>
+                                        <td>{{$order->version}}</td>
+                                        <td>{{$order->total}}</td>
+                                        {{-- <td>{{$job->active==1?"Running":"Closed"}}</td> --}}
+                                        <td><a href="{{route('n.front.user-order',['order'=>$order->id])}}">Detail</a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                
+                        </div>
+                        <div class="text-center">
+                            &#8592;	 scroll  &#8594;	
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @if($deliveries->count()>0)
+            <div class="col-md-12 pb-3">
+                <div class=" shadow pt-3  ">
+                    <div>
+                        <div class="title">
+                            <span class="normal">
+                                Delivery List
+                            </span>
+                        </div>
+                        <hr class="my-1">
+                        <div class="desc" style="overflow-x: auto;">
+                            <table class="table">
+                                <tr>
+                                    <th>REF ID</th>
+                                    <th>List</th>
+                                   
+                                    <th></th>
+                                </tr>
+                                @foreach ($deliveries  as $delivery)
+                                @php
+                                    $info=pathinfo($delivery->file);
+                                
+                                @endphp
+                                    <tr>
+                                        <td>{{$delivery->id}}</td>
+
+                                        <td>
+                                            @if(isImage($delivery->file))
+                                                <img src="{{asset($delivery->file)}}" style="max-width: 350px;" alt="">
+                                            @else
+                                                {{$info['basename']}}
+                                            @endif
+                                        </td>
+                                        {{-- <td>{{$job->active==1?"Running":"Closed"}}</td> --}}
+                                        <td><a href="{{asset($delivery->file)}}" target="_blank">Download</a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                
+                        </div>
+                        <div class="text-center">
+                            &#8592;	 scroll  &#8594;	
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
-    @endif
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/css/normal.css')}}">

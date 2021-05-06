@@ -24,7 +24,7 @@
         
                         </p>
                         <div class="text-center">
-                            <a href="" class="min-link ">View Detail &rarr;</a>
+                            <a href="{{route('n.front.user-order',['order'=>$so->id])}}" class="min-link ">View Detail &rarr;</a>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Need;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClientMessage;
 use App\Models\Delivery;
 use App\Models\JobProvider;
 use App\Models\JobSeekers;
@@ -63,5 +64,15 @@ class HomeController extends Controller
         }else{
             return view('Need.delivery.index');
         }
+    }
+
+    public function message(Request $request){
+        $msg=new ClientMessage();
+        $msg->name=$request->name;
+        $msg->phone=$request->phone;
+        $msg->email=$request->email;
+        $msg->message=$request->message;
+        $msg->save();
+        return response('ok');
     }
 }

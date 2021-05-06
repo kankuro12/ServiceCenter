@@ -64,4 +64,8 @@ class AuthController extends Controller
         $deliveries=Delivery::where('user_id',$user->id)->get();
         return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries'));
     }
+
+    public function order(ServiceOrder $order){
+        return view('Need.user.order',compact('order'));
+    }
 }

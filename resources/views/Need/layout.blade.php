@@ -10,9 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>{{env('APP_NAME',"laravel")}} - @env('tagline')
-        
-    @endenv</title>
+    <title>{{env('APP_NAME',"laravel")}} - {{custom_config('tagline')->value??""}}</title>
     @laravelPWA
 
 
@@ -64,7 +62,7 @@
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{route('n.front.home')}}" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.home')}}">Bike Service</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.book.step1')}}">Bike Service</a></li>
               {{-- <li class="scroll-to-section"><a href="#services">Services</a></li> --}}
               <li class="scroll-to-section"><a href="{{route('n.front.delivery')}}">Delivery</a></li>
               <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}">Find Job</a></li>
@@ -72,7 +70,8 @@
               <li class="scroll-to-section"><a href="{{route('n.front.book.shop')}}">Shop</a></li>
               <li class="scroll-to-section"><a href="{{route('n.front.user')}}">Account</a></li>
               {{-- <li class="scroll-to-section"><a href="#contact">Message Us</a></li> --}}
-              <li class="scroll-to-section"><div class="main-red-button"><a href="tel:9800916365">9800916365</a></div></li>
+              <li class="scroll-to-section"><div class="main-red-button"><a href="tel:{{custom_config('phone')->value??""}}
+                ">{{custom_config('phone')->value??""}}</a></div></li>
             </ul>
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -87,20 +86,20 @@
 
   @yield('content')
 
-  <div id="contact" class="contact-us section">
+  <div id="" class="contact-us section">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
           <div class="section-heading">
             <h2>Feel Free To Send Us a Message About Your Need</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doer ket eismod tempor incididunt ut labore et dolores</p>
             <div class="phone-info">
-              <h4>For any enquiry, Call Us: <span><i class="fa fa-phone"></i> <a href="tel:9800916365">9800916365</a></span></h4>
+              <h4>For any enquiry, Call Us: <span><i class="fa fa-phone"></i> <a href="tel:{{custom_config('phone')->value??""}}">{{custom_config('phone')->value??""}}</a></span></h4>
             </div>
           </div>
         </div>
         <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" action="" method="post">
+          <form id="contact"  >
+            @csrf
             <div class="row">
               <div class="col-lg-6">
                 <fieldset>
@@ -114,17 +113,17 @@
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" >
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>
+                  <textarea maxlength="160" name="message" type="text" class="form-control" id="message" placeholder="Message" required></textarea>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="main-button ">Send Message</button>
+                  <button type="submit" id="form-submit btn btn-primary" class="main-button ">Send Message</button>
                 </fieldset>
               </div>
             </div>
@@ -149,6 +148,7 @@
     </div>
   </footer>
 
+  @include('Need.sucess')
   <style>
 
   </style>
@@ -160,5 +160,26 @@
   <script src="/assets/js/imagesloaded.js"></script>
   <script src="/assets/js/templatemo-custom.js"></script>
   @yield('js')
+  <script>
+    $(document).ready( function() { // Wait until document is fully parsed
+      $("#contact").on('submit', function(e){
+
+        e.preventDefault();
+        var fd=new FormData(document.getElementById('contact'));
+        $.ajax({
+          type: "POST",
+          url: "{{route('n.front.message')}}",
+          data:fd,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+              $('#sucessModal').modal('show');
+              document.getElementById('contact').reset();
+          }
+        });
+      });
+    });
+   
+  </script>
 </body>
 </html>

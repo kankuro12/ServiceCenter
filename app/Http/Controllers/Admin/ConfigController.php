@@ -16,51 +16,74 @@ class ConfigController extends Controller
     link_group
     */
     private $c=[
-        'logo'=>[
-            "name"=>"Logo",
-            "type"=>"image",
+        'tagline'=>[
+            'name'=>"Tag Line",
+            'type'=>'text'
         ],
-        'home_search_title'=>[
-            "name"=>"Home Search Title",
-            'type'=>"text"
+        'phone'=>[
+            'name'=>"Phone Number",
+            'type'=>'text'
         ],
-        'footer_title_text'=>[
-            "name"=>"Footer Title Text",
-            'type'=>"text"
+        'banner_msg1'=>[
+            'name'=>"Primary Banner Message",
+            'type'=>'text'
         ],
-        'footer_title_links'=>[
-            "name"=>"Footer Title links",
-            'type'=>"link_group"
+        'banner_msg2'=>[
+            'name'=>"Secondary Banner Message",
+            'type'=>'text'
         ],
-        'footer_2_links'=>[
-            "name"=>"Footer Second Links",
-            'type'=>"link_group"
-        ],'footer_3_links'=>[
-            "name"=>"Footer Third Links",
-            'type'=>"link_group"
-        ],'footer_text_left'=>[
-            "name"=>"Footer Text Left",
-            'type'=>"desc"
-        ],'footer_text_right'=>[
-            "name"=>"Footer Text Right",
-            'type'=>"desc"
+        'banner_image'=>[
+            'name'=>"Banner Image",
+            'type'=>'image'
         ],
-        'footer_app_title'=>[
-            "name"=>"Footer App Title",
-            "type"=>"text"
+        'bs_short'=>[
+            'name'=>"Bike Serivce Short Description",
+            'type'=>'desc'
         ],
-        'footer_app_android'=>[
-            'name'=>"Footer App Android",
-            'type'=>'link_image'
+        'bs_long'=>[
+            'name'=>"Bike Serivce Long Description",
+            'type'=>'desc'
         ],
-        'footer_app_ios'=>[
-            'name'=>"Footer App IOS",
-            'type'=>'link_image'
+        'bs_image'=>[
+            'name'=>"Bike Serivce image",
+            'type'=>'image'
         ],
-        'footer_social'=>[
-            'name'=>"Footer Social Icons",
-            'type'=>'link_image_group'
-        ]
+        'hd_short'=>[
+            'name'=>"Home Delivery Short Description",
+            'type'=>'desc'
+        ],
+        'hd_long'=>[
+            'name'=>"Home Delivery Long Description",
+            'type'=>'desc'
+        ],
+        'hd_image'=>[
+            'name'=>"Home Delivery image",
+            'type'=>'image'
+        ],
+        'fj_short'=>[
+            'name'=>"Find Job Short Description",
+            'type'=>'desc'
+        ],
+        'fj_long'=>[
+            'name'=>"Find Job Long Description",
+            'type'=>'desc'
+        ],
+        'fj_image'=>[
+            'name'=>"Find Job image",
+            'type'=>'image'
+        ],
+        'pj_short'=>[
+            'name'=>"Post Job Short Description",
+            'type'=>'desc'
+        ],
+        'pj_long'=>[
+            'name'=>"Post Job Long Description",
+            'type'=>'desc'
+        ],
+        'pj_image'=>[
+            'name'=>"Post Job image",
+            'type'=>'image'
+        ],
 
        
     ];

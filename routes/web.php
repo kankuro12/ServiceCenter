@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 route::name('n.front.')->group(function(){
     route::get('',[HomeController::class,"index"])->name('home');
+    route::post('message',[HomeController::class,"message"])->name('message');
 
     //authentication
     route::get('auth',[AuthController::class,"index"])->name('auth');
@@ -52,6 +53,7 @@ route::name('n.front.')->group(function(){
         route::get('logout',[AuthController::class,"logout"])->name('logout');  
         
         route::get('user',[AuthController::class,'user'])->name('user');
+        route::get('user-order/{order}',[AuthController::class,'order'])->name('user-order');
     });
 });
 
@@ -99,6 +101,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
         Route::get('configs',[ConfigController::class,'index'])->name('configs');
 
         Route::post('configs/store',[ConfigController::class,'store'])->name('configs.store');
+
+        Route::get('message', [UserController::class,'message'])->name('message');
+
     });
 
     Route::get('/', 'Admin\AdminController@index')->name('dashboard');

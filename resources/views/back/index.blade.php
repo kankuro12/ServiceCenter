@@ -103,7 +103,7 @@
                 </div><!-- /.section-block -->
                 <!-- grid row -->
 
-
+                @include('back.message.small')
               </div><!-- /.page-section -->
             </div><!-- /.page-inner -->
           </div><!-- /.page -->

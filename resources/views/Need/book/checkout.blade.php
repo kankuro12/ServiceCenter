@@ -12,8 +12,8 @@
             </span> 
             <span class="other"> Servicing</span>
         </div>
-        <div class="desc py-3">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates porro voluptatum modi officiis debitis ducimus iusto. Officia laborum repudiandae, voluptas earum soluta dolore amet corporis aut error debitis animi corrupti.
+        <div class="desc py-3 text-center">
+            {{custom_config('bs_long')->value??""}}
         </div>
         <div class="mx-md-5 mx-0">
                 <div class="d-block d-md-flex w-100 py-3 text-center" >

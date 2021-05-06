@@ -23,9 +23,9 @@
                             </span>
         
                         </p>
-                        <div class="text-center">
+                        {{-- <div class="text-center">
                             <a href="" class="min-link ">View Detail &rarr;</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-md-6  py-2">
