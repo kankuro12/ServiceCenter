@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\ConfigController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Need\AuthController;
+use App\Http\Controllers\Need\BookingController;
+use App\Http\Controllers\Need\HomeController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -16,66 +22,39 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', 'FrontController@index');
-Route::get('shops', 'ProductController@productShop');
-Route::get('shops-1', 'ProductController@productShop_1');
-Route::get('product/detail/{id}', 'ProductController@productDetail');
-Route::get('shops-by-category/{id}', 'ProductController@productShopByCategory');
-Route::get('shops-by-brand/{id}', 'ProductController@productShopByBrand');
+route::name('n.front.')->group(function(){
+    route::get('',[HomeController::class,"index"])->name('home');
 
-Route::get('price/by/color/{id}', 'ProductController@priceByColor');
-Route::get('price/by/size/{id}', 'ProductController@priceBySize');
+    //authentication
+    route::get('auth',[AuthController::class,"index"])->name('auth');
+    route::post('plogin',[AuthController::class,"login"])->name('login');
+    route::post('signup',[AuthController::class,"signup"])->name('signup');
 
+    route::name('book.')->prefix("bike-service")->group(function(){
 
-Route::get('customer-signup', 'CustomerAuthController@customerRigester');
-Route::post('customer-signup', 'CustomerAuthController@customerLoginRegister');
-Route::post('customer-login', 'CustomerAuthController@customerLogin');
-Route::get('logout', 'CustomerAuthController@customerLogout');
+        route::match(['get','post'],'step1',[BookingController::class,"step1"])->name('step1');
+        route::match(['get','post'],'step2',[BookingController::class,"step2"])->name('step2');
+        route::match(['get','post'],'shop',[BookingController::class,"shop"])->name('shop');
+        route::match(['get','post'],'addToCart',[BookingController::class,"addToCart"])->name('addToCart');
+        route::match(['get','post'],'removeFromCart',[BookingController::class,"removeFromCart"])->name('removeFromCart');
+        
+    });
+    
+    Route::middleware(['checkuser'])->group(function () {
+        route::name('book.')->prefix("bike-service")->group(function(){
+            route::match(['get','post'],'checkout',[BookingController::class,"checkout"])->name('checkout');
+            route::match(['get','post'],'success',[BookingController::class,"success"])->name('success');
+        });
+        
+        route::match(['get','post'],'postjob',[HomeController::class,"postjob"])->name('postjob');
+        route::match(['get','post'],'postcv',[HomeController::class,"postcv"])->name('postcv');
+        route::match(['get','post'],'delivery',[HomeController::class,"delivery"])->name('delivery');
+        route::get('logout',[AuthController::class,"logout"])->name('logout');  
+        
+        route::get('user',[AuthController::class,'user'])->name('user');
+    });
+});
 
-
-Route::get('blog/detail/{id}', 'BlogController@singleBlogDetail');
-
-Route::get('stock/by-size/{product_id}/{size_id}', 'ProductController@stockGetBySize');
-Route::get('size/by-color/{color_id}/{id}', 'ProductController@getSizeByColor');
-Route::get('price/by-size/{color_id}/{size_id}/{product_id}', 'ProductController@getPriceBySize');
-
-
-
-
-// product fileter routes
-Route::match(['GET', 'POST'], 'color-filter', 'ProductController@colorFilter');
-Route::match(['GET', 'POST'], 'size-filter', 'ProductController@sizeFilter');
-Route::match(['GET', 'POST'], 'brand-filter', 'ProductController@brandFilter');
-Route::match(['GET', 'POST'], 'category-filter', 'ProductController@categoryFilter');
-Route::match(['GET', 'POST'], 'price-short', 'ProductController@priceShort');
-
-
-// cart routes
-Route::get('shopping-cart', 'CartController@index');
-Route::get('cart/item/list', 'CartController@getCartItems');
-Route::post('add-to-cart', 'CartController@productAddToCart');
-Route::get('cart/update-qty/{id}/{qty}', 'CartController@updateQtyOfCartItem');
-Route::get('remove/cart/item/{id}', 'CartController@cartItemRemove');
-Route::post('apply/coupon-code', 'CartController@applyCouponCode');
-Route::get('api/remove/cart/item/{id}', 'CartController@cartItemRemoveApi');
-
-// search product route
-Route::match(['GET', 'POST'], 'search-product', 'ProductController@searchProduct')->name('search.product');
-
-// page Routes
-
-Route::get('about-us', 'PageController@aboutUs');
-Route::get('contact-us', 'PageController@contactUs');
-Route::get('terms-and-condition', 'PageController@termsAndCondition');
-
-// wishlist route
-
-Route::match(['GET', 'POST'], 'wishlists', 'CustomerAuthController@wishList');
-Route::get('add-to-withlist/{product_id}', 'CustomerAuthController@AddProductToWishlist');
-
-// forget password
-Route::match(['GET', 'POST'], 'forget-password', 'CustomerAuthController@forgetPassword');
-Route::match(['GET', 'POST'], 'change-password', 'CustomerAuthController@changePassword');
 
 // newsletter
 Route::post('add-email', 'NewsletterController@addEmail');
@@ -99,10 +78,29 @@ Route::match(['GET','POST'],'login','Auth\LoginController@login')->name('login')
 Route::post('logout','Auth\LoginController@logout')->name('logout');
 
 
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
+    Route::name('admin.')->group(function(){
+        Route::get('delivery', [UserController::class,'delivery'])->name('delivery');
+        Route::get('deliverySingle/{delivery}', [UserController::class,'deliverySingle'])->name('deliverySingle');
+        
+        Route::get('jobseeker', [UserController::class,'jobseeker'])->name('jobseeker');
+        Route::get('jobseekerSingle/{jobseeker}', [UserController::class,'jobseekerSingle'])->name('jobseekerSingle');
+        
+        Route::get('job', [UserController::class,'job'])->name('job');
+        Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
+
+        Route::get('serviceOrder', [OrderController::class,'serviceOrder'])->name('serviceOrder');
+        Route::get('serviceOrderSingle/{order}', [OrderController::class,'serviceOrderSingle'])->name('serviceOrderSingle');
+        // Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
+
+        //XXX manage configs
+        Route::get('configs',[ConfigController::class,'index'])->name('configs');
+
+        Route::post('configs/store',[ConfigController::class,'store'])->name('configs.store');
+    });
+
     Route::get('/', 'Admin\AdminController@index')->name('dashboard');
 
     //  main attr

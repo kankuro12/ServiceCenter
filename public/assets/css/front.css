@@ -1,0 +1,68 @@
+.services {
+  font-family: 'Poppins', sans-serif;
+  padding: 50px;
+}
+
+.services .title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 42px;
+}
+
+.services .col-md-3 {
+  padding-top: 45px;
+}
+
+.services .item {
+  border-radius: 5px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  height: 100%;
+}
+
+.services .item .desc {
+  padding: 10px;
+}
+
+.services .item .desc .item-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 25px;
+  padding-bottom: 5px;
+}
+
+.services .item .desc .item-desc {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.services .item .desc .item-btn {
+  margin-bottom: 20px;
+  border: none;
+  outline: transparent;
+  background: #05A4ED;
+  color: white;
+  padding: 10px 25px;
+  display: inline-block;
+  width: 80%;
+  font-weight: 600;
+}
+
+.services .item .desc .item-btn:hover {
+  background: #0584be;
+}
+/*# sourceMappingURL=front.css.map */

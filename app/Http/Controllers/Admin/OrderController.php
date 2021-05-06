@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ServiceOrder;
 use App\Order;
 use App\Orderitem;
 use App\Responsemessage;
@@ -54,5 +55,16 @@ class OrderController extends Controller
             'status' => $request->status
         ]);
         return redirect()->back()->with('success','Your response has been sent successfully!');
+    }
+
+
+    public function serviceOrder(){
+        $orders=ServiceOrder::with('user')->orderBy('id','DESC')->paginate(50);
+        return view('back.serviceorder.index',compact('orders'));
+    }
+
+    public function serviceOrderSingle(ServiceOrder $order){
+        return view('back.serviceorder.single',compact('order'));
+
     }
 }

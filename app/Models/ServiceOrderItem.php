@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceOrderItem extends Model
 {
     use HasFactory;
+    public function service(){
+        return $this->belongsTo(ServiceTypeItem::class);
+    }
 }
