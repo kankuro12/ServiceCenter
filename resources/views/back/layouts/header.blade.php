@@ -195,7 +195,7 @@
                 <a href="{{ route('shipping.index') }}" class="menu-link"><span class="menu-icon oi oi-dollar"></span> <span class="menu-text">Shipping Charge</span></a>
             </li><!-- /.menu-item --> --}}
 
-            <li class="menu-item has-child">
+            {{-- <li class="menu-item has-child">
                 <a href="#" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Customer Orders</span></a>
                 <ul class="menu">
                   <li class="menu-item <?php if(preg_match('/customer-pending-order/i',$url)){ echo'has-active';}?>">
@@ -217,9 +217,10 @@
                     <a href="{{ url('dashboard/customer-message') }}" class="menu-link">Customer Message</a>
                   </li>
                 </ul><!-- /child menu -->
-            </li>
+            </li> --}}
 
-            <li class="menu-item has-child">
+
+            {{-- <li class="menu-item has-child">
                 <a href="" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Front Setting</span></a>
                 <ul class="menu">
                   <li class="menu-item">
@@ -253,9 +254,9 @@
                     <a href="{{ url('dashboard/footer-extra-info') }}" class="menu-link">Footer Extra Info</a>
                   </li>
                 </ul><!-- /child menu -->
-            </li>
-
-            <li class="menu-item has-child">
+            </li> --}}
+           
+            {{-- <li class="menu-item has-child">
                 <a href="" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text"> Settings </span></a>
                 <ul class="menu">
                 <li class="menu-item">
@@ -268,15 +269,30 @@
                     <a href="{{ url('dashboard/change-password') }}" class="menu-link">Change Password</a>
                   </li>
                 </ul><!-- /child menu -->
-            </li>
-            <li class="menu-item <?php if(preg_match('/blog/i',$url)){ echo'has-active';}?>">
+            </li> --}}
+            {{-- <li class="menu-item <?php if(preg_match('/blog/i',$url)){ echo'has-active';}?>">
                 <a href="{{ route('blog.index') }}" class="menu-link"><span class="menu-icon oi oi-file"></span> <span class="menu-text">Blog</span></a>
             </li><!-- /.menu-item -->
 
             <li class="menu-item <?php if(preg_match('/subscriber/i',$url)){ echo'has-active';}?>">
                 <a href="{{ url('dashboard/subscriber') }}" class="menu-link"><span class="menu-icon oi oi-envelope-open"></span> <span class="menu-text">Subscriber</span></a>
-            </li><!-- /.menu-item -->
+            </li><!-- /.menu-item --> --}}
 
+            <li class="menu-item ">
+              <a href="{{ route('admin.delivery') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Deliveries</span></a>
+            </li><!-- /.menu-item -->
+            <li class="menu-item ">
+              <a href="{{ route('admin.job') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Posted Jobs</span></a>
+            </li><!-- /.menu-item -->
+            <li class="menu-item ">
+              <a href="{{ route('admin.jobseeker') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">CVs</span></a>
+            </li><!-- /.menu-item -->
+            <li class="menu-item ">
+              <a href="{{ route('admin.serviceOrder') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Service Orders</span></a>
+            </li><!-- /.menu-item -->
+            <li class="menu-item ">
+              <a href="{{ route('admin.configs') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Setting</span></a>
+            </li><!-- /.menu-item -->
           </ul><!-- /.menu -->
         </nav><!-- /.stacked-menu -->
       </div><!-- /.aside-menu -->

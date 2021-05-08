@@ -16,6 +16,10 @@ class ConfigController extends Controller
     link_group
     */
     private $c=[
+        'logo'=>[
+            'name'=>"logo",
+            'type'=>'image'
+        ],
         'tagline'=>[
             'name'=>"Tag Line",
             'type'=>'text'

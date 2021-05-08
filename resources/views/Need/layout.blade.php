@@ -56,7 +56,7 @@
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="{{route('n.front.home')}}" class="logo">
-              <h4>Nep<span>Auto</span></h4>
+              <img style="max-width: 125px" src="{{asset(custom_config('logo')??'')}}" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
