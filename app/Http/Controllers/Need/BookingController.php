@@ -200,7 +200,7 @@ class BookingController extends Controller
             $year = session('year');
             $model = session('model');
             $version = session('version');
-            return view('need.book.checkout', compact('products','user', 'package', 'services', 'company', 'year', 'model', 'version'));
+            return view('Need.book.checkout', compact('products','user', 'package', 'services', 'company', 'year', 'model', 'version'));
         }
     }
 
