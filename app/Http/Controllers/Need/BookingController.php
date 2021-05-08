@@ -160,7 +160,7 @@ class BookingController extends Controller
             $request->session()->forget('year');
             $request->session()->forget('version');
 
-            return view('need.book.sucess',compact('so'));
+            return view('Need.book.sucess',compact('so'));
 
 
         } else {
