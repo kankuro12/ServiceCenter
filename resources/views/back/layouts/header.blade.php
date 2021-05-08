@@ -9,7 +9,7 @@
     <div class="top-bar">
       <!-- .top-bar-brand -->
       <div class="top-bar-brand">
-        <a href="#">E-Commerce</a>
+        <a href="#">MY Dashboard</a>
       </div><!-- /.top-bar-brand -->
       <!-- .top-bar-list -->
       <div class="top-bar-list">
