@@ -7,6 +7,9 @@ use App\Models\ClientMessage;
 use App\Models\Delivery;
 use App\Models\JobProvider;
 use App\Models\JobSeekers;
+use App\Models\Subscription;
+use App\Models\UserSubscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,5 +77,26 @@ class HomeController extends Controller
         $msg->message=$request->message;
         $msg->save();
         return response('ok');
+    }
+
+    public function subs(Request $request){
+        $user=Auth::user();
+        $today=Carbon::today();
+        if($request->getMethod()=="POST"){
+            $so=new UserSubscription();
+            $so->subscription_id=$request->service;
+            $so->user_id=$user->id;
+            $so->accecpted=0;
+            $so->save();
+            return view('Need.subscription.sucess',compact('so'));
+        }else{
+            if(UserSubscription::where('user_id',$user->id)->whereDate('validtill','>=',$today)->orWhere('accecpted',0)->count()>0){
+                $us=UserSubscription::where('user_id',$user->id)->orderBy('id','desc')->first();
+                return view('Need.subscription.subscribed',compact('us'));
+            }else{
+                $subs=Subscription::all();
+                return view('Need.subscription.index',compact('subs'));
+            }
+        }
     }
 }

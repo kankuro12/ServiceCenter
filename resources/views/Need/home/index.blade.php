@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-lg-6 align-self-center">
               <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                <h6>Welcome to Nepal Auto</h6>
+                <h6>Welcome to {{env('APP_NAME')}}</h6>
                 <h2>{{custom_config('banner_msg1')->value??""}}</h2>
                 <p>{{custom_config('banner_msg2')->value??""}}</p>
               
@@ -23,6 +23,7 @@
       </div>
     </div>
   </div>
+  @include('Need.home.carousel')
   <div class="services" id="service">
     <div class="title">
         <span class="normal"> Our </span><span class="other"> Services </span>
@@ -104,6 +105,26 @@
                 </div>
                 <div class="text-center pt-4">
                     <a href="{{route('n.front.postjob')}}" class="item-btn">Start Now</a>
+                </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="item">
+            <div>
+              <img src="{{asset(custom_config('subs_image')->value??"")}}" alt="" class="w-100">          
+            </div>
+            <div class="desc">
+                <div class="item-title other">
+                  Subscription Packages
+                </div>
+                <div class="item-desc">
+                  {{custom_config('subs_short')->value??""}}
+                </div>
+                <div class="text-center pt-4">
+                    <a href="{{route('n.front.subs')}}" class="item-btn">Subscribe Now</a>
                 </div>
             </div>
 

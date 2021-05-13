@@ -18,8 +18,24 @@
                         <th class="text-right">
                             Address:
                         </th>
-                        <td colspan="3">
+                        <td >
                             {{$user->address}}
+                        </td>
+                        <th class="text-right">
+                            Subscription:
+                        </th>
+                        <td >
+                            @if ($state==0)
+                                No Subscription
+                            @elseif ($state==1)
+                                Subscription Pending
+                            @elseif ($state==2)
+                                {{$sub->sub()->title}}
+                                Valid Till {{$sub->validTill}}
+                            @elseif ($state==3)
+                                {{$sub->sub()->title}}
+                                Expired
+                            @endif
                         </td>
                     </tr>
                 </table>
@@ -32,6 +48,21 @@
                     <div class="col-8 pl-0">{{$user->phone}}</div>
                     <div class="col-4 text-right font-weight-bold">Address:</div>
                     <div class="col-8 pl-0">{{$user->address}}</div>
+                    <div class="col-4 text-right font-weight-bold">Subscription:</div>
+
+                    <div class="col-8 pl-0">
+                        @if ($state==0)
+                        No Subscription
+                        @elseif ($state==1)
+                            Subscription Pending
+                        @elseif ($state==2)
+                            {{$sub->sub()->title}}
+                            Valid Till {{$sub->validTill}}
+                        @elseif ($state==3)
+                            {{$sub->sub()->title}}
+                            Expired
+                        @endif
+                    </div>
                 </div>
                 <hr>
             </div>

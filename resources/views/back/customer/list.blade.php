@@ -25,7 +25,7 @@
                            <table class="table table-bordered ">
                                <tr>
                                     <th>S.N</th>
-                                    <th>Image</th>
+                                    {{-- <th>Image</th> --}}
                                     <th>Name</th>
                                     <th>Address</th>
                                     <th>Telephone</th>
@@ -34,7 +34,7 @@
                                  @foreach ($customers as $k => $attr)
                                   <tr>
                                       <td>{{ $k+1 }}</td>
-                                      <td class="text-center"><img src="{{ asset('front/images/customers/'.$attr->image)}}" alt="image" style="height:70px; width:70px; border-radius: 50%;"></td>
+                                      {{-- <td class="text-center"><img src="{{ asset('front/images/customers/'.$attr->image)}}" alt="image" style="height:70px; width:70px; border-radius: 50%;"></td> --}}
                                       <td>{{ $attr->name }}</td>
                                       <td>{{ $attr->address }}</td>
                                       <td>{{ $attr->phone }}</td>

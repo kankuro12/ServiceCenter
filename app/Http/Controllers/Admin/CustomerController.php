@@ -14,7 +14,7 @@ class CustomerController extends Controller
     }
     
     public function customerList(){
-        $customers = User::where('role',0)->paginate(15);
+        $customers = User::where('role',2)->paginate(15);
         return view('back.customer.list',compact('customers'));
     }
 

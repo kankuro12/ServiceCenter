@@ -27,8 +27,10 @@
                                 data-default-file="{{asset($data[$key])}}"
                                 @endif
                                 >
-                            @elseif($c['type']=="text")
+                            @elseif($c['type']=="text" )
                                 <input class="w-100" required type="text" name="input_{{$key}}" id="input_{{$key}}" value="{{isset($data[$key])?$data[$key]:""}}" >
+                            @elseif($c['type']=="number" )
+                                <input class="w-100" required type="number"  name="input_{{$key}}" id="input_{{$key}}" value="{{isset($data[$key])?$data[$key]:"0"}}" >
                             @elseif($c['type']=="desc")
                                 <textarea class="w-100" type="text" name="input_{{$key}}" id="input_{{$key}}">{{isset($data[$key])?$data[$key]:""}}</textarea>
                             @elseif($c['type']=="link")

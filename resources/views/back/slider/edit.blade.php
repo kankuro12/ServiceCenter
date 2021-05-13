@@ -25,7 +25,7 @@
                                     @csrf
                                     @method('PUT')
                                     @include('back.layouts.message')
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="sub_title"> Top Title <span style="color:red;">*</span></label>
                                         <input type="text" name="sub_title" value="{{ $slider->sub_title }}" placeholder="Enter Top Title" class="form-control" required>
                                    </div>
@@ -41,7 +41,7 @@
                                    <div class="form-group">
                                        <label for="button"> Button Name <span style="color:red;">*</span></label>
                                        <input type="text" name="button_name" value="{{ $slider->button_name }}" placeholder="Enter Button Name" class="form-control" required>
-                                   </div>
+                                   </div> --}}
                                    <div class="form-group">
                                        <label for="link"> Link (Optional) </label>
                                        <input type="text" name="link" value="{{ $slider->link }}" placeholder="Enter link" class="form-control" >

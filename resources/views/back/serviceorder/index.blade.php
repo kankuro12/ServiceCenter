@@ -28,7 +28,8 @@
                                     <th>Name</th>
                                     <th>Address</th>
                                     <th>Phone</th>
-                                    <th>Total</th>
+                                    <th>Delivery</th>
+                                    <th>Price</th>
                                     <th>Posted</th>
                                     <th></th>
                                </tr>
@@ -39,6 +40,7 @@
                                       <td>{{ $attr->user->name }}</td>
                                       <td>{{ $attr->user->address }}</td>
                                       <td>{{ $attr->user->phone }}</td>
+                                      <td>{{ $attr->dc }}</td>
                                       <td>{{ $attr->total }}</td>
                                       <th>{{$attr->created_at->diffForHumans()}}</th>
                                       <td>

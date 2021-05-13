@@ -8,6 +8,8 @@ use App\Models\JobProvider;
 use App\Models\JobSeekers;
 use App\Models\ServiceOrder;
 use App\Models\User;
+use App\Models\UserSubscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -62,7 +64,25 @@ class AuthController extends Controller
         $cvs=JobSeekers::where('user_id',$user->id)->get();
         $orders=ServiceOrder::where('user_id',$user->id)->get();
         $deliveries=Delivery::where('user_id',$user->id)->get();
-        return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries'));
+
+
+        $sub=UserSubscription::where('user_id',$user->id)->orderBy('id','desc')->first();
+        $hassub=false;
+        $state=0;
+        if($sub!=null){
+            if($sub->accecpted==1){
+                if($sub->validtill<Carbon::today()){
+                    $state=3;
+                }else{
+                    $state=2;
+                }
+            }
+            if($sub->accecpted==0){
+                $state=1;
+            }
+        }
+        
+        return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries','sub','state'));
     }
 
     public function order(ServiceOrder $order){

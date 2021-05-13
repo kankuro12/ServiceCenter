@@ -13,9 +13,11 @@
                         <!-- .card-header -->
                         <div class="card-header">
                             <div class="d-md-flex align-items-md-start">
-                                <h3 class="page-title mr-sm-auto"> Create Slider </h3><!-- .btn-toolbar -->
+                                {{-- <h3 class="page-title mr-sm-auto"> Create Slider </h3><!-- .btn-toolbar --> --}}
+                                <h3 class="page-title mr-sm-auto"> Create Advertisment </h3><!-- .btn-toolbar -->
                                 <div class="dt-buttons btn-group">
-                                    <a href="{{ route('slider.index') }}" class="btn btn-primary">Slider List</a>
+                                    <a href="{{ route('slider.index') }}" class="btn btn-primary">Advertisment List</a>
+                                    {{-- <a href="{{ route('slider.index') }}" class="btn btn-primary">Slider List</a> --}}
                                 </div><!-- /.btn-toolbar -->
                             </div>
                         </div><!-- /.card-header -->
@@ -24,7 +26,7 @@
                                 <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @include('back.layouts.message')
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="sub_title"> Top Title <span style="color:red;">*</span></label>
                                         <input type="text" name="sub_title" placeholder="Enter Top Title" class="form-control" required>
                                    </div>
@@ -40,7 +42,7 @@
                                    <div class="form-group">
                                        <label for="button"> Button Name <span style="color:red;">*</span></label>
                                        <input type="text" name="button_name" placeholder="Enter Button Name" class="form-control" required>
-                                   </div>
+                                   </div> --}}
                                    <div class="form-group">
                                        <label for="link"> Link (Optional) </label>
                                        <input type="text" name="link" placeholder="Enter link" class="form-control" >
@@ -51,7 +53,7 @@
                                         <input type="file" name="image" class="form-control"  onchange="readURL(this);" required>
                                     </div>
                                     <hr>
-                                    <button type="submit" class="btn btn-primary btn-block">Save Item</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Save</button>
                                 </form>
                         </div><!-- /.card-body -->
                     </div>

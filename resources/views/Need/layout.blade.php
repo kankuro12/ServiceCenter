@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>{{env('APP_NAME',"laravel")}} - {{custom_config('tagline')->value??""}}</title>
-    @laravelPWA
+    {{-- @laravelPWA --}}
 
-
+    @include('Need.fav')
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -68,7 +68,12 @@
               <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}">Find Job</a></li>
               <li class="scroll-to-section"><a href="{{route('n.front.postjob')}}">Post Job</a></li>
               <li class="scroll-to-section"><a href="{{route('n.front.book.shop')}}">Shop</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.user')}}">Account</a></li>
+              @if (Auth::check())
+                <li class="scroll-to-section"><a href="{{route('n.front.user')}}">Account</a></li>
+              @else
+                <li class="scroll-to-section"><a href="{{route('n.front.auth')}}">Login</a></li>
+
+              @endif
               {{-- <li class="scroll-to-section"><a href="#contact">Message Us</a></li> --}}
               <li class="scroll-to-section"><div class="main-red-button"><a href="tel:{{custom_config('phone')->value??""}}
                 ">{{custom_config('phone')->value??""}}</a></div></li>
@@ -88,7 +93,9 @@
 
   <div id="" class="contact-us section">
     <div class="container">
+      <a name="bf"></a>
       <div class="row">
+        
         <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
           <div class="section-heading">
             <h2>Feel Free To Send Us a Message About Your Need</h2>

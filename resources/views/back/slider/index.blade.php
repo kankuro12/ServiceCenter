@@ -13,7 +13,8 @@
                         <!-- .card-header -->
                         <div class="card-header">
                             <div class="d-md-flex align-items-md-start">
-                                <h3 class="page-title mr-sm-auto"> List Of Slider </h3><!-- .btn-toolbar -->
+                                <h3 class="page-title mr-sm-auto"> List Of Advertisment </h3><!-- .btn-toolbar -->
+                                {{-- <h3 class="page-title mr-sm-auto"> List Of Slider </h3><!-- .btn-toolbar --> --}}
                                 <div class="dt-buttons btn-group">
                                     <a href="{{ route('slider.create') }}" class="btn btn-primary">Create New </a>
                                 </div><!-- /.btn-toolbar -->
@@ -24,12 +25,15 @@
                             @include('back.layouts.message')
                            <table class="table table-bordered ">
                                <tr>
-                                    <th>Title</th>
+                                    <th>Image</th>
                                     <th colspan="2">Action</th>
                                </tr>
                                @foreach (\App\Slider::all() as $attr)
                                   <tr>
-                                      <td>{{ $attr->sub_title }}</td>
+                                      {{-- <td>{{ $attr->sub_title }}</td> --}}
+                                      <td>
+                                          <img src="{{ asset('back/images/slider/'.$attr->image) }}" alt="" style="max-width:300px;">
+                                      </td>
                                       <td width="50px">
                                           <a href="{{ route('slider.edit',$attr->id) }}" class="badge badge-primary">Edit</a>
                                       </td>

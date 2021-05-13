@@ -38,10 +38,10 @@ class SliderController extends Controller
     {
         // dd($request->all());
         $slider = new Slider();
-        $slider->sub_title = $request->sub_title;
-        $slider->title = $request->title;
-        $slider->price_section = $request->price_section;
-        $slider->button_name = $request->button_name;
+        $slider->sub_title = $request->sub_title??'x';
+        $slider->title = $request->title??'x';
+        $slider->price_section = $request->price_section??'x';
+        $slider->button_name = $request->button_name??'x';
         $slider->link = $request->link;
 
         if($request->has('image')){
@@ -86,10 +86,10 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $slider = Slider::where('id',$id)->first();
-        $slider->sub_title = $request->sub_title;
-        $slider->title = $request->title;
-        $slider->price_section = $request->price_section;
-        $slider->button_name = $request->button_name;
+        $slider->sub_title = $request->sub_title??'x';
+        $slider->title = $request->title??'x';
+        $slider->price_section = $request->price_section??'x';
+        $slider->button_name = $request->button_name??'x';
         $slider->link = $request->link;
 
         if($request->has('image')){

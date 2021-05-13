@@ -277,7 +277,18 @@
             <li class="menu-item <?php if(preg_match('/subscriber/i',$url)){ echo'has-active';}?>">
                 <a href="{{ url('dashboard/subscriber') }}" class="menu-link"><span class="menu-icon oi oi-envelope-open"></span> <span class="menu-text">Subscriber</span></a>
             </li><!-- /.menu-item --> --}}
-
+            <li class="menu-item">
+              <a href="{{ route('admin.subs.user',['type'=>0]) }}" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">User Subscriptions</a>
+            </li>
+            <li class="menu-item">
+              <a href="{{ route('admin.subs.index') }}" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Subscription Packages</a>
+            </li>
+            <li class="menu-item">
+              <a href="{{ route('slider.index') }}" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Advertisments</a>
+            </li>
+            <li class="menu-item">
+              <a href="{{ url('dashboard/customer-list') }}" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Customer List</a>
+            </li>
             <li class="menu-item ">
               <a href="{{ route('admin.delivery') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Deliveries</span></a>
             </li><!-- /.menu-item -->

@@ -88,6 +88,22 @@ class ConfigController extends Controller
             'name'=>"Post Job image",
             'type'=>'image'
         ],
+        'subs_short'=>[
+            'name'=>"Subscription Package Short Description",
+            'type'=>'desc'
+        ],
+        'subs_long'=>[
+            'name'=>"Subscription Package Long Description",
+            'type'=>'desc'
+        ],
+        'subs_image'=>[
+            'name'=>"Subscription Package image",
+            'type'=>'image'
+        ],
+        'delivery_charge'=>[
+            'name'=>"Delivery Charge",
+            'type'=>'number'
+        ],
 
        
     ];
@@ -119,7 +135,7 @@ class ConfigController extends Controller
                 }
             }elseif(strtolower($config['type'])=="desc"){
                     $con->value=$request->input('input_'.$key);
-            }elseif(strtolower($config['type'])=="text"){
+            }elseif(strtolower($config['type'])=="text" || strtolower($config['type'])=="number"){
                 $con->value=$request->input('input_'.$key);
             }elseif(strtolower($config['type'])=="link"){
                 $con->value=$request->input('input_'.$key);

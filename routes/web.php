@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Need\AuthController;
 use App\Http\Controllers\Need\BookingController;
@@ -40,6 +41,8 @@ route::name('n.front.')->group(function(){
         route::match(['get','post'],'removeFromCart',[BookingController::class,"removeFromCart"])->name('removeFromCart');
         
     });
+
+
     
     Route::middleware(['checkuser'])->group(function () {
         route::name('book.')->prefix("bike-service")->group(function(){
@@ -50,6 +53,7 @@ route::name('n.front.')->group(function(){
         route::match(['get','post'],'postjob',[HomeController::class,"postjob"])->name('postjob');
         route::match(['get','post'],'postcv',[HomeController::class,"postcv"])->name('postcv');
         route::match(['get','post'],'delivery',[HomeController::class,"delivery"])->name('delivery');
+        route::match(['get','post'],'subs',[HomeController::class,"subs"])->name('subs');
         route::get('logout',[AuthController::class,"logout"])->name('logout');  
         
         route::get('user',[AuthController::class,'user'])->name('user');
@@ -103,6 +107,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
         Route::post('configs/store',[ConfigController::class,'store'])->name('configs.store');
 
         Route::get('message', [UserController::class,'message'])->name('message');
+
+        Route::name('subs.')->prefix('subs')->group(function(){
+            route::get('',[SubscriptionController::class,'index'])->name('index');
+            route::post('add',[SubscriptionController::class,'add'])->name('add');
+            route::post('update',[SubscriptionController::class,'update'])->name('update');
+            route::get('del/{sub}',[SubscriptionController::class,'del'])->name('del');
+            route::get('user/{type}',[SubscriptionController::class,'user'])->name('user');
+            route::post('user-del',[SubscriptionController::class,'user_del'])->name('user-del');
+            route::post('user-accecpt',[SubscriptionController::class,'user_accecpt'])->name('user-accecpt');
+        });
 
     });
 
