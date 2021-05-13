@@ -290,7 +290,7 @@
               <a href="{{ url('dashboard/customer-list') }}" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Customer List</a>
             </li>
             <li class="menu-item ">
-              <a href="{{ route('admin.delivery') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Deliveries</span></a>
+              <a href="{{ route('admin.delivery',['type'=>0]) }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Deliveries</span></a>
             </li><!-- /.menu-item -->
             <li class="menu-item ">
               <a href="{{ route('admin.job') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Posted Jobs</span></a>
@@ -299,7 +299,7 @@
               <a href="{{ route('admin.jobseeker') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">CVs</span></a>
             </li><!-- /.menu-item -->
             <li class="menu-item ">
-              <a href="{{ route('admin.serviceOrder') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Service Orders</span></a>
+              <a href="{{ route('admin.serviceOrder',['type'=>0]) }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Service Orders</span></a>
             </li><!-- /.menu-item -->
             <li class="menu-item ">
               <a href="{{ route('admin.configs') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Setting</span></a>

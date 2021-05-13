@@ -58,13 +58,20 @@ class OrderController extends Controller
     }
 
 
-    public function serviceOrder(){
-        $orders=ServiceOrder::with('user')->orderBy('id','DESC')->paginate(50);
-        return view('back.serviceorder.index',compact('orders'));
+    public function serviceOrder($type){
+        $orders=ServiceOrder::with('user')->orderBy('id','DESC')->where('status',$type)->paginate(50);
+        return view('back.serviceorder.index',compact('orders','type'));
     }
 
     public function serviceOrderSingle(ServiceOrder $order){
         return view('back.serviceorder.single',compact('order'));
 
+    }
+
+    public function serviceOrderComplete(Request $request){
+        $so=ServiceOrder::find($request->id);
+        $so->status=1;
+        $so->save();
+        return response('ok');
     }
 }

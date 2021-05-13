@@ -88,7 +88,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
     Route::name('admin.')->group(function(){
-        Route::get('delivery', [UserController::class,'delivery'])->name('delivery');
+        Route::get('delivery/{type}', [UserController::class,'delivery'])->name('delivery');
+        Route::post('deliveryComplete', [UserController::class,'deliveryComplete'])->name('deliveryComplete');
         Route::get('deliverySingle/{delivery}', [UserController::class,'deliverySingle'])->name('deliverySingle');
         
         Route::get('jobseeker', [UserController::class,'jobseeker'])->name('jobseeker');
@@ -97,7 +98,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
         Route::get('job', [UserController::class,'job'])->name('job');
         Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
 
-        Route::get('serviceOrder', [OrderController::class,'serviceOrder'])->name('serviceOrder');
+        Route::get('serviceOrder/{type}', [OrderController::class,'serviceOrder'])->name('serviceOrder');
+        Route::post('serviceOrder-complete', [OrderController::class,'serviceOrderComplete'])->name('serviceOrderComplete');
         Route::get('serviceOrderSingle/{order}', [OrderController::class,'serviceOrderSingle'])->name('serviceOrderSingle');
         // Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
 

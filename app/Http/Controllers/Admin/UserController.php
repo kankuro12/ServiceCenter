@@ -132,9 +132,16 @@ class UserController extends Controller
         "sun",
         "tga"
     ];
-    public function delivery(){
-        $delivery=Delivery::with('user')->orderBy('id','DESC')->paginate(50);
-        return view('back.delivery.index',compact('delivery'));
+    public function delivery($type){
+        $delivery=Delivery::with('user')->orderBy('id','DESC')->where('status',$type)->paginate(50);
+        return view('back.delivery.index',compact('delivery','type'));
+    }
+
+    public function deliveryComplete(Request $request){
+        $delivery=Delivery::find($request->id);
+        $delivery->status=1;
+        $delivery->save();
+        return response('ok');
     }
     public function deliverySingle(Delivery $delivery){
         $info=pathinfo($delivery->file);
