@@ -8,7 +8,6 @@
             <span class="other"> Products</span>
         </div>
         <div class="desc py-3">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates porro voluptatum modi officiis debitis ducimus iusto. Officia laborum repudiandae, voluptas earum soluta dolore amet corporis aut error debitis animi corrupti.
         </div>
 
        <div class="mt-2 mt-md-4 product-wrapper">
