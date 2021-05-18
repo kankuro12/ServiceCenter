@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::view('test', 'test');
 
 route::name('n.front.')->group(function(){
     route::get('',[HomeController::class,"index"])->name('home');
