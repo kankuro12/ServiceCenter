@@ -8,14 +8,23 @@
             <span class="other"> Products</span>
         </div>
         <div class="desc py-3">
+            <div class="d-flex justify-content-center">
+
+                <button class="btn btn-primary mx-1 selcat" id="selcat_0" onclick="sel(0)">All</button>
+                @foreach (\App\category::all() as $cat)
+                    
+                    <button class="btn btn-secondary mx-1 selcat"  id="selcat_{{$cat->id}}" onclick="sel({{$cat->id}})">{{$cat->name}}</button>
+                @endforeach
+                
+            </div>
         </div>
 
        <div class="mt-2 mt-md-4 product-wrapper">
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="product-container" >
+                    <div class="product-container cat_{{$product->category_id}}" >
 
-                        <div class="product shadow">
+                        <div class="product shadow " >
                             <div class="top">
                                 <div class="img-container"></div>
                                 <div class="img">
@@ -56,6 +65,19 @@
 @endsection
 @section('js')
 <script>
+    function sel(cat){
+        if(cat==0){
+            $('.product-container').removeClass('d-none');
+        }else{
+            $('.product-container').addClass('d-none');
+            $('.cat_'+cat).removeClass('d-none');
+        }
+        $('.selcat').removeClass('btn-primary');
+        $('.selcat').addClass('btn-secondary');
+        $('#selcat_'+cat).removeClass('btn-secondary');
+        $('#selcat_'+cat).addClass('btn-primary');
+
+    }
     function removeFromCart(id){
         $.ajax({
             type: "POST",
