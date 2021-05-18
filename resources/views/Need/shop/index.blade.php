@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-center">
 
                 <button class="btn btn-primary mx-1 selcat" id="selcat_0" onclick="sel(0)">All</button>
-                @foreach (\App\category::all() as $cat)
+                @foreach (\App\Category::all() as $cat) 
                     
                     <button class="btn btn-secondary mx-1 selcat"  id="selcat_{{$cat->id}}" onclick="sel({{$cat->id}})">{{$cat->name}}</button>
                 @endforeach
