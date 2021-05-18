@@ -222,10 +222,19 @@
                     </div>
                     @php
                         $dc=custom_config('delivery_charge')->value??0;
+                        $sc=custom_config('service_charge')->value??0;
                     @endphp
                     <form class="mx-2 mx-md-4 px-2 mt-2 mt-md-4 shadow" action="{{route('n.front.book.checkout')}}" method="post">
                         @csrf
                         <div class="form-group pb-2 pt-4  d-none d-md-flex justify-content-between">
+                            <div class=" py-2 d-none d-md-flex " style="width:50%;">
+                                <span class="other mx-2">
+                                    <strong>
+                                       Service Charge : 
+                                    </strong>
+                                </span>
+                                <span style="flex-grow:1;"> Rs. {{$sc}}</span>
+                            </div>
                             <div class=" py-2 d-none d-md-flex " style="width:50%;">
                                 <span class="other mx-2">
                                     <strong>
@@ -240,12 +249,20 @@
                                         Grand Total : 
                                     </strong>
                                 </span>
-                                <span style="flex-grow:1;"> Rs. {{$total2+$total1+$dc}}</span>
+                                <span style="flex-grow:1;"> Rs. {{$total2+$total1+$dc+$sc}}</span>
                             </div>
                             
                             <button class="mb-3 mt-md-0 submit d-none d-md-inline-block"  >Comfirm And Checkout >></button>
                         </div>
                         <div class="form-group mb-0 pb-0  bg-white  d-block d-md-none " style="position: fixed; bottom:0px;left:0px;right:0px;box-shadow:0px 0px 10px 0px rgba(0,0,0,0.25);z-index:2;"> 
+                            <div class="py-2 d-flex d-md-none justify-content-center" style="width:100%;">
+                                <span class="other mx-2" >
+                                    <strong>
+                                        Service Charge : 
+                                    </strong>
+                                </span>
+                                <span > Rs. {{$sc}}</span>
+                            </div>
                             <div class="py-2 d-flex d-md-none justify-content-center" style="width:100%;">
                                 <span class="other mx-2" >
                                     <strong>
@@ -260,7 +277,7 @@
                                         Grand Total : 
                                     </strong>
                                 </span>
-                                <span > Rs. {{$total2+$total1+$dc}}</span>
+                                <span > Rs. {{$total2+$total1+$dc+$sc}}</span>
                             </div>
                             <button class="mt-md-0 submit"   style="border-radius: 0px; ">Comfirm And Checkout >></button>
                         </div>

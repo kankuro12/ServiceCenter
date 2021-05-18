@@ -120,6 +120,7 @@ class BookingController extends Controller
             $so->version=$version;
             $so-> service_type_id=$spt;
             $so-> dc=custom_config('delivery_charge')->value??0;
+            $so-> sc=custom_config('service_charge')->value??0;
             $so-> user_id=Auth::user()->id;
             $so->save();
             $total=0;

@@ -28,8 +28,12 @@
                                      <th>Name</th>
                                      <th>Address</th>
                                      <th>Phone</th>
+                                     <th>Service</th>
                                      <th>Delivery</th>
                                      <th>Price</th>
+                                     <th>
+                                         Total
+                                     </th>
                                      <th>Posted</th>
                                 </tr>
                                    <tr>
@@ -37,8 +41,12 @@
                                        <td>{{ $order->user->name }}</td>
                                        <td>{{ $order->user->address }}</td>
                                        <td>{{ $order->user->phone }}</td>
+                                       <td>{{ $order->sc }}</td>
                                        <td>{{ $order->dc }}</td>
                                        <td>{{ $order->total }}</td>
+                                       <td>
+                                           {{$order->total+$order->sc+$order->dc}}
+                                       </td>
                                        <th>{{$order->created_at->diffForHumans()}}</th>
                                    </tr>
                             </table>

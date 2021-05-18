@@ -179,7 +179,12 @@
                                     <th>Year</th>
                                     <th>Model</th>
                                     <th>Version</th>
-                                    <th>Total</th>
+                                    <th>Service</th>
+                                    <th>Delivery</th>
+                                    <th>Price</th>
+                                    <th>
+                                        Total
+                                    </th>
                                     <th></th>
                                 </tr>
                                 @foreach ($orders  as $order)
@@ -189,7 +194,12 @@
                                         <td>{{$order->year}}</td>
                                         <td>{{$order->model}}</td>
                                         <td>{{$order->version}}</td>
-                                        <td>{{$order->total}}</td>
+                                        <td>{{ $order->sc }}</td>
+                                        <td>{{ $order->dc }}</td>
+                                        <td>{{ $order->total }}</td>
+                                        <td>
+                                            {{$order->total+$order->sc+$order->dc}}
+                                        </td>
                                         {{-- <td>{{$job->active==1?"Running":"Closed"}}</td> --}}
                                         <td><a href="{{route('n.front.user-order',['order'=>$order->id])}}">Detail</a></td>
                                     </tr>

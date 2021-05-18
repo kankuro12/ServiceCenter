@@ -35,8 +35,12 @@
                                     <th>Name</th>
                                     <th>Address</th>
                                     <th>Phone</th>
+                                    <th>Service</th>
                                     <th>Delivery</th>
                                     <th>Price</th>
+                                    <th>
+                                        Total
+                                    </th>
                                     <th>Status</th>
                                     <th></th>
                                </tr>
@@ -47,8 +51,12 @@
                                       <td>{{ $attr->user->name }}</td>
                                       <td>{{ $attr->user->address }}</td>
                                       <td>{{ $attr->user->phone }}</td>
+                                      <td>{{ $attr->sc }}</td>
                                       <td>{{ $attr->dc }}</td>
                                       <td>{{ $attr->total }}</td>
+                                      <td>
+                                          {{$attr->total+$attr->sc+$attr->dc}}
+                                      </td>
                                       <th>
                                           Posted
                                           {{$attr->created_at->diffForHumans()}}

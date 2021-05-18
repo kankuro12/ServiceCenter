@@ -103,6 +103,10 @@ class ConfigController extends Controller
         'delivery_charge'=>[
             'name'=>"Delivery Charge",
             'type'=>'number'
+        ], 
+        'service_charge'=>[
+            'name'=>"Service Charge",
+            'type'=>'number'
         ],
 
        
