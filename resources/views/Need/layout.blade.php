@@ -109,17 +109,17 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="{{route('n.front.home')}}" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.book.step1')}}">Bike Service</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.home')}}" class="{{Route::is('n.front.home')?'active':''}}">Home</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.book.step1')}}" class="{{Route::is('n.front.book.step1')?'active':''}}">Bike Service</a></li>
               {{-- <li class="scroll-to-section"><a href="#services">Services</a></li> --}}
-              <li class="scroll-to-section"><a href="{{route('n.front.delivery')}}">Delivery</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}">Find Job</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.postjob')}}">Post Job</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.book.shop')}}">Shop</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.delivery')}}" class="{{Route::is('n.front.delivery')?'active':''}}">Delivery</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}" class="{{Route::is('n.front.postcv')?'active':''}}">Find Job</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.postjob')}}" class="{{Route::is('n.front.postjob')?'active':''}}">Post Job</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.book.shop')}}" class="{{Route::is('n.front.book.shop')?'active':''}}">Shop</a></li>
               @if (Auth::check())
-                <li class="scroll-to-section"><a href="{{route('n.front.user')}}">Account</a></li>
+                <li class="scroll-to-section"><a href="{{route('n.front.user')}}" class="{{Route::is('n.front.user')?'active':''}}">Account</a></li>
               @else
-                <li class="scroll-to-section"><a href="{{route('n.front.auth')}}">Login</a></li>
+                <li class="scroll-to-section"><a href="{{route('n.front.auth')}}" class="{{Route::is('n.front.auth')?'active':''}}">Login</a></li>
 
               @endif
               {{-- <li class="scroll-to-section"><a href="#contact">Message Us</a></li> --}}

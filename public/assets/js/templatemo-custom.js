@@ -5,7 +5,7 @@
 	// Header Type = Fixed
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
-    var box = $('.header-text').height();
+    var box = 200;
     var header = $('header').height();
 
     if (scroll >= box - header) {
