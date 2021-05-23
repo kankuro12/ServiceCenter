@@ -10,7 +10,7 @@
                 <h6>Welcome to {{env('APP_NAME')}}</h6>
                 <h2>{{custom_config('banner_msg1')->value??""}}</h2>
                 <p>{{custom_config('banner_msg2')->value??""}}</p>
-              
+
               </div>
             </div>
             <div class="col-lg-6">
@@ -29,8 +29,8 @@
         <span class="normal"> Our </span><span class="other"> Services </span>
     </div>
     <div class="row">
-     
-          
+
+
         <div class="col-md-3">
           <div class="item">
             <div>
@@ -54,7 +54,7 @@
         <div class="col-md-3">
           <div class="item">
             <div>
-              <img src="{{asset(custom_config('hd_image')->value??"")}}" alt="" class="w-100">          
+              <img src="{{asset(custom_config('hd_image')->value??"")}}" alt="" class="w-100">
             </div>
             <div class="desc">
                 <div class="item-title other">
@@ -74,8 +74,8 @@
         <div class="col-md-3">
           <div class="item">
             <div>
-              <img src="{{asset(custom_config('fj_image')->value??"")}}" alt="" class="w-100">     
-            </div>     
+              <img src="{{asset(custom_config('fj_image')->value??"")}}" alt="" class="w-100">
+            </div>
             <div class="desc">
                 <div class="item-title other">
                   Find Job
@@ -90,11 +90,11 @@
 
           </div>
         </div>
-        
+
         <div class="col-md-3">
           <div class="item">
             <div>
-              <img src="{{asset(custom_config('pj_image')->value??"")}}" alt="" class="w-100">          
+              <img src="{{asset(custom_config('pj_image')->value??"")}}" alt="" class="w-100">
             </div>
             <div class="desc">
                 <div class="item-title other">
@@ -114,7 +114,7 @@
         <div class="col-md-3">
           <div class="item">
             <div>
-              <img src="{{asset(custom_config('subs_image')->value??"")}}" alt="" class="w-100">          
+              <img src="{{asset(custom_config('subs_image')->value??"")}}" alt="" class="w-100">
             </div>
             <div class="desc">
                 <div class="item-title other">
@@ -130,11 +130,21 @@
 
           </div>
         </div>
-    
+
     </div>
   </div>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets\css\front.css')}}">
 @endsection
- 
+@section('js')
+<script>
+    $('#slid').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    items:1
+})
+</script>
+
+@endsection
