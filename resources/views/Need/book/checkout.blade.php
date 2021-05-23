@@ -8,8 +8,8 @@
     <div class="big_section">
         <div class="title">
            <span class="normal">
-               Bike 
-            </span> 
+               Bike
+            </span>
             <span class="other"> Servicing</span>
         </div>
         <div class="desc py-3 text-center">
@@ -64,8 +64,8 @@
                                         </tr>
                                     </table>
                                 </div>
-                            
-                            
+
+
                             </div>
                             <div class="mt-3 bg-white shadow">
                                 <div class=" px-2 py-1 min-title normal" style="text-align: left;">
@@ -112,12 +112,12 @@
                         </div>
                         <div class="col-md-6  py-2">
                                     @php
-                                        
+
                                         $total1=0;
                                         $total2=0;
                                     @endphp
                             @if (count($services)>0)
-                                
+
                             <div class="bg-white py-3 mb-3 shadow">
 
                                 <div class=" px-2 py-1 min-title normal" style="text-align: left;">
@@ -166,7 +166,7 @@
                                 <div  >
                                     <div class="row m-0 mb-2">
                                             @foreach ($products as $product)
-                                            <div class="col-md-6 pb-2 pt-2">
+                                            <div class="col-md-4 pb-2 pt-2">
                                                 <div class="product shadow" style="border-radius:10px;overflow:hidden;">
                                                     <div class="top" >
                                                         <div class="" >
@@ -198,6 +198,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-8 pb-2 pt-2">
+                                                <p> {{ $product->detail }}</p>
+                                            </div>
                                             @endforeach
                                         </div>
                                 </div>
@@ -216,7 +219,7 @@
 
                                 </div>
                             </div>
-                         
+
                             @endif
                         </div>
                     </div>
@@ -230,7 +233,7 @@
                             <div class=" py-2 d-none d-md-flex " style="width:50%;">
                                 <span class="other mx-2">
                                     <strong>
-                                       Service Charge : 
+                                       Service Charge :
                                     </strong>
                                 </span>
                                 <span style="flex-grow:1;"> Rs. {{$sc}}</span>
@@ -238,7 +241,7 @@
                             <div class=" py-2 d-none d-md-flex " style="width:50%;">
                                 <span class="other mx-2">
                                     <strong>
-                                       Delivery Charge : 
+                                       Delivery Charge :
                                     </strong>
                                 </span>
                                 <span style="flex-grow:1;"> Rs. {{$dc}}</span>
@@ -246,19 +249,19 @@
                             <div class=" py-2 d-none d-md-flex " style="width:50%;">
                                 <span class="other mx-2">
                                     <strong>
-                                        Grand Total : 
+                                        Grand Total :
                                     </strong>
                                 </span>
                                 <span style="flex-grow:1;"> Rs. {{$total2+$total1+$dc+$sc}}</span>
                             </div>
-                            
+
                             <button class="mb-3 mt-md-0 submit d-none d-md-inline-block"  >Comfirm And Checkout >></button>
                         </div>
-                        <div class="form-group mb-0 pb-0  bg-white  d-block d-md-none " style="position: fixed; bottom:0px;left:0px;right:0px;box-shadow:0px 0px 10px 0px rgba(0,0,0,0.25);z-index:2;"> 
+                        <div class="form-group mb-0 pb-0  bg-white  d-block d-md-none " style="position: fixed; bottom:0px;left:0px;right:0px;box-shadow:0px 0px 10px 0px rgba(0,0,0,0.25);z-index:2;">
                             <div class="py-2 d-flex d-md-none justify-content-center" style="width:100%;">
                                 <span class="other mx-2" >
                                     <strong>
-                                        Service Charge : 
+                                        Service Charge :
                                     </strong>
                                 </span>
                                 <span > Rs. {{$sc}}</span>
@@ -266,7 +269,7 @@
                             <div class="py-2 d-flex d-md-none justify-content-center" style="width:100%;">
                                 <span class="other mx-2" >
                                     <strong>
-                                        Delivery Charge : 
+                                        Delivery Charge :
                                     </strong>
                                 </span>
                                 <span > Rs. {{$dc}}</span>
@@ -274,7 +277,7 @@
                             <div class="py-2 d-flex d-md-none justify-content-center" style="width:100%;">
                                 <span class="other mx-2" >
                                     <strong>
-                                        Grand Total : 
+                                        Grand Total :
                                     </strong>
                                 </span>
                                 <span > Rs. {{$total2+$total1+$dc+$sc}}</span>
@@ -292,5 +295,4 @@
 @section('js')
 
 @endsection
- 
- 
+
