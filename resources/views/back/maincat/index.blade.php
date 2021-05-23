@@ -64,11 +64,13 @@
                                             @endif
                                       </td>
                                       <td>
+                                        @if ($attr->canDelete())
                                           <form action="{{ route('maincat.destroy',$attr->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="badge badge-danger" onclick="return confirm('Are You Sure?');">Delete</button>
                                           </form>
+                                          @endif
                                       </td>
                                   </tr>
 
