@@ -32,7 +32,12 @@ class Category extends Model
         if($this->parent_id==0){
             return $this->name;
         }else{
+
             $p=$this->parent();
+            if($p==null){
+                return $this->name;
+
+            }
             if($p->parent_id==0){
                 return $p->name.' >> '.$this->name;
             }else{
