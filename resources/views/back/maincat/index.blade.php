@@ -35,7 +35,7 @@
                                                 @foreach ($attr->subcat as $item)
                                                     <ul>
                                                         <li>{{ $item->name }}
-                                                            @if ($item1->canDelete())
+                                                            @if ($item->canDelete())
                                                             <form action="{{ route('maincat.destroy',$item->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
