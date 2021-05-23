@@ -20,7 +20,7 @@ class Category extends Model
     }
 
     public function canDelete(){
-        return Category::where('parent_id',$this->id)->count()<=0;
+        return Category::where('parent_id',$this->id)->count()<=0 && Product::where('category_id',$this->id)->count()<=0;
     }
 
     public function parent()
