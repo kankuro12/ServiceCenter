@@ -120,7 +120,7 @@ class BookingController extends Controller
             $so->version=$version;
             $so-> service_type_id=$spt;
             $so-> dc=custom_config('delivery_charge')->value??0;
-            $so-> sc=custom_config('service_charge')->value??0;
+            $so-> sc=$spt!=null?custom_config('service_charge')->value??0:0;
             $so-> user_id=Auth::user()->id;
             $so->save();
             $total=0;
@@ -143,7 +143,7 @@ class BookingController extends Controller
 
                     $orderitem=new Orderitem();
                     $orderitem->product_id=$value;
-                    $orderitem->rate=$product->onsale?$product->sale_price:$product->price;
+                    $orderitem->rate=$product->onsale?$product->sales_price:$product->price;
                     $orderitem->qty=1;
                     $orderitem->service_orders_id=$so->id;
                     $orderitem->save();

@@ -222,7 +222,7 @@
                     </div>
                     @php
                         $dc=custom_config('delivery_charge')->value??0;
-                        $sc=custom_config('service_charge')->value??0;
+                        $sc=count($services)>0?custom_config('service_charge')->value??0:0;
                     @endphp
                     <form class="mx-2 mx-md-4 px-2 mt-2 mt-md-4 shadow" action="{{route('n.front.book.checkout')}}" method="post">
                         @csrf
