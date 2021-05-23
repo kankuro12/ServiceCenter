@@ -19,6 +19,10 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id');
     }
 
+    public function canDelete(){
+        return Category::where('parent_id',$this->id)->count()<=0;
+    }
+
     public function parent()
         {
             if($this->parent_id==0){

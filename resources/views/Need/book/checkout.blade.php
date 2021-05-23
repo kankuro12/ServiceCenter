@@ -166,8 +166,8 @@
                                 <div  >
                                     <div class="row m-0 mb-2">
                                             @foreach ($products as $product)
-                                            <div class="col-md-6 pb-2">
-                                                <div class="product shadow">
+                                            <div class="col-md-6 pb-2 pt-2">
+                                                <div class="product shadow" style="border-radius:10px;overflow:hidden;">
                                                     <div class="top" >
                                                         <div class="" >
                                                             <img class="w-100" src="{{asset('/back/images/product/'.$product->feature_image)}}" alt="">
@@ -190,11 +190,11 @@
                                                                 <span class="new">Rs. {{floatval($product->sales_price)}}</span>
                                                             @endif
                                                         </div>
-                                                        <div class=" add_to_cart">
+                                                        {{-- <div class=" add_to_cart">
                                                             <div >
                                                                 <button class="btn btn-danger cart " onclick="removeFromCart({{$product->id}})">Remove From Cart</button>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>

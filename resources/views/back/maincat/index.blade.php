@@ -35,21 +35,26 @@
                                                 @foreach ($attr->subcat as $item)
                                                     <ul>
                                                         <li>{{ $item->name }}
+                                                            @if ($item1->canDelete())
                                                             <form action="{{ route('maincat.destroy',$item->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button class="badge badge-danger" onclick="return confirm('Are You Sure?');">Del</button>
                                                             </form>
+                                                            @endif
                                                         </li>
                                                         @if (count($item->subcat))
                                                             @foreach ($item->subcat as $item1)
                                                                 <ul>
                                                                     <li>{{ $item1->name }}
+                                                                        @if ($item1->canDelete())
+                                                                            
                                                                         <form action="{{ route('maincat.destroy',$item->id) }}" method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                             <button class="badge badge-danger" onclick="return confirm('Are You Sure?');">Del</button>
                                                                         </form>
+                                                                        @endif
                                                                     </li>
                                                                 </ul>
                                                             @endforeach
