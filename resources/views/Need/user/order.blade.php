@@ -12,20 +12,30 @@
         <div style="overflow-x:auto">
             <table class="table table-bordered ">
                 <tr>
-                     <th>REF ID</th>
-                     <th>Name</th>
-                     <th>Address</th>
-                     <th>Phone</th>
-                     <th>Total</th>
-                     <th>Posted</th>
+                    <th>REF ID</th>
+                    <th>Company</th>
+                    <th>Year</th>
+                    <th>Model</th>
+                    <th>Version</th>
+                    <th>Service</th>
+                    <th>Delivery</th>
+                    <th>Price</th>
+                    <th>
+                        Total
+                    </th>
                 </tr>
                    <tr>
-                       <td>{{ $order->id }}</td>
-                       <td>{{ $order->user->name }}</td>
-                       <td>{{ $order->user->address }}</td>
-                       <td>{{ $order->user->phone }}</td>
-                       <td>{{ $order->total }}</td>
-                       <th>{{$order->created_at->diffForHumans()}}</th>
+                    <td>{{$order->id}}</td>
+                    <td>{{$order->company}}</td>
+                    <td>{{$order->year}}</td>
+                    <td>{{$order->model}}</td>
+                    <td>{{$order->version}}</td>
+                    <td>{{ $order->sc }}</td>
+                    <td>{{ $order->dc }}</td>
+                    <td>{{ $order->total }}</td>
+                    <td>
+                        {{$order->total+$order->sc+$order->dc}}
+                    </td>
                    </tr>
             </table>
             <div class="text-center">
