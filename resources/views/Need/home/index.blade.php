@@ -143,6 +143,7 @@
     rtl:true,
     loop:true,
     margin:10,
+    autoplay:true,
     nav:true,
     items:1
 })
