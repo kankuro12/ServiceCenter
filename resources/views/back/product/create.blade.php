@@ -160,13 +160,7 @@
                                     class="switcher-indicator"></span> <span class="switcher-label-on">ON</span> <span
                                     class="switcher-label-off">OFF</span></label>
                         </div>
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>Product Promo Item</span>
-                            <label class="switcher-control switcher-control-lg"><input type="checkbox"
-                                    class="switcher-input" value='1' name="promo"> <span
-                                    class="switcher-indicator"></span> <span class="switcher-label-on">ON</span> <span
-                                    class="switcher-label-off">OFF</span></label>
-                        </div>
+
                     </div>
                 </div>
             </div>
