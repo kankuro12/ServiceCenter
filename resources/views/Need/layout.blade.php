@@ -54,6 +54,9 @@
         .header-area .main-nav .logo {
             line-height: 80px;
         }
+        .header-area .main-nav .logo img{
+            max-height: 60px;
+        }
 
         /* .background-header .main-nav .menu-trigger span, .background-header .main-nav .menu-trigger span:before, .background-header .main-nav .menu-trigger span:after {
           background-color:white;
