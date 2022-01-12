@@ -80,7 +80,7 @@
                 </span>
                 Orders
             </a>
-            <a href="{{route('resume.index')}}" class="btn text-blue " >
+            <a href="{{route('n.front.vendor.deliveries')}}" class="btn text-blue " >
                 <span class="material-icons">
                     delivery_dining
                 </span>

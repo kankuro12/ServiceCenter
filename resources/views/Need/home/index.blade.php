@@ -1,38 +1,49 @@
 @extends('Need.layout')
 @section('content')
-  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-6 align-self-center">
-              <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-                <h6>Welcome to {{env('APP_NAME')}}</h6>
-                <h2>{{custom_config('banner_msg1')->value??""}}</h2>
-                <p>{{custom_config('banner_msg2')->value??""}}</p>
+    <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center">
+                            <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                                <h6>Welcome to {{ env('APP_NAME') }}</h6>
+                                <h2>{{ custom_config('banner_msg1')->value ?? '' }}</h2>
+                                <p>{{ custom_config('banner_msg2')->value ?? '' }}</p>
 
-              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                                <img src="{{ asset(custom_config('banner_image')->value ?? '') }}" alt="team meeting"
+                                    class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-6">
-              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="{{asset(custom_config('banner_image')->value??"")}}" alt="team meeting" class="w-100">
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="row m-0">
-      <div class="col-md-6 p-0">
-            work
-      </div>
-      <div class="col-md-6 p-0">
-        ride
+    <div id="section">
+        <div class="row m-0">
+            <div class="col-md-6 p-0">
+                <div class="section-inner">
+                    <div>
+                        Work
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 p-0">
+                <div class="section-inner">
+                    <div>
+                        Ride
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  @include('Need.home.carousel')
-  <div class="services" id="service">
+    {{-- @include('Need.home.carousel') --}}
+    {{-- <div class="services" id="service">
     <div class="title">
         <span class="normal"> Our </span><span class="other"> Services </span>
     </div>
@@ -140,26 +151,33 @@
         </div>
 
     </div>
-  </div>
+  </div> --}}
+
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{asset('assets\css\front.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets\css\front.css') }}">
     <style>
         .main-banner {
-            padding:125px 0px 0px 50px;
+            padding: 125px 50px 0px 50px;
+        }
+        @media (max-width:426px){
+            .main-banner {
+            padding: 125px 0px 0px 0px;
+        }
+
         }
     </style>
 @endsection
 @section('js')
-<script>
-    $('#slid').owlCarousel({
-    rtl:true,
-    loop:true,
-    margin:10,
-    autoplay:true,
-    nav:true,
-    items:1
-})
-</script>
+    <script>
+        $('#slid').owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            nav: true,
+            items: 1
+        })
+    </script>
 
 @endsection

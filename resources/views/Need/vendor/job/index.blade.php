@@ -8,7 +8,7 @@
 </span>
 @endsection
 @section('buttons')
-    <a href="{{route('n.front.vendor.posted-job.add')}}" class="btn btn-sm btn-primary text-white">Add New Job</a>
+    <a href="{{route('n.front.vendor.posted-job.add')}}" class="btn btn-sm btn-primary text-white">Post New Job</a>
 @endsection
 @section('newtitle', 'Posted Jobs')
 

@@ -65,6 +65,8 @@ class AuthController extends Controller
             $user->address=$request->address;
             $user->phone=$request->phone;
             $user->email=$request->email;
+            $user->company=$request->company;
+            $user->desc=$request->desc;
             $user->role=$request->type==1?3:2;
             $user->password=bcrypt($request->password);
             $user->save();
@@ -84,30 +86,31 @@ class AuthController extends Controller
         );
     }
     public function user(){
-        $user=Auth::User();
-        $jobs=JobProvider::where('user_id',$user->id)->get();
-        $cvs=JobSeekers::where('user_id',$user->id)->get();
-        $orders=ServiceOrder::where('user_id',$user->id)->get();
-        $deliveries=Delivery::where('user_id',$user->id)->get();
+        return redirect()->route('n.front.vendor.index');
+        // $user=Auth::User();
+        // $jobs=JobProvider::where('user_id',$user->id)->get();
+        // $cvs=JobSeekers::where('user_id',$user->id)->get();
+        // $orders=ServiceOrder::where('user_id',$user->id)->get();
+        // $deliveries=Delivery::where('user_id',$user->id)->get();
 
 
-        $sub=UserSubscription::where('user_id',$user->id)->orderBy('id','desc')->first();
-        $hassub=false;
-        $state=0;
-        if($sub!=null){
-            if($sub->accecpted==1){
-                if($sub->validtill<Carbon::today()){
-                    $state=3;
-                }else{
-                    $state=2;
-                }
-            }
-            if($sub->accecpted==0){
-                $state=1;
-            }
-        }
+        // $sub=UserSubscription::where('user_id',$user->id)->orderBy('id','desc')->first();
+        // $hassub=false;
+        // $state=0;
+        // if($sub!=null){
+        //     if($sub->accecpted==1){
+        //         if($sub->validtill<Carbon::today()){
+        //             $state=3;
+        //         }else{
+        //             $state=2;
+        //         }
+        //     }
+        //     if($sub->accecpted==0){
+        //         $state=1;
+        //     }
+        // }
 
-        return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries','sub','state'));
+        // return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries','sub','state'));
     }
 
     public function order(ServiceOrder $order){

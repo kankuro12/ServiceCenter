@@ -3,8 +3,8 @@
     <div class="big_section">
         <div class="title">
            <span class="normal">
-               Bike 
-            </span> 
+               Bike
+            </span>
             <span class="other"> Servicing</span>
         </div>
         <div class="desc py-3 text-center">
@@ -37,7 +37,7 @@
                         -webkit-user-select: none;  /* Chrome all / Safari all */
                         -moz-user-select: none;     /* Firefox all */
                         -ms-user-select: none;      /* IE 10+ */
-                        user-select: none; 
+                        user-select: none;
                         cursor: pointer;
                     }
                     .data label .title{
@@ -47,7 +47,7 @@
                 </style>
                 <form action="{{route('n.front.book.step2')}}" method="POST" enctype="multipart/form-data" onsubmit="return checkData(this);" id="form">
                     @csrf
-                    
+
                     <div class="row m-0">
                         @foreach ($services as $service)
                             <div class="col-md-3 col-6 p-0">
@@ -60,14 +60,14 @@
                                             <div class="text-center desc">
                                                 {{$service->desc}}
                                             </div>
-                                    
+
                                     </label>
 
                                 </div>
-                                
+
                             </div>
                         @endforeach
-                     
+
                     </div>
 
                     @foreach ($serviceitems as $key=>$sis)
@@ -76,7 +76,7 @@
 
                                 @foreach ($sis as $si)
                                     <div class="col-md-6 " style="padding:5px;" >
-                                        <div style="border:  1px solid #0d6efd;padding:10px;">       
+                                        <div style="border:  1px solid #0d6efd;padding:10px;">
                                             <div class="row m-0">
                                                 <div class="col-6 p-0">
                                                     <input {{$siss!=null?(in_array($si->id,$siss)?'checked':''):''}} type="checkbox" name="si[]"  id="si_{{$si->id}}" value="{{$si->id}}" class="si si_{{$si->id}}" >
@@ -91,14 +91,14 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach 
-                   
+                    @endforeach
+
                     <div class="form-group pb-2 pt-4 d-block d-md-flex justify-content-between">
                         <a class="submit mb-3 mt-md-0" href="{{route('n.front.book.step1')}}"> << Back</a>
                         <span mb-3 mt-md-0>
-                            <input type="hidden" name="bp" id="bp" value="0"> 
-                            <span class="submit" onclick="buyProducts()">Buy Extra Products >></span>
-                            <button class="submit" >Checkout >></button>
+                            <input type="hidden" name="bp" id="bp" value="0">
+                            <span class="submit mb-3 text-right" onclick="buyProducts()">Buy Extra Products >></span>
+                            <button class="submit mb-3 text-right" >Checkout >></button>
                         </span>
                     </div>
                 </form>
@@ -106,7 +106,7 @@
         </div>
 
     </div>
-    
+
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/css/normal.css')}}">
@@ -140,9 +140,9 @@
            alert('Please Select At Least One Service From Selected Package')
            return false;
        }
-      
+
         return true;
-        
+
     }
 
     function buyProducts(){
@@ -158,4 +158,3 @@
 </script>
 
 @endsection
- 

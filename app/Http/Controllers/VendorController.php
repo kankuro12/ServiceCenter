@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Delivery;
 use App\Models\JobCategory;
 use App\Models\JobProvider;
+use App\Models\ServiceOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,10 @@ class VendorController extends Controller
 
     public function index()
     {
-        return view('Need.vendor.index');
+        $user = Auth::user();
+        $orders=ServiceOrder::where('user_id',$user->id)->get();
+        $deliveries=Delivery::where('user_id',$user->id)->get();
+        return view('Need.vendor.index',compact('orders','deliveries'));
     }
     public function changeImage(Request $request)
     {
@@ -109,5 +114,11 @@ class VendorController extends Controller
         // return redirect()->route('n.front.vendor.posted-job.view',['job'=>$job->id]);
         // // dd($job);
         return response()->json(['status'=>true]);
+    }
+
+    public function deliveries(){
+        $user = Auth::user();
+        $deliveries=Delivery::where('user_id',$user->id)->get();
+        return view('Need.vendor.delivery.index',compact('deliveries'));
     }
 }

@@ -40,7 +40,7 @@ class HomeController extends Controller
         if($request->getMethod()=="POST"){
             $job=new JobSeekers();
             $job->user_id=Auth::user()->id;
-      
+
             $job->desc=$request->desc;
             if($request->hasFile('file')){
                 $job->file=$request->file->store('uploads/job/seekers');

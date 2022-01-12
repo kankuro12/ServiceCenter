@@ -416,6 +416,9 @@
     margin-left: 0px;
     padding: 0px 10px;
   }
+  #vendor-dashboard-page .jumbo {
+    font-size: 0.9rem;
+  }
   #vendor-dashboard-page .jumbo .jumbo-inner a {
     display: block;
   }

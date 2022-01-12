@@ -65,7 +65,11 @@
             label{
                 font-weight: 500;
             }
-            input{
+            textarea{
+                min-height: 100px;
+                padding:10px 20px;
+            }
+            textarea,input{
                 &[type='checkbox']{
                     width: auto;
                     height: auto;
@@ -95,6 +99,10 @@
             }
             .text-danger{
                 font-size: 0.8rem;
+            }
+            textarea{
+                min-height: 100px;
+                padding:10px 20px;
             }
 
             .submit{
@@ -130,12 +138,15 @@
                 font-size:20px;
                 text-align: center;
             }
+
             .form-wrapper{
                 height:100%;
                 padding:20px 0px 0px 0px;
             }
             form{
-
+                .form-group{
+                    padding-bottom:0px;
+                }
                 // height:100%;
                 // box-shadow:0px 0px 10px 0px rgba(0,0,0,0.2);
                 // border-radius:15px;
@@ -151,7 +162,7 @@
                     font-weight: 300;
                     color: #2a2a2a;
                     padding: 0px 20px;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
                     &::-webkit-inner-spin-button {
                         -webkit-appearance: none;
                         margin: 0;
@@ -162,6 +173,10 @@
                     }
                 }
 
+                textarea{
+                    margin-bottom: 10px;
+                    min-height: 200px;
+                }
                 .submit{
                     border:none;
                     outline: transparent;

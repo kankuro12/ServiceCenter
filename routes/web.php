@@ -73,12 +73,12 @@ route::name('n.front.')->group(function(){
         route::get('user',[AuthController::class,'user'])->name('user');
         route::get('user-order/{order}',[AuthController::class,'order'])->name('user-order');
     });
-    Route::prefix('front-vendor')->name('vendor.')->middleware('role:2')->group(function(){
+    Route::prefix('user-dashboard')->name('vendor.')->middleware('role:2')->group(function(){
         route::get('',[VendorController::class,'index'])->name('index');
         Route::match(['GET','POST'],'change-image', [VendorController::class,'changeImage'])->name('change-image');
         Route::match(['GET','POST'],'change-name', [VendorController::class,'changeName'])->name('change-name');
         Route::match(['GET','POST'],'change-desc', [VendorController::class,'changeDesc'])->name('change-desc');
-
+        Route::get('deliveries',[VendorController::class,'deliveries'])->name('deliveries');
         Route::prefix('posted-job')->name('posted-job.')->group(function(){
             Route::get('',[VendorController::class,'jobs'])->name('index');
             Route::get('view/{job}',[VendorController::class,'jobView'])->name('view');

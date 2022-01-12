@@ -58,28 +58,6 @@
             max-height: 60px;
         }
 
-        /* .background-header .main-nav .menu-trigger span, .background-header .main-nav .menu-trigger span:before, .background-header .main-nav .menu-trigger span:after {
-          background-color:white;
-        }
-
-        .header-area .main-nav .menu-trigger span, .header-area .main-nav .menu-trigger span:before, .header-area .main-nav .menu-trigger span:after {
-          background-color:white;
-        }
-
-        .background-header .main-nav .menu-trigger.active span:before {
-          background-color:white;
-
-        }
-        .background-header .main-nav .menu-trigger.active span:after {
-          background-color:white;
-
-        }
-        .header-area .main-nav .menu-trigger.active span:before {
-          background:white;
-        }
-        .header-area .main-nav .menu-trigger.active span:after {
-          background:white;
-        } */
         @media(max-width:425px){
 
             .header-area .main-nav .nav li a{

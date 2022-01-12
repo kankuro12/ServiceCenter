@@ -8,12 +8,12 @@
             <span class="other"> Products</span>
         </div>
         <div class="desc py-3">
-            <div class="d-flex justify-content-center">
+            <div class="category-list">
 
-                <button class="btn btn-primary mx-1 selcat" id="selcat_0" onclick="sel(0)">All</button>
+                <button class="btn btn-primary me-1 selcat" id="selcat_0" onclick="sel(0)">All</button>
                 @foreach (\App\Category::all() as $cat)
 
-                    <button class="btn btn-secondary mx-1 selcat"  id="selcat_{{$cat->id}}" onclick="sel({{$cat->id}})">{{$cat->name}}</button>
+                    <button class="btn btn-secondary me-1 selcat"  id="selcat_{{$cat->id}}" onclick="sel({{$cat->id}})">{{$cat->name}}</button>
                 @endforeach
 
             </div>
@@ -35,15 +35,15 @@
                                 <div class="title">
                                     {{$product->name}}
                                 </div>
-                                <div class="price">
-                                    @if ($product->onsale == 0 )
-                                        <span class="new">Rs. {{floatval($product->price)}}</span>
-                                    @else
-                                        <span class="old">Rs. {{floatval($product->price)}}</span><span class="new">Rs. {{floatval($product->sales_price)}}</span>
-                                    @endif
-                                </div>
                                 <div class="add_to_cart">
                                     <div>
+                                        <div class="price">
+                                            @if ($product->onsale == 0 )
+                                                <span class="new">Rs. {{floatval($product->price)}}</span>
+                                            @else
+                                                <span class="old">Rs. {{floatval($product->price)}}</span><span class="new">Rs. {{floatval($product->sales_price)}}</span>
+                                            @endif
+                                        </div>
                                         <button class="btn btn-primary cart {{$sp!=null?(in_array($product->id,$sp)?'d-none':''):''}}" id="add_{{$product->id}}" onclick="addToCart({{$product->id}})">Add To Cart</button>
                                         <button class="btn btn-danger cart {{$sp!=null?(in_array($product->id,$sp)?'':'d-none'):'d-none'}}" id="remove_{{$product->id}}" onclick="removeFromCart({{$product->id}})">Remove From Cart</button>
                                     </div>

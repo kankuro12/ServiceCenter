@@ -65,4 +65,14 @@
 .services .item .desc .item-btn:hover {
   background: #0584be;
 }
+
+#section .section-inner {
+  min-height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 /*# sourceMappingURL=front.css.map */

@@ -66,7 +66,7 @@
                 </div>
                 <hr>
             </div>
-          
+
         </div>
 
     </div>
@@ -74,19 +74,19 @@
 
     <div class="big_section mt-5 pt-0">
         <div class="row">
-            
+
             @if ($jobs->count()>0)
             <div class="col-md-6 pb-3">
                 <div class=" shadow pt-3  ">
                     <div>
-            
+
                         <div class="title">
                             <span class="normal">
                                 Posted Jobs
                             </span>
-                
+
                         </div>
-                      
+
                         <hr class="my-1">
                         <div class="desc">
                             <table class="table">
@@ -109,14 +109,14 @@
                                     </tr>
                                 @endforeach
                             </table>
-                
+
                         </div>
                     </div>
                 </div>
             </div>
             @endif
 
-            
+
             @if ($cvs->count()>0)
             <div class="col-md-6 pb-3">
                 <div class=" shadow pt-3  ">
@@ -137,7 +137,7 @@
                                 @foreach ($cvs as $cv)
                                 @php
                                     $info=pathinfo($cv->file);
-                                    
+
                                 @endphp
                                     <tr>
                                         <td>{{$cv->id}}</td>
@@ -154,7 +154,7 @@
                                     </tr>
                                 @endforeach
                             </table>
-                
+
                         </div>
                     </div>
                 </div>
@@ -205,10 +205,10 @@
                                     </tr>
                                 @endforeach
                             </table>
-                
+
                         </div>
                         <div class="text-center">
-                            &#8592;	 scroll  &#8594;	
+                            &#8592;	 scroll  &#8594;
                         </div>
                     </div>
                 </div>
@@ -230,13 +230,13 @@
                                 <tr>
                                     <th>REF ID</th>
                                     <th>List</th>
-                                   
+
                                     <th></th>
                                 </tr>
                                 @foreach ($deliveries  as $delivery)
                                 @php
                                     $info=pathinfo($delivery->file);
-                                
+
                                 @endphp
                                     <tr>
                                         <td>{{$delivery->id}}</td>
@@ -253,10 +253,10 @@
                                     </tr>
                                 @endforeach
                             </table>
-                
+
                         </div>
                         <div class="text-center">
-                            &#8592;	 scroll  &#8594;	
+                            &#8592;	 scroll  &#8594;
                         </div>
                     </div>
                 </div>
@@ -271,5 +271,4 @@
 @section('js')
 
 @endsection
- 
- 
+

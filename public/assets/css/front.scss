@@ -1,6 +1,3 @@
-
-
-
 .services{
     font-family: 'Poppins', sans-serif;
     padding:50px ;
@@ -8,8 +5,8 @@
         text-align: center;
         font-weight:700;
         font-size:42px;
-      
-        
+
+
     }
     .col-md-3{
         padding-top:45px;
@@ -56,5 +53,15 @@
                 }
             }
         }
+    }
+}
+.main-banner{
+
+}
+#section{
+    .section-inner{
+        min-height: 300px;
+        display: flex;
+        align-items: center;
     }
 }

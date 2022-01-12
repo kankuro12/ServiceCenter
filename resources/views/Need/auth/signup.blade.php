@@ -18,15 +18,14 @@
                 @endif
                 <form action="{{ route('n.front.signup') }}" id="signup" class="pb-5" method="POST" autocomplete="off">
                     @csrf
-                    <div class="header shadow">
+                    {{-- <div class="header shadow">
                         <span class="active" data-type="1">
                             Signup as Job Searcher
                         </span>
                         <span data-type="2">
                             Signup as Job Provider
                         </span>
-                    </div>
-                    <div class="dotted"></div>
+                    </div> --}}
                     <input type="hidden" name="type" id="type" class="type">
                     <div class="row">
                         <div class="col-md-4">
@@ -66,13 +65,29 @@
                         </div>
                         <div class="col-md-4">
 
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <label for="confirm_password">Retype  Password </label>
                                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Password" required minlength="6" value="">
                                 <span class="password-check text-danger"></span>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            {{-- <div class="dotted"></div> --}}
+                            <div class="d-flex align-items-center pb-2">
+                                <input type="checkbox" onchange="$('#is_provider').css('display',this.checked?'block':'none');" name="provider" id="provider" class="me-2"><label for="provider">Signup as Job Provider</label>
+                            </div>
+                        </div>
+                        <div id="is_provider" style="display: none;">
+                            <div class="form-group">
+                                <label for="company">Company / Organization </label>
+                                <input type="text" name="company" id="company" placeholder="Company / Organization" required minlength="3" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="desc">Company / Organization Description</label>
+                                <textarea type="text" name="desc" id="desc" placeholder="Company / Organization Description"  required value=""></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group text-center">
                         <button class="submit">Create Account</button>

@@ -77,7 +77,12 @@
   font-weight: 500;
 }
 
-.login .form form input {
+.login .form form textarea {
+  min-height: 100px;
+  padding: 10px 20px;
+}
+
+.login .form form textarea, .login .form form input {
   width: 100%;
   height: 35px;
   border-radius: 15px;
@@ -91,7 +96,7 @@
   margin-bottom: 5px;
 }
 
-.login .form form input[type='checkbox'] {
+.login .form form textarea[type='checkbox'], .login .form form input[type='checkbox'] {
   width: auto;
   height: auto;
   border-radius: 0px;
@@ -99,18 +104,23 @@
   margin: 0;
 }
 
-.login .form form input::-webkit-inner-spin-button {
+.login .form form textarea::-webkit-inner-spin-button, .login .form form input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.login .form form input::-webkit-outer-spin-button {
+.login .form form textarea::-webkit-outer-spin-button, .login .form form input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 .login .form form .text-danger {
   font-size: 0.8rem;
+}
+
+.login .form form textarea {
+  min-height: 100px;
+  padding: 10px 20px;
 }
 
 .login .form form .submit {
@@ -149,6 +159,9 @@
   .login .form form {
     padding: 0px 5px;
   }
+  .login .form form .form-group {
+    padding-bottom: 0px;
+  }
   .login .form form input {
     width: 100%;
     height: 46px;
@@ -160,7 +173,7 @@
     font-weight: 300;
     color: #2a2a2a;
     padding: 0px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .login .form form input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -169,6 +182,10 @@
   .login .form form input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  .login .form form textarea {
+    margin-bottom: 10px;
+    min-height: 200px;
   }
   .login .form form .submit {
     border: none;
