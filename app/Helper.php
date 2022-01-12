@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
+
 function custom_config($id){
     return \App\Models\PageConfig::where('identifire',$id)->first();
 }
@@ -129,4 +132,13 @@ function isImage($path){
     $info=pathinfo($path);
     $ext=$info['extension'];
     return in_array($ext,$fileArr);
+}
+
+function getUser($role)
+{
+    $user=Auth::user();
+    if($user->role!=$role){
+        return redirect()->route($user->getRoute());
+    }
+    return $user;
 }

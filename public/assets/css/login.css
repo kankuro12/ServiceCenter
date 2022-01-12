@@ -1,10 +1,12 @@
 .login {
-  padding: 50px;
-  margin-top: 100px;
+  padding: 0px 10%;
+  margin-top: 150px;
+  margin-bottom: 70px;
 }
 
-.login .signup {
-  border-right: 1px solid #FF3447;
+.login .dotted {
+  border-top: 2px dotted #cfcfcf;
+  margin: 2rem 0px;
 }
 
 .login .form {
@@ -12,23 +14,72 @@
 }
 
 .login .form h5 {
-  font-weight: 700;
-  font-size: 25px;
+  font-weight: 600;
+  font-size: 20px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-.login .form .form-wrapper {
-  height: 100%;
-  padding: 40px;
+.login .form .another {
+  color: #2a2a2a;
+}
+
+.login .form .another .link {
+  color: #0584BE;
+}
+
+.login .form .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #05A4ED;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.login .form .header span {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-weight: 400;
+  padding: 20px;
+  max-height: 150px;
+  cursor: pointer;
+}
+
+.login .form .header span:hover {
+  background-color: rgba(5, 164, 237, 0.1);
+}
+
+.login .form .header span.active {
+  color: white;
+  background-color: #05A4ED;
+  font-weight: 500;
+}
+
+.login .form .header span .normal {
+  font-size: 14px;
 }
 
 .login .form form {
   padding: 0px 25px;
 }
 
+.login .form form .form-group {
+  padding-bottom: 15px;
+}
+
+.login .form form label {
+  font-weight: 500;
+}
+
 .login .form form input {
   width: 100%;
-  height: 46px;
+  height: 35px;
   border-radius: 15px;
   background-color: #d1f3ff;
   border: none;
@@ -37,7 +88,15 @@
   font-weight: 300;
   color: #2a2a2a;
   padding: 0px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+.login .form form input[type='checkbox'] {
+  width: auto;
+  height: auto;
+  border-radius: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 .login .form form input::-webkit-inner-spin-button {
@@ -48,6 +107,10 @@
 .login .form form input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.login .form form .text-danger {
+  font-size: 0.8rem;
 }
 
 .login .form form .submit {
@@ -70,10 +133,6 @@
   .login {
     padding: 20px 15px;
     margin-top: 100px;
-  }
-  .login .signup {
-    border-right: none;
-    border-top: 1px solid #FF3447;
   }
   .login .form {
     padding: 25px 15px;

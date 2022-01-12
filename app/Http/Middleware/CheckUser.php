@@ -18,9 +18,8 @@ class CheckUser
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->role==2){
+            if(Auth::user()->role>1){
                 return $next($request);
-
             }
         }
         session(['redirect'=>$request->url()]);

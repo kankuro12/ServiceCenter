@@ -32,24 +32,30 @@
         }
 
         .header-area{
-          background: #001034;
+          background: #ffffff;
         }
-        
-       
+
+
 
         .header-area .main-nav{
-          background: #001034;
+          background: #ffffff;
 
         }
         .background-header{
-          background-color: #001034 !important;
+          background-color: #ffffff !important;
+        }
+        .header-area .main-nav .nav li {
+            padding-right: 0px;
         }
 
         .header-area .main-nav .nav li a{
-          color:white !important;
+          color:#4d4d4d !important;
+        }
+        .header-area .main-nav .logo {
+            line-height: 80px;
         }
 
-        .background-header .main-nav .menu-trigger span, .background-header .main-nav .menu-trigger span:before, .background-header .main-nav .menu-trigger span:after {
+        /* .background-header .main-nav .menu-trigger span, .background-header .main-nav .menu-trigger span:before, .background-header .main-nav .menu-trigger span:after {
           background-color:white;
         }
 
@@ -70,13 +76,13 @@
         }
         .header-area .main-nav .menu-trigger.active span:after {
           background:white;
-        }
+        } */
         @media(max-width:425px){
-          
+
             .header-area .main-nav .nav li a{
               color:#2c2c2c !important;
             }
-          
+
         }
     </style>
   </head>
@@ -84,7 +90,7 @@
 <body>
 
   <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
+  {{-- <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -93,7 +99,7 @@
         <span></span>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
@@ -113,11 +119,12 @@
               <li class="scroll-to-section"><a href="{{route('n.front.book.step1')}}" class="{{Route::is('n.front.book.step1')?'active':''}}">Bike Service</a></li>
               {{-- <li class="scroll-to-section"><a href="#services">Services</a></li> --}}
               <li class="scroll-to-section"><a href="{{route('n.front.delivery')}}" class="{{Route::is('n.front.delivery')?'active':''}}">Delivery</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}" class="{{Route::is('n.front.postcv')?'active':''}}">Find Job</a></li>
-              <li class="scroll-to-section"><a href="{{route('n.front.postjob')}}" class="{{Route::is('n.front.postjob')?'active':''}}">Post Job</a></li>
+              {{-- <li class="scroll-to-section"><a href="{{route('n.front.postcv')}}" class="{{Route::is('n.front.postcv')?'active':''}}">Find Job</a></li> --}}
+              {{-- <li class="scroll-to-section"><a href="{{route('n.front.postjob')}}" class="{{Route::is('n.front.postjob')?'active':''}}">Post Job</a></li> --}}
               <li class="scroll-to-section"><a href="{{route('n.front.book.shop')}}" class="{{Route::is('n.front.book.shop')?'active':''}}">Shop</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.subs')}}" class="{{Route::is('n.front.subs')?'active':''}}">Subcription</a></li>
               @if (Auth::check())
-                <li class="scroll-to-section"><a href="{{route('n.front.user')}}" class="{{Route::is('n.front.user')?'active':''}}">Account</a></li>
+                <li class="scroll-to-section"><a href="{{route('n.front.user')}}" class="{{Route::is('n.front.user')?'active':''}}">My Account</a></li>
               @else
                 <li class="scroll-to-section"><a href="{{route('n.front.auth')}}" class="{{Route::is('n.front.auth')?'active':''}}">Login</a></li>
 
@@ -139,11 +146,11 @@
 
   @yield('content')
 
-  <div id="" class="contact-us section">
+  <div id="concat-us-section" class="contact-us section">
     <div class="container">
       <a name="bf"></a>
       <div class="row">
-        
+
         <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
           <div class="section-heading">
             <h2>Feel Free To Send Us a Message About Your Need</h2>
@@ -214,6 +221,8 @@
   <script src="/assets/js/animation.js"></script>
   <script src="/assets/js/imagesloaded.js"></script>
   <script src="/assets/js/templatemo-custom.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   @yield('js')
   <script>
     $(document).ready( function() { // Wait until document is fully parsed
@@ -234,10 +243,11 @@
         });
       });
     });
-   
+
   </script>
 
-  <!-- Messenger Chat Plugin Code -->
+  @if (!env('APP_DEBUG',false))
+
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
@@ -261,5 +271,7 @@
     attribution="biz_inbox"
     page_id="106889871585800">
   </div>
+  @endif
+  <!-- Messenger Chat Plugin Code -->
 </body>
 </html>

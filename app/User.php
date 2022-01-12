@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','address','phone','image','email', 'password',
+        'name', 'address', 'phone', 'image', 'email', 'password', 'role'
     ];
 
     /**
@@ -37,6 +38,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $routes = [
+        'dashboard',
+        'dashboard',
+        'n.front.vendor.index',
+        'n.front.user',
+    ];
 
-
+    public function getRoute()
+    {
+        // dd($this->routes[$this->role]);
+        return $this->routes[$this->role];
+    }
 }

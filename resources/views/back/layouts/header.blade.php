@@ -255,7 +255,7 @@
                   </li>
                 </ul><!-- /child menu -->
             </li> --}}
-           
+
             {{-- <li class="menu-item has-child">
                 <a href="" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text"> Settings </span></a>
                 <ul class="menu">
@@ -291,6 +291,9 @@
             </li>
             <li class="menu-item ">
               <a href="{{ route('admin.delivery',['type'=>0]) }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Deliveries</span></a>
+            </li><!-- /.menu-item -->
+            <li class="menu-item ">
+                <a href="{{ route('job-category.index') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Job Categories</span></a>
             </li><!-- /.menu-item -->
             <li class="menu-item ">
               <a href="{{ route('admin.job') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Posted Jobs</span></a>

@@ -7,12 +7,13 @@ use App\Models\Delivery;
 use App\Models\JobProvider;
 use App\Models\JobSeekers;
 use App\Models\ServiceOrder;
-use App\Models\User;
+use App\User;
 use App\Models\UserSubscription;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -27,14 +28,25 @@ class AuthController extends Controller
 
     public function login(Request $request){
         // dd($request->all());
-        $user=User::where('phone',$request->phone)->first();
-        if($user!=null){
-            if(Hash::check($request->password, $user->password)){
-                Auth::login($user,true);
-                return redirect(session('redirect')??"/");
+        if($request->getMethod()=="POST"){
+
+            $user=User::where('phone',$request->phone)->first();
+            if($user!=null){
+                if(Hash::check($request->password, $user->password)){
+                    Auth::login($user,true);
+                    if(Session::has('redirect')){
+                        return redirect(session('redirect')??"/");
+
+                    }else{
+
+                        return redirect()->route($user->getRoute());
+                    }
+                }
             }
+            return redirect()->back()->withInput($request->all())->with('msg_login',"Login Failed");
+        }else{
+            return view('Need.auth.login');
         }
-        return redirect()->back()->withInput($request->all())->with('msg_login',"Login Failed");
 
     }
 
@@ -42,22 +54,35 @@ class AuthController extends Controller
         Auth::logout();
     }
     public function signup(Request $request){
-        $user=User::where('phone',$request->phone)->first();
-        if($user!=null){
-            return redirect()->back()->withInput($request->all())->with('msg_signup',"A Account Already Exists With This Phone Number");
+        if($request->getMethod()=="POST"){
+
+            $user=User::where('phone',$request->phone)->first();
+            if($user!=null){
+                return redirect()->back()->withInput($request->all())->with('msg_signup',"A Account Already Exists With This Phone Number");
+            }
+            $user=new User();
+            $user->name=$request->name;
+            $user->address=$request->address;
+            $user->phone=$request->phone;
+            $user->email=$request->email;
+            $user->role=$request->type==1?3:2;
+            $user->password=bcrypt($request->password);
+            $user->save();
+            Auth::login($user,true);
+            return redirect(session('redirect')??"/");
+        }else{
+            return view('Need.auth.signup');
         }
-        $user=new User();
-        $user->name=$request->name;
-        $user->address=$request->address;
-        $user->phone=$request->phone;
-        $user->role=2;
-        $user->email=$request->phone."@text.com";
-        $user->password=bcrypt($request->password);
-        $user->save();
-        Auth::login($user,true);
-        return redirect(session('redirect')??"/");
     }
 
+    public function check(Request $request){
+        return response()->json(
+            [
+                'phone'=>User::where('phone',''.$request->phone)->count()<=0,
+                'email'=>User::where('email',''.$request->email)->count()<=0,
+            ]
+        );
+    }
     public function user(){
         $user=Auth::User();
         $jobs=JobProvider::where('user_id',$user->id)->get();
@@ -81,7 +106,7 @@ class AuthController extends Controller
                 $state=1;
             }
         }
-        
+
         return view('Need.user.index',compact('user','jobs','cvs','orders','deliveries','sub','state'));
     }
 

@@ -23,6 +23,14 @@
       </div>
     </div>
   </div>
+  <div class="row m-0">
+      <div class="col-md-6 p-0">
+            work
+      </div>
+      <div class="col-md-6 p-0">
+        ride
+    </div>
+  </div>
   @include('Need.home.carousel')
   <div class="services" id="service">
     <div class="title">
@@ -136,6 +144,11 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets\css\front.css')}}">
+    <style>
+        .main-banner {
+            padding:125px 0px 0px 50px;
+        }
+    </style>
 @endsection
 @section('js')
 <script>

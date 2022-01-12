@@ -1,0 +1,56 @@
+body{
+    background: #F6F7FF;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.title{
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+}
+.input{
+    font-size: 0.9rem;
+    border-radius: 3px;
+    padding: 8px 12px;
+    width: 100%;
+    display: block;
+    caret-color: rgb(33, 150, 243);
+    background-color: rgb(242, 245, 250);
+    outline: none;
+    border: 0px;
+    color: rgb(38, 43, 51);
+    pointer-events: unset;
+    transition: color 0.1s ease 0;
+}
+label{
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(152, 161, 179);
+    &[req]{
+        &::after{
+            content: '*';
+            color: rgb(255, 58, 58);
+        }
+    }
+}
+
+.accordion-button{
+    color:black;
+
+}
+
+.accordion-button:not(.collapsed){
+    color: black;
+    font-weight: 500;
+}
+
+.form{
+    @for $i from 1 through 12 {
+        .col-md-#{$i}{
+            padding-bottom: 10px;
+        }
+
+      }
+}

@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\ConfigController;
+// use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Need\AuthController;
 use App\Http\Controllers\Need\BookingController;
 use App\Http\Controllers\Need\HomeController;
+use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\VendorController;
+use App\Models\JobCategory;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -23,14 +27,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('test', 'test');
 
+Route::name('resume.')->middleware('role:2|3')->prefix('resume')->group(function(){
+    ROute::get('',[ResumeController::class,'index'])->name('index');
+    ROute::post('save',[ResumeController::class,'save'])->name('save');
+    ROute::post('data-add',[ResumeController::class,'dataAdd'])->name('data-add');
+    ROute::post('data-del',[ResumeController::class,'dataDel'])->name('data-del');
+});
+
 route::name('n.front.')->group(function(){
     route::get('',[HomeController::class,"index"])->name('home');
     route::post('message',[HomeController::class,"message"])->name('message');
 
     //authentication
     route::get('auth',[AuthController::class,"index"])->name('auth');
-    route::post('plogin',[AuthController::class,"login"])->name('login');
-    route::post('signup',[AuthController::class,"signup"])->name('signup');
+    route::match(['GET','POST'],'plogin',[AuthController::class,"login"])->name('login');
+    route::match(['GET','POST'],'signup',[AuthController::class,"signup"])->name('signup');
+    route::match(['GET','POST'],'check',[AuthController::class,"check"])->name('check');
+
 
     route::name('book.')->prefix("bike-service")->group(function(){
 
@@ -39,25 +52,39 @@ route::name('n.front.')->group(function(){
         route::match(['get','post'],'shop',[BookingController::class,"shop"])->name('shop');
         route::match(['get','post'],'addToCart',[BookingController::class,"addToCart"])->name('addToCart');
         route::match(['get','post'],'removeFromCart',[BookingController::class,"removeFromCart"])->name('removeFromCart');
-        
+
     });
 
-
-    
-    Route::middleware(['checkuser'])->group(function () {
+    Route::middleware(['role:2|3'])->group(function () {
         route::name('book.')->prefix("bike-service")->group(function(){
             route::match(['get','post'],'checkout',[BookingController::class,"checkout"])->name('checkout');
             route::match(['get','post'],'success',[BookingController::class,"success"])->name('success');
         });
-        
+
         route::match(['get','post'],'postjob',[HomeController::class,"postjob"])->name('postjob');
         route::match(['get','post'],'postcv',[HomeController::class,"postcv"])->name('postcv');
         route::match(['get','post'],'delivery',[HomeController::class,"delivery"])->name('delivery');
         route::match(['get','post'],'subs',[HomeController::class,"subs"])->name('subs');
-        route::get('logout',[AuthController::class,"logout"])->name('logout');  
-        
+        route::get('logout',[AuthController::class,"logout"])->name('logout');
+
+    });
+
+    Route::middleware('role:2|3')->group(function(){
         route::get('user',[AuthController::class,'user'])->name('user');
         route::get('user-order/{order}',[AuthController::class,'order'])->name('user-order');
+    });
+    Route::prefix('front-vendor')->name('vendor.')->middleware('role:2')->group(function(){
+        route::get('',[VendorController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'change-image', [VendorController::class,'changeImage'])->name('change-image');
+        Route::match(['GET','POST'],'change-name', [VendorController::class,'changeName'])->name('change-name');
+        Route::match(['GET','POST'],'change-desc', [VendorController::class,'changeDesc'])->name('change-desc');
+
+        Route::prefix('posted-job')->name('posted-job.')->group(function(){
+            Route::get('',[VendorController::class,'jobs'])->name('index');
+            Route::get('view/{job}',[VendorController::class,'jobView'])->name('view');
+            Route::post('update/{job}',[VendorController::class,'jobUpdate'])->name('update');
+            Route::match(['GET','POST'],'add', [VendorController::class,'addJob'])->name('add');
+        });
     });
 });
 
@@ -86,15 +113,15 @@ Route::post('logout','Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
+Route::group(['middleware' => 'role:1', 'prefix' => 'dashboard'],  function () {
     Route::name('admin.')->group(function(){
         Route::get('delivery/{type}', [UserController::class,'delivery'])->name('delivery');
         Route::post('deliveryComplete', [UserController::class,'deliveryComplete'])->name('deliveryComplete');
         Route::get('deliverySingle/{delivery}', [UserController::class,'deliverySingle'])->name('deliverySingle');
-        
+
         Route::get('jobseeker', [UserController::class,'jobseeker'])->name('jobseeker');
         Route::get('jobseekerSingle/{jobseeker}', [UserController::class,'jobseekerSingle'])->name('jobseekerSingle');
-        
+
         Route::get('job', [UserController::class,'job'])->name('job');
         Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
 
@@ -124,6 +151,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
 
     Route::get('/', 'Admin\AdminController@index')->name('dashboard');
 
+
     //  main attr
     Route::resource('color', 'Admin\ColorController');
     // sub attr
@@ -134,6 +162,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'],  function () {
     Route::resource('brand', 'Admin\BrandController');
     // product
     Route::resource('product', 'Admin\ProductController');
+    //jobcateory
+    Route::resource('job-category', 'Admin\JobCategoryController');
     // Product Gallery image delete
     Route::get('/image/delete/{image_id}/', 'Admin\ProductController@GalleryImageDelete')->name('gallery.image.delete');
 

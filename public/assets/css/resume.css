@@ -1,0 +1,98 @@
+body {
+  background: #F6F7FF;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.input {
+  font-size: 0.9rem;
+  border-radius: 3px;
+  padding: 8px 12px;
+  width: 100%;
+  display: block;
+  caret-color: #2196f3;
+  background-color: #f2f5fa;
+  outline: none;
+  border: 0px;
+  color: #262b33;
+  pointer-events: unset;
+  -webkit-transition: color 0.1s ease 0;
+  transition: color 0.1s ease 0;
+}
+
+label {
+  font-size: 14px;
+  line-height: 20px;
+  color: #98a1b3;
+}
+
+label[req]::after {
+  content: '*';
+  color: #ff3a3a;
+}
+
+.accordion-button {
+  color: black;
+}
+
+.accordion-button:not(.collapsed) {
+  color: black;
+  font-weight: 500;
+}
+
+.form .col-md-1 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-2 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-3 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-4 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-5 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-6 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-7 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-8 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-9 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-10 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-11 {
+  padding-bottom: 10px;
+}
+
+.form .col-md-12 {
+  padding-bottom: 10px;
+}
+/*# sourceMappingURL=resume.css.map */
