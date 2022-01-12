@@ -79,6 +79,7 @@ route::name('n.front.')->group(function(){
         Route::match(['GET','POST'],'change-name', [VendorController::class,'changeName'])->name('change-name');
         Route::match(['GET','POST'],'change-desc', [VendorController::class,'changeDesc'])->name('change-desc');
         Route::get('deliveries',[VendorController::class,'deliveries'])->name('deliveries');
+        Route::get('orders',[VendorController::class,'orders'])->name('orders');
         Route::prefix('posted-job')->name('posted-job.')->group(function(){
             Route::get('',[VendorController::class,'jobs'])->name('index');
             Route::get('view/{job}',[VendorController::class,'jobView'])->name('view');

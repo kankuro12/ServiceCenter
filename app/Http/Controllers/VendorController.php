@@ -7,6 +7,7 @@ use App\Models\JobCategory;
 use App\Models\JobProvider;
 use App\Models\ServiceOrder;
 use App\Models\User;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -120,5 +121,16 @@ class VendorController extends Controller
         $user = Auth::user();
         $deliveries=Delivery::where('user_id',$user->id)->get();
         return view('Need.vendor.delivery.index',compact('deliveries'));
+    }
+
+    public function orders(){
+        $user = Auth::user();
+        $deliveries=Delivery::where('user_id',$user->id)->get();
+        return view('Need.vendor.delivery.index',compact('deliveries'));
+    }
+    public function orderSingle(){
+        $user = Auth::user();
+        $orders=Order::where('user_id',$user->id)->get();
+        return view('Need.vendor.order.index',compact('orders'));
     }
 }

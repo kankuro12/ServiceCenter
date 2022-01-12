@@ -74,7 +74,7 @@
                 </span>
                 Subscriptions
             </a>
-            <a href="{{route('resume.index')}}" class="btn text-blue " >
+            <a href="{{route('n.front.vendor.orders')}}" class="btn text-blue " >
                 <span class="material-icons">
                     list_alt
                 </span>
