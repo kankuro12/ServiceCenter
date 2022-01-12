@@ -22,7 +22,7 @@ class AuthController extends Controller
         if(Auth::check()){
             return redirect()->route('n.front.home');
         }else{
-            return view('Need.auth.login');
+            return redirect()->route('n.front.login');
         }
     }
 

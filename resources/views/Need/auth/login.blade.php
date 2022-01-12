@@ -33,10 +33,10 @@
                                 {{-- <label for="name">Name</label> --}}
                                 <input type="password" name="password" placeholder="Password" required>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <span class="btn">
+                            <div class="d-flex justify-content-end">
+                                {{-- <span class="btn">
                                     <input type="checkbox" name="me" id="me"> <label for="me">Remember Me</label>
-                                </span>
+                                </span> --}}
                                 <a href="" class="btn btn-link">Forgot Password?</a>
                             </div>
                             <div class="form-group text-center">
