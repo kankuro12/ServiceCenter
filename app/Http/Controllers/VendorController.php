@@ -50,6 +50,22 @@ class VendorController extends Controller
         return response()->json(['status' => true]);
     }
 
+    public function appliedJobs()
+    {
+        $jobs=
+    }
+
+    public function manageProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        if($request->getMethod()=="POST"){
+
+        }else{
+            return view('Need.vendor.profile',compact('user'));
+
+        }
+    }
 
     ///Jobs
 

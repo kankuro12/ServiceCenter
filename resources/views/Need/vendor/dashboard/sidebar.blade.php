@@ -27,7 +27,7 @@
                 </span>
                 Dashboard
             </a>
-            <a href="" class="btn text-blue " >
+            <a href="{{route('n.front.vendor.manage-profile')}}" class="btn text-blue " >
                 <span class="material-icons">
                     manage_accounts
                 </span>

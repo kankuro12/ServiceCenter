@@ -57,12 +57,20 @@ class User extends Authenticatable
 
         $datas=DB::selectOne("select
             (select count(*) from skills where resume_id={$resume_id}) as skills,
-            (select count(*) from educations where resume_id={$resume_id}) as educations,
+            (select count(*) from education where resume_id={$resume_id}) as education,
             (select count(*) from exps where resume_id={$resume_id}) as exps,
             (select count(*) from resume_socials where resume_id={$resume_id}) as resume_socials,
-            (select count(*) from refs where resume_id={$resume_id}) as refs
+            (select count(*) from refs where resume_id={$resume_id}) as refs,
+            (select count(*) from resume_files where resume_id={$resume_id}) as resume_files
         ");
-        return $datas;
+        $dataArr=((array)$datas);
+        $total=$this->hasResume()?14:0;
+        foreach ($dataArr as $key => $value) {
+            if($value>0){
+                $total+=14;
+            }
+        }
+        return $total;
     }
     public function getRoute()
     {

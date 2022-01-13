@@ -2,8 +2,8 @@
 @section('content')
     <div class="success">
         <div class="title">
-              You CV Has Been Uploaded Sucessfully.
-            
+              You Application Has Been Uploaded Sucessfully.
+
         </div>
 
         <div class=" mt-2 mt-md-5 pt-2 pt-2 pt-md-5 pb-md-5 shadow-md">
@@ -15,13 +15,13 @@
             <div class="row px-2 px-md-4">
 
                 <div class="col-md-6  py-2 ">
-                    <div class="bg-white py-3">
+                    <div class="bg-white py-3 h-100">
 
                         <p class="text-center normal">
                             <span class="min-title ">
-                                Your References ID For CV IS : #000{{$id}}
+                                Your References ID For Application IS : #{{$job->id}}
                             </span>
-        
+
                         </p>
                         {{-- <div class="text-center">
                             <a href="" class="min-link ">View Detail &rarr;</a>
@@ -29,13 +29,13 @@
                     </div>
                 </div>
                 <div class="col-md-6  py-2">
-                    <div class="bg-white py-3">
+                    <div class="bg-white py-3 h-100">
 
                         <p class="text-center normal">
                             <span class="min-title ">
-                                You Can View Your Uploaded CV User Panel.
+                                You Can View Your Uploaded Application User Panel.
                             </span>
-    
+
                         </p>
                         <div class="text-center">
                             <a href="{{route('n.front.user')}}" class="min-link ">Goto User Panel &rarr;</a>
@@ -56,5 +56,4 @@
 @section('js')
 
 @endsection
- 
- 
+

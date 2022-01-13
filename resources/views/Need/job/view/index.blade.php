@@ -27,10 +27,14 @@
 
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a href="" class="btn btn-warning text-white w-100 mb-2">
-                        BookMark <i class="fa fa-bookmark"></i>
-                    </a>
-                    <a href="{{route('n.front.apply-job',['job'=>$job->id])}}" class="btn btn-success text-white w-100 mb-2">
+                    <button id="bookmark-btn" class="btn btn-warning text-white w-100 mb-2">
+                        <span id="bookmark">
+                            BookMark
+                        </span>
+                        <i class="fa fa-bookmark"></i>
+                    </button>
+                    <a href="{{ route('n.front.apply-job', ['job' => $job->id]) }}"
+                        class="btn btn-success text-white w-100 mb-2">
                         ApplyNow <i class="fa fa-check"></i>
                     </a>
                 </div>
@@ -117,30 +121,56 @@
 @endsection
 @section('js')
     <script>
-            var myStorage = window.localStorage;
-            var views = JSON.parse( localStorage.getItem('views'));
-        $(document).ready(function () {
+        var myStorage = window.localStorage;
+        var views = JSON.parse(localStorage.getItem('views'));
+        var bookmarks =JSON.parse( localStorage.getItem('bookmarks'));
+        var hasbookmark=false;
+        $(document).ready(function() {
 
-            if(views==undefined){
-                views=[];
+            if (views == undefined) {
+                views = [];
             }
-            let instorage=false;
+            if(bookmarks==undefined){
+                bookmarks=[];
+            }
+
+            let instorage = false;
+
             views.forEach(view => {
-                if(view.id=={{$job->id}}){
-                    instorage=true;
+                if (view.id == {{ $job->id }}) {
+                    instorage = true;
                 }
             });
-            if(!instorage){
+
+            bookmarks.forEach(bookmark => {
+                if (bookmark == {{ $job->id }}) {
+                    hasbookmark = true;
+                }
+            });
+            $('#bookmark').html(hasbookmark?"Remove Bookmark":"Bookmark");
+
+            if (!instorage) {
                 views.push({
-                    id:{{$job->id}},
-                    title:"{{$job->title}}",
-                    date:"{{$job->lastdate}}",
+                    id: {{ $job->id }},
+                    title: "{{ $job->title }}",
+                    date: "{{ $job->lastdate }}",
                 })
             }
-            myStorage.setItem('views',JSON.stringify(views));
+            myStorage.setItem('views', JSON.stringify(views));
 
+            $('#bookmark-btn').click(function (e) {
+                e.preventDefault();
+                hasbookmark = !hasbookmark;
+                $('#bookmark').html(hasbookmark?"Remove Bookmark":"Bookmark");
+                if(hasbookmark){
+                    bookmarks.push({{$job->id}})
+                }else{
+                    bookmarks = bookmarks.filter(element => element !== {{$job->id}});
+                }
+                myStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+                // cons
+            });
         });
-
     </script>
 
 @endsection

@@ -223,7 +223,7 @@
                             '</a>'+
                             '</div>';
                         });
-                    html+= "<div class='py-2'><a class='btn btn-primary' href='"+(caturl.replace('xxx_id',cat.i))+"'>View More</a></div></div>";
+                    html+= "<div class='py-2'><a class='btn btn-primary' href='"+(caturl.replace('xxx_id',cat.i))+"'>View More In "+cat.n+"</a></div></div>";
                     // console.log(html);
                     jobele.innerHTML+=html;
                 });

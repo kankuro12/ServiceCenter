@@ -54,7 +54,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 ">
                     <div class="shadow p-3 h-100">
                         <h4>
                             Enter Your Info
@@ -64,8 +64,17 @@
                             <div class="alert alert-danger" role="alert">
                                 Your Resume Is Not Complete, <a href="{{route('resume.index',['job'=>$job->id])}}">Click Here To Complete your Resume.</a>
                             </div>
+                        @else
+                            @php
+                                $totalScore=$user->riskResume();
+                            @endphp
+                            @if ($totalScore<80)
+                                <div class="alert alert-warning" role="alert">
+                                    Your Resume Is Only {{$totalScore}}% Complete, <a href="{{route('resume.index',['job'=>$job->id])}}">Click Here To Complete your Resume.</a>
+                                </div>
+                            @endif
                         @endif
-                        <form action="{{ route('n.front.apply-job', ['job' => $job->id]) }}" method="post">
+                        <form class="{{$totalScore>60?'':'disable'}}" action="{{ route('n.front.apply-job', ['job' => $job->id]) }}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-2">
@@ -110,6 +119,10 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/normal.css') }}">
     <style>
+        /* form.disable{
+            opacity: 0.5;
+            pointer-events: none;
+        } */
         .big_section {
             color: #4d4d4d;
         }

@@ -166,7 +166,7 @@
                                 <div  >
                                     <div class="row m-0 mb-2">
                                             @foreach ($products as $product)
-                                            <div class="col-md-4 pb-2 pt-2">
+                                            <div class="col-md-6 pb-2 pt-2">
                                                 <div class="product shadow" style="border-radius:10px;overflow:hidden;">
                                                     <div class="top" >
                                                         <div class="" >
@@ -199,9 +199,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 pb-2 pt-2">
-                                                <p> {{ $product->detail }}</p>
-                                            </div>
+
                                             @endforeach
                                         </div>
                                 </div>

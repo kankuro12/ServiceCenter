@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Need;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppliedJob;
 use App\Models\ClientMessage;
 use App\Models\Delivery;
 use App\Models\JobCategory;
@@ -121,17 +122,37 @@ class HomeController extends Controller
     public function applyJob(Request $request,JobProvider $job)
     {
         $user=Auth::user();
-        return view('Need.job.view.apply',compact('job','user'));
+        if($request->getMethod()=="POST"){
+            $apply=new AppliedJob();
+            $apply->name=$request->name;
+            $apply->email=$request->email;
+            $apply->phone=$request->phone;
+            $apply->address=$request->address;
+            $apply->desc=$request->desc;
+            $apply->user_id=$user->id;
+            $apply->job_provider_id=$job->id;
+            $apply->save();
+            // dd($apply);
+            return redirect()->route('n.front.apply-job-success',['job'=>$apply->id]);
+        }else{
+            return view('Need.job.view.apply',compact('job','user'));
+        }
     }
+
+    public function applyJobSuccess(AppliedJob $job)
+    {
+        return view('Need.job.view.sucess',compact('job'));
+    }
+
     public function JobCategory(Request $request,JobCategory $cat)
     {
-        $offset=($request->page??0)*100;
-        $test='select concat(jp.id,"|",jp.title,"|",jp.lastdate,"|",u.company)  as j from job_providers jp join users u on u.id=jp.user_id  where lastdate >= curdate() and jp.job_category_id =?   limit '.($offset>0?$offset.',':'').'100 ';
+        $offset=($request->page??0)*16;
+        $test='select concat(jp.id,"|",jp.title,"|",jp.lastdate,"|",u.company)  as j from job_providers jp join users u on u.id=jp.user_id  where lastdate >= curdate() and jp.job_category_id =?   limit '.($offset>0?$offset.',':'').'16 ';
 
         $jobs=DB::select($test,[$cat->id]);
         $next=($request->page??0)+1;
         $total= DB::selectOne('select count(*) as no from job_providers where job_category_id = '.$cat->id);
-        $hasmore=$total->no >($offset+100);
+        $hasmore=$total->no >($offset+16);
         // dd($jobs);
         return $request->getMethod()=='POST'? response()->json([
             'jobs'=> $jobs,

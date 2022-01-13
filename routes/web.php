@@ -37,10 +37,15 @@ Route::name('resume.')->middleware('role:2|3')->prefix('resume')->group(function
 route::name('n.front.')->group(function(){
     route::get('',[HomeController::class,"index"])->name('home');
     route::get('view-job/{job}',[HomeController::class,"viewJob"])->name('view-job');
-    route::match(['GET','POST'],'apply-job/{job}',[HomeController::class,"applyJob"])->name('apply-job');
     route::get('all-category',[HomeController::class,"allCategory"])->name('all-category');
     route::match(['GET','POST'],'job-category/{cat}',[HomeController::class,"JobCategory"])->name('job-category');
     route::post('message',[HomeController::class,"message"])->name('message');
+
+    Route::middleware('role:2|3')->group(function(){
+        Route::match(['GET','POST'],'apply-job/{job}',[HomeController::class,"applyJob"])->name('apply-job');
+        Route::match(['GET','POST'],'apply-job-success/{job}',[HomeController::class,"applyJobSuccess"])->name('apply-job-success');
+
+    });
 
     //authentication
     route::get('auth',[AuthController::class,"index"])->name('auth');
@@ -80,9 +85,11 @@ route::name('n.front.')->group(function(){
     Route::prefix('user-dashboard')->name('vendor.')->middleware('role:2|3')->group(function(){
         route::get('',[VendorController::class,'index'])->name('index');
         Route::match(['GET','POST'],'change-image', [VendorController::class,'changeImage'])->name('change-image');
+        Route::match(['GET','POST'],'manage-profile', [VendorController::class,'manageProfile'])->name('manage-profile');
         Route::match(['GET','POST'],'change-name', [VendorController::class,'changeName'])->name('change-name');
         Route::match(['GET','POST'],'change-desc', [VendorController::class,'changeDesc'])->name('change-desc');
         Route::get('deliveries',[VendorController::class,'deliveries'])->name('deliveries');
+        Route::get('appliedJobs',[VendorController::class,'appliedJobs'])->name('appliedJobs');
         Route::get('orders',[VendorController::class,'orders'])->name('orders');
         Route::get('single-order/{order}',[VendorController::class,'singleOrder'])->name('single-order');
         Route::prefix('posted-job')->name('posted-job.')->group(function(){

@@ -367,6 +367,77 @@ tp{
 
 }
 
+.profile{
+    padding: 25px 15px ;
+     h5{
+         font-weight:700;
+         font-size:20px;
+         text-align: center;
+     }
+
+     .form-wrapper{
+         height:100%;
+         padding:20px 0px 0px 0px;
+     }
+     form{
+         .form-group{
+             padding-bottom:0px;
+         }
+         // height:100%;
+         // box-shadow:0px 0px 10px 0px rgba(0,0,0,0.2);
+         // border-radius:15px;
+         padding:0px 5px;
+         input,textarea{
+            &[type='checkbox']{
+                width: auto;
+                height: auto;
+                border-radius: 0px;
+                padding: 0;
+                margin: 0;
+            }
+             width: 100%;
+             height: 46px;
+             border-radius: 15px;
+             background-color: #d1f3ff;
+             border: none;
+             outline: none;
+             font-size: 15px;
+             font-weight: 300;
+             color: #2a2a2a;
+             padding: 0px 20px;
+             margin-bottom: 10px;
+             &::-webkit-inner-spin-button {
+                 -webkit-appearance: none;
+                 margin: 0;
+             }
+             &::-webkit-outer-spin-button {
+                 -webkit-appearance: none;
+               margin: 0;
+             }
+         }
+
+         textarea{
+             margin-bottom: 10px;
+             min-height: 200px;
+         }
+         .submit{
+             border:none;
+             outline: transparent;
+             background:#05A4ED;
+             color:white;
+             padding:10px 25px;
+             display:inline-block;
+             width:100%;
+             border-radius: 15px;
+             font-weight:600;
+             &:hover{
+                 background:#0584be;
+
+             }
+         }
+     }
+ }
+
 @media (max-width:426px){
     .single-order-desc{
 
