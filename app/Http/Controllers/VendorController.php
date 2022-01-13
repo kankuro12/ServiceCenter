@@ -125,12 +125,13 @@ class VendorController extends Controller
 
     public function orders(){
         $user = Auth::user();
-        $deliveries=Delivery::where('user_id',$user->id)->get();
-        return view('Need.vendor.delivery.index',compact('deliveries'));
-    }
-    public function orderSingle(){
-        $user = Auth::user();
-        $orders=Order::where('user_id',$user->id)->get();
+        $orders=ServiceOrder::where('user_id',$user->id)->latest()->get();
         return view('Need.vendor.order.index',compact('orders'));
+    }
+    public function singleOrder(ServiceOrder $order){
+        // $user = Auth::user();
+        // $orders=ServiceOrder::where('user_id',$user->id)->get();
+        // return view('Need.vendor.order.index',compact('orders'));
+        dd($order->getProductImages());
     }
 }

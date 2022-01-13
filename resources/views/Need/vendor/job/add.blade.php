@@ -116,28 +116,28 @@
 
 @endsection
 @section('includejs')
-    {{-- <script src="https://cdn.tiny.cloud/1/4adq2v7ufdcmebl96o9o9ga7ytomlez18tqixm9cbo46i9dn/tinymce/5/tinymce.min.js"
-        referrerpolicy="origin"></script> --}}
+    <script src="https://cdn.tiny.cloud/1/4adq2v7ufdcmebl96o9o9ga7ytomlez18tqixm9cbo46i9dn/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
 @endsection
 @section('newjs')
     <script>
         $(function() {
             $('#concat-us-section').remove();
-            // if (window.innerWidth > 768) {
+            if (window.innerWidth > 768) {
 
-            //     tinymce.init({
-            //         selector: '#desc',
-            //         plugins: [
-            //             '  advlist anchor autolink codesample fullscreen help image imagetools tinydrive',
-            //             ' lists link media noneditable  preview',
-            //             ' searchreplace table template  visualblocks wordcount'
-            //         ],
-            //         toolbar_mode: 'floating',
-            //     });
-            // } else {
-            //     $('#desc').addClass('form-control');
-            //     $('#desc').css('height', '300px');
-            // }
+                tinymce.init({
+                    selector: '#desc',
+                    plugins: [
+                        '  advlist anchor autolink codesample fullscreen help image imagetools tinydrive',
+                        ' lists link media noneditable  preview',
+                        ' searchreplace table template  visualblocks wordcount'
+                    ],
+                    toolbar_mode: 'floating',
+                });
+            } else {
+                $('#desc').addClass('form-control');
+                $('#desc').css('height', '300px');
+            }
         });
     </script>
 @endsection

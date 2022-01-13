@@ -83,7 +83,7 @@ class BookingController extends Controller
             ]);
         }
         return response('ok');
-    } 
+    }
 
     public function removeFromCart(Request $request){
         $products=session('products');
@@ -96,7 +96,7 @@ class BookingController extends Controller
             }
         }
         return response('ok');
-    } 
+    }
 
     public function checkout(Request $request)
     {
@@ -153,7 +153,7 @@ class BookingController extends Controller
 
             $so->total=$total;
             $so->save();
-            
+
             $request->session()->forget('si');
             $request->session()->forget('products');
             $request->session()->forget('service');
@@ -167,7 +167,7 @@ class BookingController extends Controller
 
         } else {
             // dd($request->session()->all());
-           
+
             // if (session('products') != null) {
             // }
             // if (session('company') == null) {

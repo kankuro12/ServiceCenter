@@ -59,9 +59,229 @@
 
 }
 #section{
+    background-color: #4f8fa3;
+    color: white;
+    .work{
+        // background: #03A4ED;
+        background-image: url('https://www.consumerlawfirm.com/wp-content/uploads/2018/11/handshake-at-job-interview.jpg');
+        &>div{
+            background-color: rgba($color: #000, $alpha: 0.8);
+            padding:125px  165px;
+        }
+        clip-path: polygon(50% 0%, 86% 0, 100% 100%, 0 100%, 0 0);
+        width:57%;
+        padding:0px;
+    }
+    .ride{
+        width:43%;
+        padding:0px;
+
+
+
+
+    }
+
     .section-inner{
+
+        padding:125px  75px;
         min-height: 300px;
+        height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        .section-title{
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .section-desc{
+            text-align: center;
+        }
+        .section-btn{
+            margin-top: 20px;
+            padding:8px 70px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid white;
+            background:transparent;
+            color:white;
+            font-weight: 600;
+            box-shadow: 0px 0px 10px 0px rgba($color: #fff, $alpha: 0.2);
+        }
+    }
+}
+.job-container{
+    .title{
+        padding-right: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+        .other{
+            color: #FE3F40;
+        }
+    }
+    .row{
+        margin: 0px -7.5px;
+        .col-md-4{
+            padding:7.5px;
+        }
+    }
+    .single-cat-view{
+        display: block;
+        height: 100%;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.26);
+        padding:10px;
+        cursor: pointer;;
+        color:inherit;
+        border-radius: 5px;
+        .nowrap{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .job-name{
+            font-weight: 500;
+
+
+
+        }
+        .job-company{
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .job-duedate{
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+.cats-container{
+    .title{
+        padding-right: 10px;
+        margin-bottom: 15px;
+        text-align: right;
+        span{
+            display: block;
+        }
+    }
+    border-right: 1px solid #ff5c69;
+    ul{
+        list-style: none;
+        li{
+            text-align: right;
+            display: block;
+            font-weight: 600;
+            cursor: pointer;
+            padding:8px 10px;
+            &.active{
+                color:#FF3446;
+            }
+            &:hover{
+                color:#FF3446;
+            }
+
+        }
+    }
+}
+
+@media (max-width:426px){
+    .job-container{
+        display: none;
+    }
+    .cats-container{
+        .title{
+            padding-right: 0px;
+            margin-bottom: 5px;
+            text-align: center;
+            position: relative;
+            font-weight: 600;
+            span{
+                display: block;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                left:0px;
+                right: 0px;
+                bottom: 2px;
+                height: 1px;
+                background:#ff5c69;
+            }
+
+        }
+        border-right:none;
+        ul{
+            list-style: none;
+            li{
+                text-align: center;
+                display: block;
+                font-weight: 600;
+                cursor: pointer;
+                padding:8px 0px;
+                &.active{
+                    color:#FF3446;
+                }
+                &:hover{
+                    color:#FF3446;
+                }
+
+            }
+        }
+    }
+
+    #section{
+        .row{
+            display: block !important;
+
+        }
+        background-color: #4f8fa3;
+        color: white;
+        .work{
+            clip-path: none;
+            width:100%;
+            padding:0px;
+            background-size: auto 100% ;
+            &>div{
+                padding:40px 10px;
+            }
+        }
+        .ride{
+            width:100%;
+            padding:0px;
+
+
+
+
+        }
+
+        .section-inner{
+
+            padding:40px 10px;
+            min-height: 300px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .section-title{
+                font-weight: 700;
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            .section-desc{
+                text-align: center;
+            }
+            .section-btn{
+                margin-top: 20px;
+                padding:8px 70px;
+                height: 40px;
+                border-radius: 20px;
+                border: 1px solid white;
+                background:transparent;
+                color:white;
+                font-weight: 600;
+                box-shadow: 0px 0px 10px 0px rgba($color: #fff, $alpha: 0.2);
+            }
+        }
     }
 }

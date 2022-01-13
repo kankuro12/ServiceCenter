@@ -76,6 +76,7 @@
     height: 100%;
     padding-bottom:75px;
     position: relative;
+
     .top{
         position:relative;
         overflow:hidden;
@@ -243,6 +244,10 @@
                 width:100% !important;
                 padding:0px;
                 padding-bottom: 10px;
+                -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+                page-break-inside: avoid; /* Firefox */
+                break-inside: avoid; /* IE 10+ */
+                break-inside: avoid-column;
                 // &:nth-child(odd){
 
                 //     padding:0px 4px 10px 8px;
@@ -257,7 +262,10 @@
     }
     .product{
         overflow: hidden;
-
+        -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+        page-break-inside: avoid; /* Firefox */
+        break-inside: avoid; /* IE 10+ */
+        break-inside: avoid-column;
         .top{
             flex:1;
             position:relative;

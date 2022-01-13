@@ -180,14 +180,15 @@
                                                         <div class="price">
                                                             @if ($product->onsale )
                                                             @php
-                                                                $total2+=$product->price;
-                                                            @endphp
-                                                                <span class="new">Rs. {{floatval($product->price)}}</span>
-                                                            @else
-                                                            @php
                                                                 $total2+=$product->sales_price;
                                                             @endphp
                                                                 <span class="new">Rs. {{floatval($product->sales_price)}}</span>
+                                                            @else
+                                                            @php
+
+                                                                $total2+=$product->price;
+                                                            @endphp
+                                                                <span class="new">Rs. {{floatval($product->price)}}</span>
                                                             @endif
                                                         </div>
                                                         {{-- <div class=" add_to_cart">

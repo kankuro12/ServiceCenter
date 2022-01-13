@@ -2,27 +2,15 @@
     $user=Auth::user();
 @endphp
 <div class="" >
-    <div style="background: #E6F5FA;padding: 10px 0px 40px 0px;">
+    <div class="text-center my-2">
+        <img style="height:60px;" src="{{asset(custom_config('logo')->value??'')}}" alt="">
+    </div>
+    <div style="background: #E6F5FA;padding: 10px 0px 40px 0px;border-top-right-radius: 35px;">
+
         <div class="">
             @include('Need.vendor.dashboard.image')
             @include('Need.vendor.dashboard.name')
-            {{-- <hr class="my-1">
-            <div class="d-flex justify-content-between info">
-                <span>
-                    <i class="material-icons">person</i> <span>Member Since</span>
-                </span>
-                <span>
-                    {{$user->created_at->format('M')}}, {{$user->created_at->year}}
-                </span>
-            </div>
-            <div class="d-flex justify-content-between info">
-                <span>
-                    <i class="material-icons">room</i> <span>From</span>
-                </span>
-                <span>
-                    {{$user->address}}
-                </span>
-            </div> --}}
+
         </div>
     </div>
     <div class="menu">
@@ -64,7 +52,7 @@
                     <span class="material-icons">
                         description
                     </span>
-                    Your Resume
+                    My Resume
                 </a>
             @endif
 
@@ -72,13 +60,13 @@
                 <span class="material-icons">
                     subtitles
                 </span>
-                Subscriptions
+                My Subscriptions
             </a>
             <a href="{{route('n.front.vendor.orders')}}" class="btn text-blue " >
                 <span class="material-icons">
                     list_alt
                 </span>
-                Orders
+                My Orders
             </a>
             <a href="{{route('n.front.vendor.deliveries')}}" class="btn text-blue " >
                 <span class="material-icons">

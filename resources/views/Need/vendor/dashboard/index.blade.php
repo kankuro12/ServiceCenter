@@ -13,6 +13,11 @@
     <div id="vendor-dashboard-page">
         <div class="sidebar shadow">
             @include('Need.vendor.dashboard.sidebar')
+            <button id="toogle-sidebar-btn" class="d-inline-block d-md-none" style="position: absolute;top:10px;right:10px;border:none;background: transparent;">
+                <span class="material-icons">
+                    close
+                </span>
+            </button>
         </div>
 
         <div class="main">
@@ -23,7 +28,13 @@
                     </button>
                 </div>
                 <div>
-
+                    <ul class="text-end ">
+                        <li class="d-inline ps-3"><a href="{{route('n.front.book.step1')}}" class="{{Route::is('n.front.book.step1')?'active':''}}">Bike Service</a></li>
+                        <li class="d-inline ps-3"><a href="{{route('n.front.delivery')}}" class="{{Route::is('n.front.delivery')?'active':''}}">Delivery</a></li>
+                        <tp></tp>
+                        <li class="d-inline ps-3"><a href="{{route('n.front.book.shop')}}" class="{{Route::is('n.front.book.shop')?'active':''}}">Shop</a></li>
+                        <li class="d-inline ps-3"><a href="{{route('n.front.subs')}}" class="{{Route::is('n.front.subs')?'active':''}}">Subcription</a></li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -60,6 +71,11 @@
             });
 
             $('#toogle-sidebar').click(function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                $('#vendor-dashboard-page').toggleClass('active');
+            });
+            $('#toogle-sidebar-btn').click(function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 $('#vendor-dashboard-page').toggleClass('active');

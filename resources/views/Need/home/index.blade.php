@@ -26,22 +26,39 @@
     </div>
     <div id="section">
         <div class="row m-0">
-            <div class="col-md-6 p-0">
-                <div class="section-inner">
-                    <div>
-                        Work
+            {{-- <div class="col-md-6 p-0"> --}}
+                <div class="work">
+                    <div class="section-inner ">
+                        <div class="section-title">
+                            Work
+                        </div>
+                        <div class="section-desc">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam similique itaque doloribus incidunt expedita perspiciatis ad non, dolorum accusantium reprehenderit quam facilis nostrum eaque cum ipsam inventore vel, sint dicta!
+                        </div>
+                        <a href="{{route('n.front.all-category')}}" class="section-btn">
+                            Visit
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 p-0">
-                <div class="section-inner">
-                    <div>
-                        Ride
+            {{-- </div> --}}
+            {{-- <div class="col-md-6 p-0"> --}}
+                <div class="ride">
+                    <div class="section-inner ">
+                        <div class="section-title">
+                            Ride
+                        </div>
+                        <div class="section-desc">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam similique itaque doloribus incidunt expedita perspiciatis ad non, dolorum accusantium reprehenderit quam facilis nostrum eaque cum ipsam inventore vel, sint dicta!
+                        </div>
+                        <a class="section-btn" href="{{route('n.front.book.step1')}}">
+                            Visit
+                        </a>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
+    @include('Need.home.category')
     {{-- @include('Need.home.carousel') --}}
     {{-- <div class="services" id="service">
     <div class="title">
@@ -157,7 +174,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets\css\front.css') }}">
     <style>
-        .main-banner {
+        /* .main-banner {
             padding: 125px 50px 0px 50px;
         }
         @media (max-width:426px){
@@ -165,12 +182,15 @@
             padding: 125px 0px 0px 0px;
         }
 
-        }
+        } */
     </style>
 @endsection
 @section('js')
     <script>
-        $('#slid').owlCarousel({
+         var cats={!! json_encode($cats) !!};
+        const catele=document.getElementById('cats');
+        const jobele=document.getElementById('job-container');
+                $('#slid').owlCarousel({
             rtl: true,
             loop: true,
             margin: 10,
@@ -178,6 +198,50 @@
             nav: true,
             items: 1
         })
+        $(document).ready(function () {
+            let ismobile=window.innerWidth <426;
+            let url="{{route('n.front.view-job',['job'=>'xxx_id'])}}";
+            let caturl="{{route('n.front.job-category',['cat'=>'xxx_id'])}}";
+            if(ismobile){
+                cats.forEach(cat => {
+                    catele.innerHTML+='<li class="single-cat" id="single-cat-'+cat.i+'" data-id="'+cat.i+'" data-name="'+cat.n+'">'+
+                    '<a href="'+(caturl.replace('xxx_id',cat.i))+'">'+ cat.n+'</a>'+
+                    '</li>';
+
+                });
+            }else{
+                cats.forEach(cat => {
+                    catele.innerHTML+='<li class="single-cat" id="single-cat-'+cat.i+'" data-id="'+cat.i+'" data-name="'+cat.n+'">'+cat.n+'</li>';
+                    html='<div class="row d-none cat" id="cats-'+cat.i+'">';
+                        cat.j.forEach(job => {
+                            let d=job.sdata.split("|");
+                            html+='<div class="col-md-4  " id="cat-'+d[0]+'">'+
+                            '<a href="'+(url.replace('xxx_id',d[0]))+'" class="single-cat-view  ">'+
+                            '<div class="job-name nowrap">'+d[1]+'</div>'+
+                            '<div class="job-company nowrap">'+d[3]+'</div>'+
+                            '<div class="job-duedate"> <span>Due Date</span><span>'+d[2]+'</span></div>'+
+                            '</a>'+
+                            '</div>';
+                        });
+                    html+= "<div class='py-2'><a class='btn btn-primary' href='"+(caturl.replace('xxx_id',cat.i))+"'>View More</a></div></div>";
+                    // console.log(html);
+                    jobele.innerHTML+=html;
+                });
+                $('.single-cat').click(function (e) {
+                    e.preventDefault();
+                    activate(this.dataset.id,this.dataset.name);
+                });
+                activate(cats[0].i,cats[0].n);
+
+            }
+        });
+            function activate(id,name){
+                $('.cat').addClass('d-none');
+                $('#cats-'+id).removeClass('d-none');
+                $('.single-cat').removeClass('active');
+                $('#single-cat-'+id).addClass('active');
+                $('#job-category-name').html(name);
+            }
     </script>
 
 @endsection

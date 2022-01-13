@@ -398,7 +398,71 @@
   display: none !important;
 }
 
+.single-order-desc {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.single-order-desc:hover {
+  color: inherit;
+}
+
+.single-order-desc .product-holder {
+  display: block;
+  text-align: center;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.single-order-desc .product-holder .service-name {
+  padding: 5px;
+  font-weight: 500;
+}
+
+tp {
+  display: inline;
+}
+
+.tp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 @media (max-width: 426px) {
+  .single-order-desc .service-name {
+    text-align: left;
+  }
+  .single-order-desc .product-holder {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .single-order-desc .product-holder img {
+    width: 30% !important;
+  }
+  tp {
+    display: block;
+  }
+  .tp img {
+    width: 30% !important;
+  }
   #vendor-dashboard-page {
     padding: 0px;
   }

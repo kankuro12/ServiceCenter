@@ -86,7 +86,7 @@ class AuthController extends Controller
         );
     }
     public function user(){
-        // return redirect()->route('n.front.vendor.index');
+        return redirect()->route('n.front.vendor.index');
         $user=Auth::User();
         $jobs=JobProvider::where('user_id',$user->id)->get();
         $cvs=JobSeekers::where('user_id',$user->id)->get();

@@ -14,15 +14,15 @@ class AddJobCategoryIdToJobProvidersTable extends Migration
     public function up()
     {
         Schema::table('job_providers', function (Blueprint $table) {
-            $table->unsignedBigInteger('job_category_id');
-            $table->date('lastdate');
-            $table->integer('opening');
-            $table->integer('type');
+            $table->unsignedBigInteger('job_category_id')->nullable();
+            $table->date('lastdate')->nullable();
+            $table->integer('opening')->nullable();
+            $table->integer('type')->nullable();
             $table->string('designation',100)->nullable();
             $table->text('salary')->nullable();
             $table->text('education')->nullable();
             $table->text('exp')->nullable();
-            $table->integer('positiontype');
+            $table->integer('positiontype')->nullable();
         });
     }
 

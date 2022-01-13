@@ -276,9 +276,21 @@
     width: 100% !important;
     padding: 0px;
     padding-bottom: 10px;
+    -webkit-column-break-inside: avoid;
+    /* Chrome, Safari, Opera */
+    /* Firefox */
+    break-inside: avoid;
+    /* IE 10+ */
+    break-inside: avoid-column;
   }
   .product {
     overflow: hidden;
+    -webkit-column-break-inside: avoid;
+    /* Chrome, Safari, Opera */
+    /* Firefox */
+    break-inside: avoid;
+    /* IE 10+ */
+    break-inside: avoid-column;
   }
   .product .top {
     -webkit-box-flex: 1;

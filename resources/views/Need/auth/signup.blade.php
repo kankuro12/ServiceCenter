@@ -16,7 +16,8 @@
                         {{ Session::get('msg_signup') }}
                     </div>
                 @endif
-                <form action="{{ route('n.front.signup') }}" id="signup" class="pb-5" method="POST" autocomplete="off">
+                <form action="{{ route('n.front.signup') }}" id="signup" class="pb-5" method="POST"
+                    autocomplete="off">
                     @csrf
                     {{-- <div class="header shadow">
                         <span class="active" data-type="1">
@@ -45,29 +46,32 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="phone">Phone<span class="phone-check text-danger ms-2"></span></label>
-                                <input type="number" name="phone" minlength="10" maxlength="10" id="sphone" placeholder="Phone" required
-                                    value="{{ old('phone') }}">
+                                <input type="number" name="phone" minlength="10" maxlength="10" id="sphone"
+                                    placeholder="Phone" required value="{{ old('phone') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
 
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" name="address" placeholder="Address" required value="{{ old('address') }}">
+                                <input type="text" name="address" placeholder="Address" required
+                                    value="{{ old('address') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" placeholder="Password" id="password" required minlength="6" value="">
+                                <input type="password" name="password" placeholder="Password" id="password" required
+                                    minlength="6" value="">
                             </div>
                         </div>
                         <div class="col-md-4">
 
                             <div class="form-group ">
-                                <label for="confirm_password">Retype  Password </label>
-                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Password" required minlength="6" value="">
+                                <label for="confirm_password">Retype Password </label>
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Password"
+                                    required minlength="6" value="">
                                 <span class="password-check text-danger"></span>
                             </div>
                         </div>
@@ -75,17 +79,20 @@
                         <div class="form-group">
                             {{-- <div class="dotted"></div> --}}
                             <div class="d-flex align-items-center pb-2">
-                                <input type="checkbox" onchange="$('#is_provider').css('display',this.checked?'block':'none');" name="provider" id="provider" class="me-2"><label for="provider">Signup as Job Provider</label>
+                                <input type="checkbox" name="provider" id="provider" class="me-2"><label
+                                    for="provider">Signup as Job Provider</label>
                             </div>
                         </div>
                         <div id="is_provider" style="display: none;">
                             <div class="form-group">
                                 <label for="company">Company / Organization </label>
-                                <input type="text" name="company" id="company" placeholder="Company / Organization" required minlength="3" value="">
+                                <input type="text" name="company" id="company" placeholder="Company / Organization"
+                                    minlength="3" value="">
                             </div>
                             <div class="form-group">
                                 <label for="desc">Company / Organization Description</label>
-                                <textarea type="text" name="desc" id="desc" placeholder="Company / Organization Description"  required value=""></textarea>
+                                <textarea type="text" name="desc" id="desc" placeholder="Company / Organization Description"
+                                    value=""></textarea>
                             </div>
                         </div>
                     </div>
@@ -94,11 +101,11 @@
                     </div>
                 </form>
                 <hr>
-                    <div class="text-center">
-                        <a href="{{route('n.front.login')}}" class="another">
-                            Already have a Account? <span class="link">Signin</span>
-                        </a>
-                    </div>
+                <div class="text-center">
+                    <a href="{{ route('n.front.login') }}" class="another">
+                        Already have a Account? <span class="link">Signin</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -107,33 +114,50 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
 @endsection
 @section('js')
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/4adq2v7ufdcmebl96o9o9ga7ytomlez18tqixm9cbo46i9dn/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <script>
-        var state=1;
-        function checkEmail() {
-            axios.post('{{route('n.front.check')}}',{
-                'email':$('#semail').val(),
-                'phone':$('#sphone').val(),
-            })
-            .then((res)=>{
-                state=2;
-                if(!res.data.email){
-                    $('.email-check').html("Email Already in Use.");
-                    state=1;
-                }
-                if(!res.data.phone){
-                    $('.phone-check').html("Phone Already in use.");
-                    state=1;
+        var state = 1;
 
-                }
-                if(state==2){
-                    $('#signup')[0].submit();
+        function isCompany(ele) {
+            $(selector).attr(attributeName);
+        }
+
+        function checkEmail() {
+            axios.post('{{ route('n.front.check') }}', {
+                    'email': $('#semail').val(),
+                    'phone': $('#sphone').val(),
+                })
+                .then((res) => {
+                    state = 2;
+                    if (!res.data.email) {
+                        $('.email-check').html("Email Already in Use.");
+                        state = 1;
+                    }
+                    if (!res.data.phone) {
+                        $('.phone-check').html("Phone Already in use.");
+                        state = 1;
+
+                    }
+                    if (state == 2) {
+                        $('#signup')[0].submit();
+                    }
+                });
+        }
+        $(function() {
+            $('#provider').change(function(e) {
+                e.preventDefault();
+                $('#is_provider').css('display', this.checked ? 'block' : 'none');
+                if (this.checked) {
+                    $('#company').attr('required', 'required');
+                    $('#desc').attr('required', 'required');
+                } else {
+                    $('#company').removeAttr('required');
+                    $('#desc').removeAttr('required');
                 }
             });
-        }
-        $(function () {
-            $('.header>span').click(function (e) {
+            $('.header>span').click(function(e) {
                 e.preventDefault();
                 $('#type').val($(this).data('type'));
                 console.log($(this).data('type'));
@@ -141,21 +165,37 @@
                 $(this).addClass('active');
             });
 
-            $('#signup').submit(function (e) {
-                if(state==1){
+            $('#signup').submit(function(e) {
+                if (state == 1) {
                     e.preventDefault();
                 }
                 $('.password-check').html("");
                 $('.email-check').html("");
                 $('.phone-check').html("");
-                console.log($('#password').val(),$('#confirm_password').val());
-                if($('#password').val() != $('#confirm_password').val()){
+                console.log($('#password').val(), $('#confirm_password').val());
+                if ($('#password').val() != $('#confirm_password').val()) {
                     $('.password-check').html("Please Confirm Password");
-                }else{
+                } else {
                     checkEmail();
                 }
 
             });
+
+            if (window.innerWidth > 768) {
+
+                tinymce.init({
+                    selector: '#desc',
+                    plugins: [
+                        '  advlist anchor autolink codesample fullscreen help image imagetools tinydrive',
+                        ' lists link media noneditable  preview',
+                        ' searchreplace table template  visualblocks wordcount'
+                    ],
+                    toolbar_mode: 'floating',
+                });
+            } else {
+                $('#desc').addClass('form-control');
+                $('#desc').css('height', '300px');
+            }
         });
     </script>
 @endsection

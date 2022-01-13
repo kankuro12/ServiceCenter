@@ -3,8 +3,8 @@
     <div class="big_section">
         <div class="title">
            <span class="normal">
-               Subscribe 
-            </span> 
+               Subscribe
+            </span>
             <span class="other"> A PAckage</span>
         </div>
         <div class="desc py-3 text-center">
@@ -12,7 +12,7 @@
         </div>
         <div class="mx-md-5 mx-0">
             <div class="shadow-md p-md-5 p-2">
-              
+
                 <style>
                     .data{
                         background:white;
@@ -33,7 +33,7 @@
                         -webkit-user-select: none;  /* Chrome all / Safari all */
                         -moz-user-select: none;     /* Firefox all */
                         -ms-user-select: none;      /* IE 10+ */
-                        user-select: none; 
+                        user-select: none;
                         cursor: pointer;
                     }
                     .data label .title{
@@ -43,18 +43,18 @@
                 </style>
                 <form action="{{route('n.front.subs')}}" method="POST" enctype="multipart/form-data" onsubmit="return checkData(this);" id="form">
                     @csrf
-                    
+
                     <div class="row m-0">
                         @foreach ($subs as $service)
-                            <div class="col-md-3 col-6 p-0">
+                            <div class="col-md-3  p-0">
                                 <div class="data " id="sc_{{$service->id}}">
                                     <input  type="radio" class="d-none s" name="service" id="s_{{$service->id}}" value="{{$service->id}}" onchange="changeManager(this)">
                                     <label for="s_{{$service->id}}">
                                             <div class="text-center title">
                                                 {{$service->title}}
-                                               
+
                                             </div>
-                                            
+
                                             <div class="text-center desc">
                                                 <hr class="my-1">
                                                 Rs. {{$service->price}}
@@ -62,26 +62,26 @@
 
                                                 {{$service->desc}}
                                             </div>
-                                    
+
                                     </label>
 
                                 </div>
-                                
+
                             </div>
                         @endforeach
-                     
+
                     </div>
 
-               
+
                     <div class="form-group py-4">
-                        <button class="submit">Subscribe</button>                       
+                        <button class="submit">Subscribe</button>
                     </div>
                 </form>
             </div>
         </div>
 
     </div>
-    
+
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/css/normal.css')}}">
@@ -112,7 +112,7 @@
            return false;
        }
         return true;
-        
+
     }
 
     function buyProducts(){
@@ -128,4 +128,3 @@
 </script>
 
 @endsection
- 

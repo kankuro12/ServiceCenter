@@ -97,6 +97,7 @@
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{route('n.front.home')}}" class="{{Route::is('n.front.home')?'active':''}}">Home</a></li>
+              <li class="scroll-to-section"><a href="{{route('n.front.all-category')}}" class="{{Route::is('n.front.all-category')?'active':''}}">Jobs</a></li>
               <li class="scroll-to-section"><a href="{{route('n.front.book.step1')}}" class="{{Route::is('n.front.book.step1')?'active':''}}">Bike Service</a></li>
               {{-- <li class="scroll-to-section"><a href="#services">Services</a></li> --}}
               <li class="scroll-to-section"><a href="{{route('n.front.delivery')}}" class="{{Route::is('n.front.delivery')?'active':''}}">Delivery</a></li>

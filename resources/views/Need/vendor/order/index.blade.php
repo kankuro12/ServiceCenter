@@ -11,15 +11,9 @@
 @endsection
 @section('newtitle', 'Orders')
 @section('newcontent')
-    <div class="row m-0">
-        @foreach ($deliveries as $delivery)
-            <div class="col-md-4 col-6 p-0 pb-2">
-                <div class=" bg-white shadow mb-3 h-100" style="break-inside: avoid-column;">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
+    <div class="">
+        @foreach ($orders as $order)
+            @include('Need.vendor.order.single')
         @endforeach
     </div>
 

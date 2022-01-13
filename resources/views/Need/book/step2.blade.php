@@ -51,7 +51,7 @@
                     <div class="row m-0">
                         @foreach ($services as $service)
                             <div class="col-md-3 col-6 p-0">
-                                <div class="data {{$s!=null?($s==$service->id?'active':''):''}}" id="sc_{{$service->id}}">
+                                <div class="data {{$s!=null?($s==$service->id?'active':''):''}} h-100" id="sc_{{$service->id}}">
                                     <input {{$s!=null?($s==$service->id?'checked':''):''}} type="radio" class="d-none s" name="service" id="s_{{$service->id}}" value="{{$service->id}}" onchange="changeManager(this)">
                                     <label for="s_{{$service->id}}">
                                             <div class="text-center title">
@@ -77,13 +77,13 @@
                                 @foreach ($sis as $si)
                                     <div class="col-md-6 " style="padding:5px;" >
                                         <div style="border:  1px solid #0d6efd;padding:10px;">
-                                            <div class="row m-0">
-                                                <div class="col-6 p-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-inline-block">
                                                     <input {{$siss!=null?(in_array($si->id,$siss)?'checked':''):''}} type="checkbox" name="si[]"  id="si_{{$si->id}}" value="{{$si->id}}" class="si si_{{$si->id}}" >
                                                     <label for="si_{{$si->id}}">{{$si->title}} </label>
                                                 </div>
-                                                <div class="col-6">
-                                                    <label for="si_{{$si->id}}">Rs.{{$si->onsale==1?$si->sale_price:$si->price}}</label>
+                                                <div class="">
+                                                    <label for="si_{{$si->id}}">Rs.{{($si->onsale==1?$si->sale_price:$si->price)+1}}</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +110,8 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('assets/css/normal.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" /> --}}
+
 @endsection
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous"></script>
