@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Models\Resume;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -45,6 +47,23 @@ class User extends Authenticatable
         'n.front.user',
     ];
 
+    public function hasResume()
+    {
+        return Resume::where('user_id',$this->id)->count()>0;
+    }
+
+    public function riskResume(){
+        $resume_id= Resume::where('user_id',$this->id)->select('id')->first()->id;
+
+        $datas=DB::selectOne("select
+            (select count(*) from skills where resume_id={$resume_id}) as skills,
+            (select count(*) from educations where resume_id={$resume_id}) as educations,
+            (select count(*) from exps where resume_id={$resume_id}) as exps,
+            (select count(*) from resume_socials where resume_id={$resume_id}) as resume_socials,
+            (select count(*) from refs where resume_id={$resume_id}) as refs
+        ");
+        return $datas
+    }
     public function getRoute()
     {
         // dd($this->routes[$this->role]);
