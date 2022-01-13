@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $job=$request->job??0;
         $user=Auth::user();
         $resume=Resume::where('user_id',$user->id)->first();
         if($resume==null){
@@ -26,7 +27,7 @@ class ResumeController extends Controller
             $resume->user_id=$user->id;
             $resume->save();
         }
-        return view('resume.layout',compact('resume'));
+        return view('resume.layout',compact('resume','job'));
     }
 
     public function save(Request $request){

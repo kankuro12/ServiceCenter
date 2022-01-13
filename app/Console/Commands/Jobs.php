@@ -42,8 +42,8 @@ class Jobs extends Command
      */
     public function handle()
     {
-        $data=explode(",","Information Technology, Health Care, Financials, Consumer Discretionary, Communication Services, Industrials, Consumer Staples, Energy, Utilities, Real Estate, and Materials");
-        dd($data);
+        $data=explode(",","Information Technology, Health Care, Financials, Consumer Discretionary, Communication Services, Industrials, Consumer Staples, Energy, Utilities, Real Estate, Materials");
+        // dd($data);
         $faker=\Faker\Factory::create();
         foreach ($data as $key =>$d) {
             $cat=new  JobCategory();

@@ -37,6 +37,7 @@ Route::name('resume.')->middleware('role:2|3')->prefix('resume')->group(function
 route::name('n.front.')->group(function(){
     route::get('',[HomeController::class,"index"])->name('home');
     route::get('view-job/{job}',[HomeController::class,"viewJob"])->name('view-job');
+    route::match(['GET','POST'],'apply-job/{job}',[HomeController::class,"applyJob"])->name('apply-job');
     route::get('all-category',[HomeController::class,"allCategory"])->name('all-category');
     route::match(['GET','POST'],'job-category/{cat}',[HomeController::class,"JobCategory"])->name('job-category');
     route::post('message',[HomeController::class,"message"])->name('message');

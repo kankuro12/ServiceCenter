@@ -17,7 +17,11 @@
     <div class="container pb-5 mb-5">
         <div class="d-flex justify-content-between align-items-center p-2 mb-3">
             <span>
-                Dashboard
+                <a class="me-3" href="{{route('n.front.vendor.index')}}">Dashboard</a>
+                @if ($job!=0)
+                <a class="me-3" href="{{route('n.front.apply-job',['job'=>$job])}}">Back To Job Page</a>
+                @endif
+                <a href=""></a>
             </span>
             <span>
                 Something

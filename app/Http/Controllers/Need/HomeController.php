@@ -118,6 +118,11 @@ class HomeController extends Controller
         // dd($job);
         return view('Need.job.view.index',compact('job'));
     }
+    public function applyJob(Request $request,JobProvider $job)
+    {
+        $user=Auth::user();
+        return view('Need.job.view.apply',compact('job','user'));
+    }
     public function JobCategory(Request $request,JobCategory $cat)
     {
         $offset=($request->page??0)*100;

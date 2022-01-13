@@ -62,7 +62,7 @@ class User extends Authenticatable
             (select count(*) from resume_socials where resume_id={$resume_id}) as resume_socials,
             (select count(*) from refs where resume_id={$resume_id}) as refs
         ");
-        return $datas
+        return $datas;
     }
     public function getRoute()
     {
