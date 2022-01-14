@@ -42,7 +42,7 @@
                 </a>
             @endif
             @if ($user->role==3)
-                <a href="{{route('n.front.vendor.posted-job.index')}}" class="btn text-blue " >
+                <a href="{{route('n.front.vendor.appliedJobs')}}" class="btn text-blue " >
                     <span class="material-icons">
                         work_outline
                     </span>

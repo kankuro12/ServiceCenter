@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppliedJob;
 use App\Models\Delivery;
 use App\Models\JobCategory;
 use App\Models\JobProvider;
@@ -52,7 +53,9 @@ class VendorController extends Controller
 
     public function appliedJobs()
     {
-        $jobs=
+        $user = Auth::user();
+        $applied_jobs=AppliedJob::with('job')->where('user_id',$user->id)->get();
+        return view('Need.vendor.job.applied',compact('applied_jobs'));
     }
 
     public function manageProfile(Request $request)
