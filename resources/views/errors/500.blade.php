@@ -488,6 +488,9 @@
 
 <body>
     <div class="main-error-page">
+        <div style="padding-bottom: 20px;">
+            <img style="max-width: 125px" src="{{asset(custom_config('logo')->value??'')}}" alt="">
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="auto" height="290"
             viewBox="0 0 470 290">
             <defs>
