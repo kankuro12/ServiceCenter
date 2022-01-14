@@ -678,10 +678,11 @@
         </svg>
 
         <h1 class="error-title">
-            Woops! <br>Something went wrong :(
+            Woops! <br>Something went wrong :( <br>
+            We are Fixing it
         </h1>
         <h2 class="error-subtitle">
-            Have you tried turning it off and on again?
+            We are Have you tried reloading it again?
         </h2>
 
 
