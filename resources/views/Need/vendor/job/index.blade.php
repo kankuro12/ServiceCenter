@@ -34,7 +34,7 @@
                         <td>{{$job->title}}</td>
                         <td>{{$job->category}}</td>
                         <td>{{$job->updated_at->diffForHumans()}}</td>
-                        <td></td>
+                        <td>{{$job->applicants}}</td>
                         <td>{{$job->lastdate->format('d-m-Y')}}</td>
                         <td>
                             <a href="{{route('n.front.vendor.posted-job.view',['job'=>$job->id])}}" class="btn btn-sm btn-link">View</a>
@@ -79,6 +79,7 @@
                             Applicants
                         </strong>
                         <div>
+                            {{$job->applicants}}
                         </div>
                     </div>
                     <div class="col-6">

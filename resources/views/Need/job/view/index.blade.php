@@ -33,10 +33,22 @@
                         </span>
                         <i class="fa fa-bookmark"></i>
                     </button>
+                    @if($applied!=null)
+                    <div class="alert alert-success text-center">
+                        <strong>
+                            Job Applied on
+                        </strong>
+                        <br>
+                        <span>
+                            {{$applied->created_at->format('d ,m Y')}}
+                        </span>
+                    </div>
+                    @else
                     <a href="{{ route('n.front.apply-job', ['job' => $job->id]) }}"
                         class="btn btn-success text-white w-100 mb-2">
                         ApplyNow <i class="fa fa-check"></i>
                     </a>
+                    @endif
                 </div>
                 <div class="col-md-9">
                     <div class="company">

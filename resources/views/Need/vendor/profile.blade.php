@@ -19,7 +19,7 @@
                         {{ Session::get('msg_signup') }}
                     </div>
                 @endif
-                <form action="{{ route('n.front.signup') }}" id="signup" class="pb-5" method="POST"
+                <form action="{{ route('n.front.vendor.manage-profile') }}" id="update" class="pb-5" method="POST"
                     autocomplete="off">
                     @csrf
 
@@ -28,7 +28,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="name">Name </label>
-                                <input type="text" name="name" placeholder="Name" required minlength="3"
+                                <input type="text" name="name" id="name" placeholder="Name" required minlength="3"
                                     value="{{$user->name}}">
                             </div>
                         </div>
@@ -55,26 +55,21 @@
                             </div>
                         </div>
 
+                        @if ($user->role==2)
 
-                        <div class="form-group">
-                            {{-- <div class="dotted"></div> --}}
-                            <div class="d-flex align-items-center pb-2">
-                                <input type="checkbox" name="provider" id="provider" class="me-2" {{$user->role==2?'checked':''}}><label
-                                    for="provider">I am A Job Provider</label>
-                            </div>
-                        </div>
-                        <div id="is_provider" style="display: {{$user->role==2?'block':'none'}};">
+                        <div id="is_provider" style="">
                             <div class="form-group">
                                 <label for="company">Company / Organization </label>
                                 <input type="text" name="company" id="company" placeholder="Company / Organization"
-                                    minlength="3" value="" {{$user->role==2?'required':''}}>
+                                    minlength="3" value="{{$user->company}}" value="" {{$user->role==2?'required':''}}>
                             </div>
                             <div class="form-group">
                                 <label for="desc">Company / Organization Description</label>
                                 <textarea type="text" name="desc" id="desc" placeholder="Company / Organization Description"
-                                    value="" {{$user->role==2?'required':''}}></textarea>
+                                    value="" {{$user->role==2?'required':''}}>{{$user->desc}}</textarea>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="form-group text-center py-2">
                         <button class="submit">Update Profile</button>
@@ -88,8 +83,11 @@
 @section('includejs')
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+@if ($user->role==2)
+
 <script src="https://cdn.tiny.cloud/1/4adq2v7ufdcmebl96o9o9ga7ytomlez18tqixm9cbo46i9dn/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
+@endif
 @endsection
 @section('newjs')
 <script>
@@ -102,17 +100,7 @@
 
 
     $(function() {
-        $('#provider').change(function(e) {
-            e.preventDefault();
-            $('#is_provider').css('display', this.checked ? 'block' : 'none');
-            if (this.checked) {
-                $('#company').attr('required', 'required');
-                $('#desc').attr('required', 'required');
-            } else {
-                $('#company').removeAttr('required');
-                $('#desc').removeAttr('required');
-            }
-        });
+
         $('.header>span').click(function(e) {
             e.preventDefault();
             $('#type').val($(this).data('type'));
@@ -121,21 +109,18 @@
             $(this).addClass('active');
         });
 
-        $('#signup').submit(function(e) {
-            if (state == 1) {
-                e.preventDefault();
-            }
-            $('.password-check').html("");
-            $('.email-check').html("");
-            $('.phone-check').html("");
-            console.log($('#password').val(), $('#confirm_password').val());
-            if ($('#password').val() != $('#confirm_password').val()) {
-                $('.password-check').html("Please Confirm Password");
-            } else {
-                checkEmail();
-            }
-
+        $('#update').submit(function(e) {
+            e.preventDefault();
+            axios.post(this.action,(new FormData(this)))
+            .then((res)=>{
+                alert('Data Updated Successfully');
+                $('#name-input').val($('#name').val());
+            })
+            .catch((err)=>{
+                alert('err.response.data.message');
+            })
         });
+        @if ($user->role==2)
 
         if (window.innerWidth > 768) {
 
@@ -152,6 +137,7 @@
             $('#desc').addClass('form-control');
             $('#desc').css('height', '300px');
         }
+        @endif
     });
 </script>
 @endsection

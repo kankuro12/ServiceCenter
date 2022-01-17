@@ -77,4 +77,6 @@ class User extends Authenticatable
         // dd($this->routes[$this->role]);
         return $this->routes[$this->role];
     }
+
+
 }

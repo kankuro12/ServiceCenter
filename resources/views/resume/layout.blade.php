@@ -33,6 +33,7 @@
        @include('resume.partial.skill')
        @include('resume.partial.lang')
        @include('resume.partial.ref')
+       @include('resume.partial.file')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -47,6 +48,7 @@
             "skill":'#skill-single-',
             "lang":'#lang-single-',
             "ref":'#ref-single-',
+            "file":'#file-single-',
         };
 
         function checkNumber(ele) {

@@ -99,6 +99,9 @@
                     <div class="form-group text-center">
                         <button class="submit">Create Account</button>
                     </div>
+                    <div class="text-center">
+                        BY Clicking Create Account You will Be agreeing out <a href="{{route('terms')}}">Terms and Condition</a>
+                    </div>
                 </form>
                 <hr>
                 <div class="text-center">
@@ -151,10 +154,8 @@
                 $('#is_provider').css('display', this.checked ? 'block' : 'none');
                 if (this.checked) {
                     $('#company').attr('required', 'required');
-                    $('#desc').attr('required', 'required');
                 } else {
                     $('#company').removeAttr('required');
-                    $('#desc').removeAttr('required');
                 }
             });
             $('.header>span').click(function(e) {

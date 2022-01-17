@@ -26,12 +26,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('test', 'test');
-
+Route::view('terms', 'Need.terms')->name('terms');
+Route::get('resume/view/{user}',[ResumeController::class,'view'])->name('resume.view');
 Route::name('resume.')->middleware('role:2|3')->prefix('resume')->group(function(){
-    ROute::get('',[ResumeController::class,'index'])->name('index');
-    ROute::post('save',[ResumeController::class,'save'])->name('save');
-    ROute::post('data-add',[ResumeController::class,'dataAdd'])->name('data-add');
-    ROute::post('data-del',[ResumeController::class,'dataDel'])->name('data-del');
+    Route::get('',[ResumeController::class,'index'])->name('index');
+    Route::post('save',[ResumeController::class,'save'])->name('save');
+    Route::post('data-add',[ResumeController::class,'dataAdd'])->name('data-add');
+    Route::post('data-del',[ResumeController::class,'dataDel'])->name('data-del');
 });
 
 route::name('n.front.')->group(function(){
@@ -95,6 +96,7 @@ route::name('n.front.')->group(function(){
         Route::prefix('posted-job')->name('posted-job.')->group(function(){
             Route::get('',[VendorController::class,'jobs'])->name('index');
             Route::get('view/{job}',[VendorController::class,'jobView'])->name('view');
+            Route::get('export/{job}',[VendorController::class,'jobExport'])->name('export');
             Route::post('update/{job}',[VendorController::class,'jobUpdate'])->name('update');
             Route::match(['GET','POST'],'add', [VendorController::class,'addJob'])->name('add');
         });
@@ -134,9 +136,11 @@ Route::group(['middleware' => 'role:1', 'prefix' => 'dashboard'],  function () {
 
         Route::get('jobseeker', [UserController::class,'jobseeker'])->name('jobseeker');
         Route::get('jobseekerSingle/{jobseeker}', [UserController::class,'jobseekerSingle'])->name('jobseekerSingle');
+        Route::get('jobseekerExport/{jobseeker}', [UserController::class,'jobseekerExport'])->name('jobseekerExport');
 
         Route::get('job', [UserController::class,'job'])->name('job');
         Route::get('job-single/{job}', [UserController::class,'jobSingle'])->name('job-Single');
+        Route::get('export/{job}',[VendorController::class,'jobExport'])->name('job-export');
 
         Route::get('serviceOrder/{type}', [OrderController::class,'serviceOrder'])->name('serviceOrder');
         Route::post('serviceOrder-complete', [OrderController::class,'serviceOrderComplete'])->name('serviceOrderComplete');
@@ -221,6 +225,8 @@ Route::group(['middleware' => 'role:1', 'prefix' => 'dashboard'],  function () {
     Route::get('customer-message', 'Admin\CustomerController@customerMessage');
     Route::get('seen-message/{id}', 'Admin\CustomerController@messageSeen');
     Route::get('customer-list', 'Admin\CustomerController@customerList');
+    Route::get('customer-single/{id}', 'Admin\CustomerController@customerSingle')->name('customer.single');
+    Route::get('vendor-list', 'Admin\CustomerController@customerList');
 
     // setting routes
     Route::match(['GET', 'POST'], 'change-password', 'Admin\SettingController@changePassword');

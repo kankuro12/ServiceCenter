@@ -29,8 +29,10 @@ class HomeController extends Controller
         foreach ($cats as $key => $cat) {
             $cat->j=DB::select($test,[$cat->i]);
         }
+        $pop = \App\Popup::where('id',1)->first();
+
         // dd($cats);
-        return view('Need.home.index',compact('cats'));
+        return view('Need.home.index',compact('cats','pop'));
     }
 
     public function postjob(Request $request){
@@ -116,8 +118,11 @@ class HomeController extends Controller
 
     public function viewJob(JobProvider $job)
     {
+        $user=Auth::user();
         // dd($job);
-        return view('Need.job.view.index',compact('job'));
+        $applied=AppliedJob::where('user_id',$user->id)->where('job_provider_id',$job->id)->first();
+
+        return view('Need.job.view.index',compact('job','applied'));
     }
     public function applyJob(Request $request,JobProvider $job)
     {
@@ -135,6 +140,7 @@ class HomeController extends Controller
             // dd($apply);
             return redirect()->route('n.front.apply-job-success',['job'=>$apply->id]);
         }else{
+
             return view('Need.job.view.apply',compact('job','user'));
         }
     }

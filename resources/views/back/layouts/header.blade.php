@@ -220,16 +220,16 @@
             </li> --}}
 
 
-            {{-- <li class="menu-item has-child">
+            <li class="menu-item has-child">
                 <a href="" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Front Setting</span></a>
                 <ul class="menu">
-                  <li class="menu-item">
+                  {{-- <li class="menu-item">
                     <a href="{{ route('slider.index') }}" class="menu-link">Slider</a>
-                  </li>
+                  </li> --}}
                   <li class="menu-item">
                     <a href="{{ url('dashboard/banners') }}" class="menu-link">Banner</a>
                   </li>
-                  <li class="menu-item">
+                  {{-- <li class="menu-item">
                     <a href="{{ route('store.index') }}" class="menu-link">Our Store</a>
                   </li>
                   <li class="menu-item">
@@ -237,7 +237,7 @@
                   </li>
                   <li class="menu-item">
                     <a href="{{ url('dashboard/contact-info') }}" class="menu-link">Contact Page Info</a>
-                  </li>
+                  </li> --}}
                   <li class="menu-item">
                     <a href="{{ url('dashboard/popup-info') }}" class="menu-link">PopUp Box Info</a>
                   </li>
@@ -250,13 +250,16 @@
                   <li class="menu-item">
                     <a href="{{ route('footerlink.index') }}" class="menu-link">Footer Links</a>
                   </li>
-                  <li class="menu-item">
+                  <li class="menu-item ">
+                    <a href="{{ route('admin.configs') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Extra Setting</span></a>
+                  </li><!-- /.menu-item -->
+                  {{-- <li class="menu-item">
                     <a href="{{ url('dashboard/footer-extra-info') }}" class="menu-link">Footer Extra Info</a>
-                  </li>
+                  </li> --}}
                 </ul><!-- /child menu -->
-            </li> --}}
+            </li>
 
-            {{-- <li class="menu-item has-child">
+            <li class="menu-item has-child">
                 <a href="" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text"> Settings </span></a>
                 <ul class="menu">
                 <li class="menu-item">
@@ -269,7 +272,7 @@
                     <a href="{{ url('dashboard/change-password') }}" class="menu-link">Change Password</a>
                   </li>
                 </ul><!-- /child menu -->
-            </li> --}}
+            </li>
             {{-- <li class="menu-item <?php if(preg_match('/blog/i',$url)){ echo'has-active';}?>">
                 <a href="{{ route('blog.index') }}" class="menu-link"><span class="menu-icon oi oi-file"></span> <span class="menu-text">Blog</span></a>
             </li><!-- /.menu-item -->
@@ -304,9 +307,7 @@
             <li class="menu-item ">
               <a href="{{ route('admin.serviceOrder',['type'=>0]) }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Service Orders</span></a>
             </li><!-- /.menu-item -->
-            <li class="menu-item ">
-              <a href="{{ route('admin.configs') }}" class="menu-link" target="_blank"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Setting</span></a>
-            </li><!-- /.menu-item -->
+
           </ul><!-- /.menu -->
         </nav><!-- /.stacked-menu -->
       </div><!-- /.aside-menu -->

@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "phpoffice/phpspreadsheet": "^1.21",
         "silviolleite/laravelpwa": "^2.0"
     },
     "require-dev": {

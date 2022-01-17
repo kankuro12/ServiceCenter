@@ -9,19 +9,42 @@ use App\Models\JobProvider;
 use App\Models\ServiceOrder;
 use App\Models\User;
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class VendorController extends Controller
 {
+    private function isActive()
+    {
+        $user = Auth::user();
+
+        if($user->role==3){
+            $active=true;
+        }else{
+
+            if($user->till==null){
+                $active=false;
+            }else{
+
+                $result = Carbon::now()->lte($user->till);
+                $active=$user->active && $result;
+            }
+        }
+        return $active ;
+    }
 
     public function index()
     {
         $user = Auth::user();
         $orders=ServiceOrder::where('user_id',$user->id)->get();
         $deliveries=Delivery::where('user_id',$user->id)->get();
-        return view('Need.vendor.index',compact('orders','deliveries'));
+        $active=$this->isActive();
+        return view('Need.vendor.index',compact('orders','deliveries','active'));
     }
     public function changeImage(Request $request)
     {
@@ -54,7 +77,12 @@ class VendorController extends Controller
     public function appliedJobs()
     {
         $user = Auth::user();
-        $applied_jobs=AppliedJob::with('job')->where('user_id',$user->id)->get();
+        $applied_jobs=DB::table('applied_jobs')->join('job_providers','job_providers.id','=','applied_jobs.job_provider_id')
+        ->join('users','users.id','=','job_providers.user_id')
+        ->select(DB::raw('job_providers.title,DATE_FORMAT(job_providers.lastdate,\'%e, %M %Y\') as duedate,DATE_FORMAT(job_providers.created_at,\'%e, %M %Y\')   as posted,DATE_FORMAT(applied_jobs.created_at,\'%e, %M %Y\')  as applied,users.company,applied_jobs.job_provider_id'))
+        ->orderBy('applied_jobs.id','desc')
+        ->get();
+        // dd($applied_jobs);
         return view('Need.vendor.job.applied',compact('applied_jobs'));
     }
 
@@ -63,6 +91,25 @@ class VendorController extends Controller
         $user = Auth::user();
 
         if($request->getMethod()=="POST"){
+            if($user->email!=$request->email){
+                if(User::where('email',$request->email)->where('id',$user->id)->count()>0){
+                    throw new \Exception('Email Already In Use');
+                }
+                $user->email=$request->email;
+            }
+            if($user->phone!=$request->phone){
+                if(User::where('phone',$request->phone)->where('id',$user->id)->count()>0){
+                    throw new \Exception('Phone Already In Use');
+                }
+                $user->phone=$request->phone;
+
+            }
+
+            $user->name=$request->name;
+            $user->desc=$request->desc;
+            $user->company=$request->company;
+            $user->save();
+
 
         }else{
             return view('Need.vendor.profile',compact('user'));
@@ -74,11 +121,17 @@ class VendorController extends Controller
 
     public function jobs()
     {
-        $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
-            ->where('user_id', Auth::user()->id)
-            ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category'))
-            ->get();
-        return view('Need.vendor.job.index', compact('jobs'));
+        $active=$this->isActive();
+        if($active){
+
+            $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
+                ->where('user_id', Auth::user()->id)
+                ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=Job_providers.id) as applicants'))
+                ->get();
+            return view('Need.vendor.job.index', compact('jobs'));
+        }else{
+            return view('Need.vendor.job.notactive');
+        }
     }
 
     public function jobView(JobProvider $job)
@@ -86,6 +139,36 @@ class VendorController extends Controller
         $cats = JobCategory::all(['id', 'name']);
 
         return view('Need.vendor.job.view', compact('job', 'cats'));
+    }
+
+    public function jobExport(JobProvider $job)
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', "Name");
+        $sheet->setCellValue('B1', "Email");
+        $sheet->setCellValue('C1', "Phone");
+        $sheet->setCellValue('D1', "Address");
+        $sheet->setCellValue('E1', "Description");
+        $sheet->setCellValue('F1', "Applied Date");
+        $sheet->setCellValue('G1', "Resume Link");
+        $i=2;
+        $wizard = new \PhpOffice\PhpSpreadsheet\Helper\Html();
+        foreach ($job->applicants as $applicant){
+            $sheet->setCellValue('A'.$i, $applicant->name);
+            $sheet->setCellValue('B'.$i, $applicant->email);
+            $sheet->setCellValue('C'.$i, $applicant->phone);
+            $sheet->setCellValue('D'.$i, $applicant->address);
+            $sheet->setCellValue('E'.$i,'');
+            $sheet->setCellValue('F'.$i, $applicant->created_at->format('d, m Y'));
+            $sheet->setCellValue('G'.$i,'View Resume');
+            $sheet->getCell('G'.$i)->getHyperlink()->setUrl(route('resume.view',['user'=>$applicant->user_id]));
+            $i++;
+        }
+        $writer = new Xlsx($spreadsheet);
+        $file='uploads/export/'.$job->id.(str_replace(' ','_',$job->title)).'.xlsx';
+        $writer->save($file);
+        return response(asset($file));
     }
     public function addJob(Request $request)
     {

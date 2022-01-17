@@ -12,6 +12,17 @@ class Resume extends Model
     {
         return $this->hasMany(Education::class,'resume_id','id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(ResumeFile::class,'resume_id','id');
+    }
+
+    public function socials()
+    {
+        return $this->hasMany(ResumeSocial::class,'resume_id','id');
+    }
+
     public function exps()
     {
         return $this->hasMany(Exp::class,'resume_id','id');

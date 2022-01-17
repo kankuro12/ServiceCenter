@@ -27,8 +27,10 @@
                                     <th>REF ID</th>
                                     <th>Job</th>
                                     <th>Name</th>
-                                    <th>Address</th>
+                                    <th>Company</th>
                                     <th>Phone</th>
+                                    <th>Applicants</th>
+                                    <th>Due Date</th>
                                     <th>Posted</th>
                                     <th></th>
                                </tr>
@@ -36,13 +38,15 @@
                                   <tr>
                                       <td>{{ $attr->id }}</td>
                                       <td>{{$attr->title}}</td>
-                                      <td>{{ $attr->user->name }}</td>
-                                      <td>{{ $attr->user->address }}</td>
-                                      <td>{{ $attr->user->phone }}</td>
-                                      <th>{{$attr->created_at->diffForHumans()}}</th>
+                                      <td>{{ $attr->name }}</td>
+                                      <td>{{ $attr->company }}</td>
+                                      <td>{{ $attr->phone }}</td>
+                                      <td>{{ $attr->applicants}}</td>
+                                      <td>{{ $attr->lastdate->format('d-m-Y')}}</td>
+                                      <th>{{$attr->created_at->format('d-m-Y')}}</th>
                                       <td>
                                           <a class="btn btn-primary btm-sm" target="_blank" href="{{route('admin.job-Single',['job'=>$attr->id])}}">
-                                              View Detail
+                                              Detail
                                           </a>
                                       </td>
                                   </tr>

@@ -16,6 +16,11 @@ class JobProvider extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function applicants()
+    {
+        return $this->hasMany(AppliedJob::class,'job_provider_id','id');
+    }
+
     public function category()
     {
         return $this->belongsTo(JobCategory::class,'job_category_id','id');

@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Delivery;
+use App\Models\JobProvider;
+use App\Models\ServiceOrder;
+use App\Models\User as ModelsUser;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -12,10 +18,34 @@ class CustomerController extends Controller
     {
         $this->middleware('is_admin');
     }
-    
+
+    public function activate(Request $request){
+        $user=User::find($request->id);
+        $user->active=1;
+        $user->till=$request->till;
+        $user->save();
+    }
+    public function customerSingle ($id)
+    {
+        $customer=User::find($id);
+        $orders=ServiceOrder::where('user_id',$id)->latest()->get();
+
+        $deliveries=Delivery::where('user_id',$id)->get();
+        $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
+        ->where('job_providers.user_id', $id)
+        ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=Job_providers.id) as applicants'))
+        ->get();
+        // dd($jobs);
+
+        return view('back.customer.detail',compact('orders','jobs','customer','deliveries'));
+        dd(compact('orders','jobs','customer'));
+    }
     public function customerList(){
-        $customers = User::where('role',2)->paginate(15);
-        return view('back.customer.list',compact('customers'));
+
+        $current=Carbon::now();
+        $customers = User::whereIn('role',[2,3])->get()->groupBy('role');
+        // dd($customers['3'],$customers['2']);
+        return view('back.customer.list',compact('customers','current'));
     }
 
     public function customerMessage(){
@@ -27,5 +57,5 @@ class CustomerController extends Controller
     return redirect()->back()->with('success','Message has been seen !');
     }
 
-    
+
 }

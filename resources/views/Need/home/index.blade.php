@@ -169,11 +169,15 @@
 
     </div>
   </div> --}}
-
+@include('Need.home.popup')
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets\css\front.css') }}">
     <style>
+        #popup .modal-content{
+            border: none;
+            border-radius: 0px;
+        }
         /* .main-banner {
             padding: 125px 50px 0px 50px;
         }
@@ -234,6 +238,8 @@
                 activate(cats[0].i,cats[0].n);
 
             }
+
+            $('#popup').modal('show');
         });
             function activate(id,name){
                 $('.cat').addClass('d-none');

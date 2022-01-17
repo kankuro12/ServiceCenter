@@ -57,7 +57,45 @@
         .header-area .main-nav .logo img{
             max-height: 60px;
         }
+        .widget{
+            min-height: 150px;
+        }
 
+        .widget-title{
+            font-size: 20px;
+            color:white;
+        }
+
+        .widget-list{
+            font-size: 15px;
+            text-decoration: none;
+            color: inherit;
+            color:white;
+
+        }
+        .widget-list a{
+            color: inherit;
+        }
+
+        .text-black{
+            color: #2C2C2C;
+        }
+
+        .social-icons{
+            text-align: center;
+        }
+        .social-icons a{
+            height: 50px;
+            width: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #FF3449;
+            font-size: 25px;
+            border-radius: 50%;
+            margin:0px 5px;
+        }
         @media(max-width:425px){
 
             .header-area .main-nav .nav li a{
@@ -128,64 +166,15 @@
 
   @yield('content')
 
-  <div id="concat-us-section" class="contact-us section">
-    <div class="container">
-      <a name="bf"></a>
-      <div class="row">
 
-        <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <div class="section-heading">
-            <h2>Feel Free To Send Us a Message About Your Need</h2>
-            <div class="phone-info">
-              <h4>For any enquiry, Call Us: <span><i class="fa fa-phone"></i> <a href="tel:{{custom_config('phone')->value??""}}">{{custom_config('phone')->value??""}}</a></span></h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact"  >
-            @csrf
-            <div class="row">
-              <div class="col-lg-6">
-                <fieldset>
-                  <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6">
-                <fieldset>
-                  <input type="text" name="phone" id="phone" placeholder="phone" autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" >
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <textarea maxlength="160" name="message" type="text" class="form-control" id="message" placeholder="Message" required></textarea>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <button type="submit" id="form-submit btn btn-primary" class="main-button ">Send Message</button>
-                </fieldset>
-              </div>
-            </div>
-            <div class="contact-dec">
-              <img src="assets/images/contact-decoration.png" alt="">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  @include('Need.footer')
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.25s">
           <p>©{{env('APP_NAME','')}}.
 
-          <br>Design: <a rel="nofollow" href="https://needtechnsoft.com.np">Need Technosoft</a></p>
+          <br>Design: <a rel="nofollow" target="_blank" href="https://needtechnosoft.com.np">Need Technosoft</a></p>
           <br>
         </div>
       </div>

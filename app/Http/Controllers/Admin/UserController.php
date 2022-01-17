@@ -7,6 +7,7 @@ use App\Models\Delivery;
 use App\Models\JobProvider;
 use App\Models\JobSeekers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -165,9 +166,16 @@ class UserController extends Controller
 
     }
 
+
     public function job(){
-        $jobs=JobProvider::with('user')->orderBy('id','DESC')->paginate(50);
+        $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
+        ->join('users','users.id','=','job_providers.user_id')
+        ->select(DB::raw('users.company,users.name,users.phone,job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_providers.created_at,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=Job_providers.id) as applicants'))
+        ->latest()
+        ->paginate(50);
         return view('back.job.provider.index',compact('jobs'));
+    }
+    public function jobExport(JobProvider $job){
     }
     public function jobSingle(JobProvider $job){
         if($job->file!=null){

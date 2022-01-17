@@ -19,7 +19,7 @@ class CreateEducationTable extends Migration
             $table->string('degree',100);
             $table->string('city',100);
             $table->string('grade',15);
-            $table->string('desc',250);
+            $table->text('desc');
             $table->integer('start');
             $table->integer('end');
             $table->unsignedBigInteger('resume_id');
