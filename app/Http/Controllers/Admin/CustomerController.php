@@ -43,7 +43,7 @@ class CustomerController extends Controller
                 $active=false;
             }else{
 
-                $result = Carbon::now()->lte($user->till);
+                $result = \Carbon\Carbon::now()->lte($user->till);
                 $active=$user->active && $result;
             }
         }

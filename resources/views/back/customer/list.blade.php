@@ -84,11 +84,13 @@
 
                                    @foreach ($customers['2'] as $k => $attr)
                                    @php
-                                       if($attr->till==null){
-                                           $active=false;
-                                       }else{
-                                           $active= $attr->status==1 && $current->lte($attr->till);
-                                       }
+                                        if($attr->till==null){
+                                            $active=false;
+                                        }else{
+
+                                            $result = \Carbon\Carbon::now()->lte($attr->till);
+                                            $active=$attr->active && $result;
+                                        }
                                    @endphp
                                     <tr>
                                         <td>#{{ $attr->id }}</td>
