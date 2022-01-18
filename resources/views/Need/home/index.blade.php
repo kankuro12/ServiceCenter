@@ -59,6 +59,7 @@
         </div>
     </div>
     @include('Need.home.category')
+    @include('Need.home.product')
     {{-- @include('Need.home.carousel') --}}
     {{-- <div class="services" id="service">
     <div class="title">
@@ -173,6 +174,7 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets\css\front.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets\css\normal.css') }}">
     <style>
         #popup .modal-content {
             border: none;

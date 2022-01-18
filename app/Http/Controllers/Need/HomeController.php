@@ -11,6 +11,7 @@ use App\Models\JobProvider;
 use App\Models\JobSeekers;
 use App\Models\Subscription;
 use App\Models\UserSubscription;
+use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,9 +31,10 @@ class HomeController extends Controller
             $cat->j=DB::select($test,[$cat->i]);
         }
         $pop = \App\Popup::where('id',1)->first();
+        $products=Product::take(4)->inRandomOrder()->get();
 
         // dd($cats);
-        return view('Need.home.index',compact('cats','pop'));
+        return view('Need.home.index',compact('cats','pop','products'));
     }
 
     public function postjob(Request $request){
@@ -118,9 +120,13 @@ class HomeController extends Controller
 
     public function viewJob(JobProvider $job)
     {
-        $user=Auth::user();
-        // dd($job);
-        $applied=AppliedJob::where('user_id',$user->id)->where('job_provider_id',$job->id)->first();
+        $applied=null;
+        if(Auth::check()){
+
+            $user=Auth::user();
+            // dd($job);
+            $applied=AppliedJob::where('user_id',$user->id)->where('job_provider_id',$job->id)->first();
+        }
 
         return view('Need.job.view.index',compact('job','applied'));
     }
