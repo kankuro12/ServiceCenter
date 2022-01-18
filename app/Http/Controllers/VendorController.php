@@ -92,6 +92,7 @@ class VendorController extends Controller
         ->join('users','users.id','=','job_providers.user_id')
         ->select(DB::raw('job_providers.title,DATE_FORMAT(job_providers.lastdate,\'%e, %M %Y\') as duedate,DATE_FORMAT(job_providers.created_at,\'%e, %M %Y\')   as posted,DATE_FORMAT(applied_jobs.created_at,\'%e, %M %Y\')  as applied,users.company,applied_jobs.job_provider_id'))
         ->orderBy('applied_jobs.id','desc')
+        ->where('applied_jobs.user_id',$user->id)
         ->get();
         // dd($applied_jobs);
         return view('Need.vendor.job.applied',compact('applied_jobs'));
