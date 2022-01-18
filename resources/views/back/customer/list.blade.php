@@ -28,39 +28,43 @@
 
                         @include('back.layouts.message')
                         <div class="card-body cc cc1 d-none" >
-                           <table class="table table-bordered " id="normal-user">
-                               <thead>
-                                   <tr>
-                                        <th>S.N</th>
-                                        {{-- <th>Image</th> --}}
-                                        <th>Name</th>
-                                        <th>Address</th>
-                                        <th>Telephone</th>
-                                        <th>Email</th>
-                                        <th></th>
+                            @if ($customers['3']!=null)
 
-                                   </tr>
-
-                               </thead>
-                               <tbody>
-                                   @foreach ($customers['3'] as $k => $attr)
+                            <table class="table table-bordered " id="normal-user">
+                                <thead>
                                     <tr>
-                                        <td>{{ $k+1 }}</td>
-                                        {{-- <td class="text-center"><img src="{{ asset('front/images/customers/'.$attr->image)}}" alt="image" style="height:70px; width:70px; border-radius: 50%;"></td> --}}
-                                        <td>{{ $attr->name }}</td>
-                                        <td>{{ $attr->address }}</td>
-                                        <td>{{ $attr->phone }}</td>
-                                        <td>{{ $attr->email }}</td>
-                                        <td>
-                                            Details
-                                        </td>
+                                         <th>S.N</th>
+                                         {{-- <th>Image</th> --}}
+                                         <th>Name</th>
+                                         <th>Address</th>
+                                         <th>Telephone</th>
+                                         <th>Email</th>
+                                         <th></th>
+
                                     </tr>
-                                   @endforeach
-                               </tbody>
-                           </table>
+
+                                </thead>
+                                <tbody>
+                                    @foreach ($customers['3'] as $k => $attr)
+                                     <tr>
+                                         <td>{{ $k+1 }}</td>
+                                         {{-- <td class="text-center"><img src="{{ asset('front/images/customers/'.$attr->image)}}" alt="image" style="height:70px; width:70px; border-radius: 50%;"></td> --}}
+                                         <td>{{ $attr->name }}</td>
+                                         <td>{{ $attr->address }}</td>
+                                         <td>{{ $attr->phone }}</td>
+                                         <td>{{ $attr->email }}</td>
+                                         <td>
+                                             Details
+                                         </td>
+                                     </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
 
                         </div><!-- /.card-body -->
                         <div class="card-body cc cc2 d-none">
+                            @if ($customers['2']!=null)
 
                            <table class="table table-bordered " id="job-provider">
                                <thead>
@@ -104,6 +108,7 @@
                                    @endforeach
                                </tbody>
                            </table>
+                           @endif
 
                         </div><!-- /.card-body -->
                     </div>
