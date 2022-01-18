@@ -68,7 +68,7 @@ class AuthController extends Controller
             $user->email=$request->email;
             $user->company=$request->company;
             $user->desc=$request->desc;
-            $user->role=$request->type==1?3:2;
+            $user->role=$request->filled('provider')?2:3;
             $user->password=bcrypt($request->password);
             $user->save();
             Auth::login($user,true);
