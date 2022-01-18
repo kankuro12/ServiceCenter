@@ -132,7 +132,7 @@ class VendorController extends Controller
 
             $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
                 ->where('user_id', Auth::user()->id)
-                ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=Job_providers.id) as applicants'))
+                ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=job_providers.id) as applicants'))
                 ->get();
             return view('Need.vendor.job.index', compact('jobs'));
         }else{
