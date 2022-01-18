@@ -40,10 +40,17 @@ class VendorController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
 
+        $user = Auth::user();
+        $count=DB::selectOne(" select
+        (select count(*) from job_providers where user_id={$user->id}) as jp,
+        (select count(*) from applied_jobs where user_id={$user->id}) as aj,
+        (select count(*) from service_orders where user_id={$user->id}) as so,
+        (select count(*) from deliveries where user_id={$user->id}) as d
+        ");
         $active=$this->isActive();
-        return view('Need.vendor.index',compact('orders','deliveries','active','user'));
+
+        return view('Need.vendor.index',compact('active','user','count'));
     }
     public function changeImage(Request $request)
     {
