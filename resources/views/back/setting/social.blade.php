@@ -51,10 +51,10 @@
                                                 <input type="text" name="instagram" value="{{ $social->instagram }}" placeholder="Enter instagram url" class="form-control" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="youtube"> Twitter Url <span style="color:red;">*</span></label>
+                                                <label for="youtube"> Youtube Url <span style="color:red;">*</span></label>
                                                 <input type="text" name="youtube" value="{{ $social->youtube }}" placeholder="Enter youtube url" class="form-control" required>
                                             </div>
-                                            
+
                                             <hr>
                                             <button type="submit" class="btn btn-primary btn-block">Save Item</button>
                                         </form>
