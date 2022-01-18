@@ -24,7 +24,7 @@
                                 <form action="{{ Route('footerlink.store') }}" method="POST">
                                     @csrf
                                     @include('back.layouts.message')
-                                    
+
                                     <div class="form-group">
                                          <label for="title"> Link Title <span style="color:red;">*</span></label>
                                          <input type="text" name="title" placeholder="Enter Link Title" class="form-control" required>
@@ -33,13 +33,18 @@
                                          <label for="link"> Link <span style="color:red;">*</span></label>
                                          <input type="text" name="link" placeholder="Enter Link (url)" class="form-control" required>
                                     </div>
-                                    
+                                    @php
+                                        $id=0;
+                                        if(request()->has('id')){
+                                            $id=request()->get('id');
+                                        }
+                                    @endphp
                                     <div class="form-group">
                                         <label for="title"> Link Category <span style="color:red;">*</span></label>
                                         <select name="head_id" class="form-control" required>
                                             <option value="">==== Select Amount Type ====</option>
                                             @foreach(\App\Footerheader::all() as $f)
-                                               <option value="{{ $f->id }}">{{ $f->title }}</option>
+                                               <option value="{{ $f->id }}" {{$f->id==$id?'selected':''}}>{{ $f->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>

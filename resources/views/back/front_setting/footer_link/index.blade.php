@@ -15,7 +15,7 @@
                             <div class="d-md-flex align-items-md-start">
                                 <h3 class="page-title mr-sm-auto"> Footer Links </h3><!-- .btn-toolbar -->
                                 <div class="dt-buttons btn-group">
-                                    <a href="{{ route('footerlink.create') }}" class="btn btn-primary">Create New</a>
+                                    <a href="{{ route('footerlink.create',['id'=>request()->get('id')]) }}" class="btn btn-primary">Create New</a>
                                 </div><!-- /.btn-toolbar -->
                             </div>
                         </div><!-- /.card-header -->
@@ -29,7 +29,7 @@
                                     <th>Link Url</th>
                                     <th colspan="2">Action</th>
                                </tr>
-                                 @foreach (\App\Footerlink::all() as $attr)
+                                 @foreach (\App\Footerlink::where('footerheader_id',request()->get('id'))->get() as $attr)
                                   <tr>
                                       <td>{{ $attr->header->title }}</td>
                                       <td>{{ $attr->title }}</td>

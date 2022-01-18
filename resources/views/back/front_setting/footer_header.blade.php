@@ -14,7 +14,7 @@
                         <div class="card-header">
                             <div class="d-md-flex align-items-md-start">
                                 <h3 class="page-title mr-sm-auto"> List Of Footer Header </h3><!-- .btn-toolbar -->
-                                
+
                             </div>
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
@@ -31,7 +31,10 @@
                                     <tr>
                                         <input type="hidden" name="title_id" value="{{ $b->id }}">
                                         <td><input type="text" name="title" value="{{ $b->title }}" class="form-control" required></td>
-                                        <td><button class="badge badge-primary mt-2">Update</button></td>
+                                        <td>
+                                            <button class="badge badge-primary mt-2">Update</button>
+                                            <a class="badge badge-secondary ml-2" href="{{route('footerlink.index',['id'=>$b->id])}}">Links</a>
+                                        </td>
                                     </tr>
                                 </form>
                                 @endforeach
