@@ -74,6 +74,12 @@
                 </span>
                 Deleveries
             </a>
+            <a href="{{route('n.front.logout')}}" class="btn text-blue " >
+                <span class="material-icons">
+                    logout
+                </span>
+                Logout
+            </a>
 
         </div>
     </div>

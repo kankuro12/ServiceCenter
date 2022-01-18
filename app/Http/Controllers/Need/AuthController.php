@@ -52,6 +52,7 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
+        return redirect()->route('n.front.login');
     }
     public function signup(Request $request){
         if($request->getMethod()=="POST"){
