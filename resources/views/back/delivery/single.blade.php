@@ -15,13 +15,15 @@
                             <div class="d-md-flex align-items-md-start">
                                 <h3 class="page-title mr-sm-auto"> Delivery - {{$delivery->id}}  </h3><!-- .btn-toolbar -->
                                 <div class="dt-buttons btn-group">
+                                    <button class="btn btn-secondary" id="delivery_{{$delivery->id}}" onclick="complete({{$delivery->id}})">Close Delivery</button>
+
                                     <!-- <a href="" class="btn btn-primary">Create New Coupon</a> -->
                                 </div><!-- /.btn-toolbar -->
                             </div>
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
                         <div class="card-body p-4">
-                            
+
                             <table class="table table-bordered ">
                                 <tr>
                                      <th>REF ID</th>
@@ -62,14 +64,42 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div><!-- /.card-body -->
-                       
+
                     </div>
             </div>
           </div>
         </div>
 </main>
 
+@endsection
+@section('scripts')
+    <script>
+        lock=false;
+        _id=0;
+        token="{{csrf_token()}}";
+        function complete(id){
+            _id=id;
+            console.log(id);
+            if(!lock){
+                if(confirm('Do You Want To Complete Order?')){
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('admin.deliveryComplete')}}",
+                        data: {
+                            "id":id,
+                            "_token":token
+                        },
+
+                        success: function (response) {
+                            $('#delivery_'+id).remove();
+                            lock=false;
+                        }
+                    });
+                }
+            }
+        }
+    </script>
 @endsection

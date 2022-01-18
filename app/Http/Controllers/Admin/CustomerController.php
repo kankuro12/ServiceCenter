@@ -19,26 +19,51 @@ class CustomerController extends Controller
         $this->middleware('is_admin');
     }
 
-    public function activate(Request $request){
+    public function customerActivate(Request $request){
         $user=User::find($request->id);
         $user->active=1;
         $user->till=$request->till;
         $user->save();
+        return redirect()->back()->with('message',"User Activated Successfully");
+    }
+    public function customerDeactivate(Request $request){
+        $user=User::find($request->id);
+        $user->active=0;
+        $user->save();
+        return redirect()->back()->with('message',"User Deactivated Successfully");
+    }
+    private function isActive($user)
+    {
+
+        if($user->role==3){
+            $active=true;
+        }else{
+
+            if($user->till==null){
+                $active=false;
+            }else{
+
+                $result = Carbon::now()->lte($user->till);
+                $active=$user->active && $result;
+            }
+        }
+        return $active ;
     }
     public function customerSingle ($id)
     {
         $customer=User::find($id);
         $orders=ServiceOrder::where('user_id',$id)->latest()->get();
-
+        $active=$this->isActive($customer);
         $deliveries=Delivery::where('user_id',$id)->get();
         $jobs = JobProvider::join('job_categories', 'job_categories.id', '=', 'job_providers.job_category_id')
         ->where('job_providers.user_id', $id)
         ->select(DB::raw('job_providers.id,job_providers.title,job_providers.updated_at,job_providers.lastdate,job_categories.name as category,(select count(*) from applied_jobs where job_provider_id=Job_providers.id) as applicants'))
         ->get();
+        $now=Carbon::now()->format('Y-m-d');
         // dd($jobs);
 
-        return view('back.customer.detail',compact('orders','jobs','customer','deliveries'));
-        dd(compact('orders','jobs','customer'));
+        return view('back.customer.detail',compact('orders','jobs','customer','deliveries','active','now'));
+        dd(compact('orders','jobs','customer','active'));
     }
     public function customerList(){
 

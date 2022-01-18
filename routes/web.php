@@ -226,6 +226,8 @@ Route::group(['middleware' => 'role:1', 'prefix' => 'dashboard'],  function () {
     Route::get('seen-message/{id}', 'Admin\CustomerController@messageSeen');
     Route::get('customer-list', 'Admin\CustomerController@customerList');
     Route::get('customer-single/{id}', 'Admin\CustomerController@customerSingle')->name('customer.single');
+    Route::post('customer-activate/{id}', 'Admin\CustomerController@customerActivate')->name('customer.activate');
+    Route::get('customer-deactivate/{id}', 'Admin\CustomerController@customerDeactivate')->name('customer.deactivate');
     Route::get('vendor-list', 'Admin\CustomerController@customerList');
 
     // setting routes

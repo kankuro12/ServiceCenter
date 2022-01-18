@@ -13,15 +13,15 @@
                         <!-- .card-header -->
                         <div class="card-header">
                             <div class="d-md-flex align-items-md-start">
-                                <h3 class="page-title w-100"> Order  - {{$order->id}} </h3><!-- .btn-toolbar -->
-                                <div class="dt-buttons btn-group">
-                                    <!-- <a href="" class="btn btn-primary">Create New Coupon</a> -->
+                                <h3 class="page-title mr-sm-auto"> Order  - {{$order->id}} </h3><!-- .btn-toolbar -->
+                                <div class=" btn-group">
+                                    <button class="btn btn-secondary" id="order_{{$order->id}}" onclick="complete({{$order->id}})">Close Order</button>
                                 </div><!-- /.btn-toolbar -->
                             </div>
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
                         <div class="card-body p-4">
-                            
+
                             <table class="table table-bordered ">
                                 <tr>
                                      <th>REF ID</th>
@@ -52,7 +52,7 @@
                             </table>
                             <div class="list">
                                 <div class="row">
-                                   
+
                                     <div class="col-md-12">
                                         <h4>Order Extra Detail</h4>
                                         <div class="p-2">
@@ -60,9 +60,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                             @if($order->service_type_id!=null)
                             <div class="my-3 p-3 shadow">
                                 <h4>Bike Detail</h4>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <div class="my-3 p-3 shadow">
                                 <h4>Service Detail</h4>
                                 <hr class="m-0">
@@ -114,10 +114,10 @@
                                         Package:- {{$service->title}}
                                     </h5>
                                 <hr class="m-0">
-                                
+
                                 <div class="py-2">
-                                   
-                                                
+
+
                                                 @foreach ($serviceItems as $item)
                                                         @php
                                                             $s=\App\Models\ServiceTypeItem::find($item->service_type_item_id)
@@ -125,10 +125,10 @@
                                                     <h6>
                                                         &#10003; {{$s->title}}
                                                     </h6>
-                                              
+
                                                 @endforeach
                                         </div>
-                                  
+
                             </div>
                             @endif
 
@@ -142,7 +142,7 @@
                                 <div class="py-2">
                                     <div class="row">
                                         @foreach ($ois as $oi)
-                                            
+
                                             <div class="col-md-3">
                                                 <div class="shadow">
 
@@ -151,18 +151,46 @@
                                                         {{$oi->product->name}}
                                                     </div>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
                             @endif
                         </div><!-- /.card-body -->
-                       
+
                     </div>
             </div>
           </div>
         </div>
 </main>
 
+@endsection
+@section('scripts')
+    <script>
+        lock=false;
+        _id=0;
+        token="{{csrf_token()}}";
+        function complete(id){
+            _id=id;
+            console.log(id);
+            if(!lock){
+                if(confirm('Do You Want To Complete Order?')){
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('admin.serviceOrderComplete')}}",
+                        data: {
+                            "id":id,
+                            "_token":token
+                        },
+
+                        success: function (response) {
+                            $('#order_'+id).remove();
+                            lock=false;
+                        }
+                    });
+                }
+            }
+        }
+    </script>
 @endsection

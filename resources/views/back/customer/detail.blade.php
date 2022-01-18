@@ -40,6 +40,23 @@
                         <div class="card-body">
                             <div class="shadow mb-5">
                                 <div class="card-body">
+                                    <form action="{{route('customer.activate',['id'=>$customer->id])}}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="till">Subscription Till</label>
+                                                <input type="date" name="till" id="till" min="{{$active?$customer->till:$now}}" value="{{$active?$customer->till:$now}}"  class="form-control">
+                                            </div>
+                                            <div class="col-md-8 d-flex align-items-end">
+                                                <button class="btn btn-primary mx-2">{{$active?'Update Subscription':'Activate'}}</button>
+                                                <a href="{{route('customer.deactivate',['id'=>$customer->id])}}" class="btn btn-danger">Deactivate</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="shadow mb-5">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <img src="{{asset($customer->name)}}" alt="" class="w-100">
@@ -80,7 +97,7 @@
                                         <div class="col-md-3">
                                             <h5>Activated Till</h5>
                                             <div>
-                                                {{$customer->active==1? $customer->till?->format('d-m-Y') :'inactive'}}
+                                                {{$active? $customer->till??'' :'inactive'}}
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -100,6 +117,9 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <hr>
                             <div class="">
                                 <button class="btn cc-btn  active" data-id="1">Jobs</button>
