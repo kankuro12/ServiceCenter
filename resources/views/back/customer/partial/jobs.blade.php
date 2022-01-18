@@ -19,7 +19,7 @@
                     <td>{{$job->category}}</td>
                     <td>{{$job->updated_at->format('d-m-Y')}}</td>
                     <td>{{$job->applicants}}</td>
-                    <td>{{$job->lastdate?->format('d-m-Y')}}</td>
+                    <td>{{$job->lastdate!=null?$job->lastdate->format('d-m-Y'):''}}</td>
                     <td>
                         <a target="_blank" href="{{route('admin.job-Single',['job'=>$job->id])}}" class="btn btn-sm btn-link">View</a>
                     </td>
