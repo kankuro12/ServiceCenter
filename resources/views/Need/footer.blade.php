@@ -18,8 +18,8 @@ $footer_info = \App\Footerinfo::where('id', 1)->first();
             padding: 60px 30px;
             border-radius: 20px;margin-top:20px;min-height:225px;">
                         <div class="widget widget-about">
-                            <img src="{{ asset($basic_info->logo) }}" class="footer-logo"
-                                alt="Footer Logo" height="50">
+                            <img src="{{ asset($basic_info->logo) }}" class="footer-logo" alt="Footer Logo"
+                                height="50">
                             <p style="color: black;">{{ $basic_info->short_detail }}</p>
                             <hr>
                             <div class="widget-about-info">
@@ -108,14 +108,25 @@ $footer_info = \App\Footerinfo::where('id', 1)->first();
             $link = \App\Social::where('id', 1)->first();
         @endphp
         <div class="social-icons social-icons-color">
-            <a href="{{ $link->facebook }}" class="social-icon social-facebook" title="Facebook" target="_blank"><i
-                    class="fa fa-facebook"></i></a>
-            <a href="{{ $link->twiter }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i
-                    class=" fa fa-twitter"></i></a>
-            <a href="{{ $link->instagram }}" class="social-icon social-instagram" title="Instagram" target="_blank"><i
-                    class="fa fa-instagram"></i></a>
-            <a href="{{ $link->youtube }}" class="social-icon social-youtube" title="Youtube" target="_blank"><i
-                    class="fa fa-youtube"></i></a>
+            @if ($link->facebook != '#')
+                <a href="{{ $link->facebook }}" class="social-icon social-facebook" title="Facebook"
+                    target="_blank"><i class="fa fa-facebook"></i></a>
+            @endif
+            @if ($link->titter != '#')
+
+                <a href="{{ $link->twiter }}" class="social-icon social-twitter" title="Twitter" target="_blank"><i
+                        class=" fa fa-twitter"></i></a>
+            @endif
+            @if ($link->instagram != '#')
+
+                <a href="{{ $link->instagram }}" class="social-icon social-instagram" title="Instagram"
+                    target="_blank"><i class="fa fa-instagram"></i></a>
+            @endif
+            @if ($link->youtube != '#')
+
+                <a href="{{ $link->youtube }}" class="social-icon social-youtube" title="Youtube" target="_blank"><i
+                        class="fa fa-youtube"></i></a>
+            @endif
         </div><!-- End .soial-icons -->
     </div>
 </div>
