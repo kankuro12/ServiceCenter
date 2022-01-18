@@ -25,7 +25,7 @@
                                     @include('back.layouts.message')
                                     <div class="form-group " style="border: 1px #bbb solid; padding-bottom:5px;" >
                                         <p >Ecommerce Lolo</p>
-                                        <img src="{{ asset('front/images/info/'.$info->logo) }}" style="height: 50px;" id="photo" required/>
+                                        <img src="{{ asset($info->logo) }}" style="height: 50px;" id="photo" required/>
                                         <input type="file" name="logo" class="form-control"  onchange="readURL(this);">
                                     </div>
 

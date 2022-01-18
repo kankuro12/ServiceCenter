@@ -58,10 +58,7 @@ class FrontSettingController extends Controller
         if($request->isMethod('post')){
             $info = Homeinfo::where('id',1)->first();
             if($request->has('logo')){
-                unlink(public_path('front/images/info/'.$info->logo));
-                $imageName = time().'.'.$request->logo->getClientOriginalExtension();
-                $request->logo->move(public_path('back/images/brand'), $imageName);
-                $info->logo = $imageName;
+                $info->logo =  $request->logo->store('front/images/info');
                 }
                 $info->short_detail = $request->short_detail;
                 $info->phone = $request->phone;
