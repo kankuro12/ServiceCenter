@@ -6,7 +6,7 @@
 <span>Applied jobs</span>
 @endsection
 @section('buttons')
-<a href="{{route('n.front.all-category')}}">View Jobs</a>
+<a href="{{route('n.front.all-category')}}">Search New Jobs</a>
 @endsection
 @section('newtitle', 'Applied Jobs')
 @section('newcontent')
