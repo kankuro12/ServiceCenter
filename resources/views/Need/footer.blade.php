@@ -19,7 +19,7 @@ $footer_info = \App\Footerinfo::where('id', 1)->first();
             border-radius: 20px;margin-top:20px;min-height:225px;">
                         <div class="widget widget-about">
                             <img src="{{ asset($basic_info->logo) }}" class="footer-logo"
-                                alt="Footer Logo" width="105" height="25">
+                                alt="Footer Logo" height="50">
                             <p style="color: black;">{{ $basic_info->short_detail }}</p>
                             <hr>
                             <div class="widget-about-info">
