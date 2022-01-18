@@ -85,6 +85,7 @@ route::name('n.front.')->group(function(){
     });
     Route::prefix('user-dashboard')->name('vendor.')->middleware('role:2|3')->group(function(){
         route::get('',[VendorController::class,'index'])->name('index');
+        route::get('bookmark',[VendorController::class,'bookmark'])->name('bookmark');
         Route::match(['GET','POST'],'change-image', [VendorController::class,'changeImage'])->name('change-image');
         Route::match(['GET','POST'],'manage-profile', [VendorController::class,'manageProfile'])->name('manage-profile');
         Route::match(['GET','POST'],'change-name', [VendorController::class,'changeName'])->name('change-name');

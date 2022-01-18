@@ -54,6 +54,12 @@
                     </span>
                     My Resume
                 </a>
+                <a href="{{route('resume.index')}}" target="_blank" class="btn text-blue " >
+                    <span class="material-icons">
+                        bookmark
+                    </span>
+                    My Resume
+                </a>
             @endif
 
             <a href="{{route('resume.index')}}" class="btn text-blue " >

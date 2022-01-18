@@ -38,6 +38,11 @@ class VendorController extends Controller
         return $active ;
     }
 
+    public function bookmark()
+    {
+        return view('');
+    }
+
     public function index()
     {
 
