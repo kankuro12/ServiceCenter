@@ -64,9 +64,9 @@ class FrontSettingController extends Controller
                 $info->phone = $request->phone;
                 $info->address = $request->address;
                 $info->email = $request->email;
-                $info->product_top = $request->product_top;
+                $info->product_top = $request->product_top??"";
                 $info->product_bottom = $request->product_bottom;
-                $info->clearance = $request->clearance;
+                $info->clearance = $request->clearance??"";
                 $info->save();
                 return redirect()->back()->with('success','Basic info has been updated successfully!');
         }else{

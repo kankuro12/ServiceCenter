@@ -48,7 +48,7 @@
                                          <input type="text" name="email" class="form-control" value="{{ $info->email }}" required>
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                          <label > Navbar Right Quote <span style="color:red;">*</span></label>
                                          <input type="text" name="clearance" class="form-control" value="{{ $info->clearance }}" required>
                                     </div>
@@ -56,10 +56,10 @@
                                     <div class="form-group">
                                          <label > Home Top Product Title <span style="color:red;">*</span></label>
                                          <input type="text" name="product_top" class="form-control" value="{{ $info->product_top }}" required>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group">
-                                         <label > Home Bottom Product Title <span style="color:red;">*</span></label>
+                                         <label > Google Map Url <span style="color:red;">*</span></label>
                                          <input type="text" name="product_bottom" class="form-control" value="{{ $info->product_bottom }}" required>
                                     </div>
 
