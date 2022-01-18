@@ -28,7 +28,7 @@
 
                         @include('back.layouts.message')
                         <div class="card-body cc cc1 d-none" >
-                            @if ($customers['3']!=null)
+                            @if (isset($customers['3']))
 
                             <table class="table table-bordered " id="normal-user">
                                 <thead>
@@ -64,7 +64,7 @@
 
                         </div><!-- /.card-body -->
                         <div class="card-body cc cc2 d-none">
-                            @if ($customers['2']!=null)
+                            @if (isset($customers['2']))
 
                            <table class="table table-bordered " id="job-provider">
                                <thead>
