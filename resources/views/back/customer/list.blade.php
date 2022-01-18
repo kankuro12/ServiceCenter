@@ -39,7 +39,7 @@
                                          <th>Address</th>
                                          <th>Telephone</th>
                                          <th>Email</th>
-                                         <th></th>
+
 
                                     </tr>
 
@@ -53,9 +53,7 @@
                                          <td>{{ $attr->address }}</td>
                                          <td>{{ $attr->phone }}</td>
                                          <td>{{ $attr->email }}</td>
-                                         <td>
-                                             Details
-                                         </td>
+
                                      </tr>
                                     @endforeach
                                 </tbody>
@@ -86,10 +84,10 @@
 
                                    @foreach ($customers['2'] as $k => $attr)
                                    @php
-                                       if($attr->list==null){
+                                       if($attr->till==null){
                                            $active=false;
                                        }else{
-                                           $active= $attr->status==1 && $current->lte($attr->lastdate);
+                                           $active= $attr->status==1 && $current->lte($attr->till);
                                        }
                                    @endphp
                                     <tr>
