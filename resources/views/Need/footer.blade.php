@@ -118,7 +118,7 @@ $footer_info = \App\Footerinfo::where('id', 1)->first();
                         class=" fa fa-twitter"></i></a>
             @endif
             @if ($link->instagram != '#')
-
+{{-- da --}}
                 <a href="{{ $link->instagram }}" class="social-icon social-instagram" title="Instagram"
                     target="_blank"><i class="fa fa-instagram"></i></a>
             @endif
