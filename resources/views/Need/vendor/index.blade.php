@@ -3,7 +3,8 @@
 <div class="bg-white shadow">
     <style>
         .summary{
-            text-align: center
+            text-align: center;
+            margin-bottom: 15px;
         }
         .summary .material-icons{
             font-size: 40px;
