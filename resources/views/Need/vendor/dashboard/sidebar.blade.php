@@ -54,11 +54,12 @@
                     </span>
                     My Resume
                 </a>
-                <a href="{{route('resume.index')}}" target="_blank" class="btn text-blue " >
+                <a href="{{route('n.front.all-category')}}" target="_blank" class="btn text-blue " >
                     <span class="material-icons">
-                        bookmark
+                        work_outline
+
                     </span>
-                    My Resume
+                    Search Job
                 </a>
             @endif
 

@@ -56,7 +56,7 @@
                     </div>
                     <hr class="my-1">
                     <div class="company-desc mb-4">
-                        {{ $job->user->desc }}
+                        {!! $job->user->desc !!}
                     </div>
                     <h4>
                         Job Details
