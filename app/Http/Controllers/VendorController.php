@@ -41,10 +41,9 @@ class VendorController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders=ServiceOrder::where('user_id',$user->id)->get();
-        $deliveries=Delivery::where('user_id',$user->id)->get();
+
         $active=$this->isActive();
-        return view('Need.vendor.index',compact('orders','deliveries','active'));
+        return view('Need.vendor.index',compact('orders','deliveries','active','user'));
     }
     public function changeImage(Request $request)
     {
