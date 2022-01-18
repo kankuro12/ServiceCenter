@@ -83,7 +83,7 @@
                                                     <label for="si_{{$si->id}}">{{$si->title}} </label>
                                                 </div>
                                                 <div class="">
-                                                    <label for="si_{{$si->id}}">Rs.{{($si->onsale==1?$si->sale_price:$si->price)+1}}</label>
+                                                    <label for="si_{{$si->id}}">Rs.{{($si->onsale==1?$si->sale_price:$si->price)+0}}</label>
                                                 </div>
                                             </div>
                                         </div>
